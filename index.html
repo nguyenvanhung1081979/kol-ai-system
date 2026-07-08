@@ -86,6 +86,7 @@
       <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-txt2">
         <a href="#dich-vu" class="nav-link hover:text-txt">Dịch vụ</a>
         <a href="#bang-gia" class="nav-link hover:text-txt">Bảng giá</a>
+        <a href="#thanh-toan" class="nav-link hover:text-txt">Thanh toán</a>
         <a href="#cong-cu" class="nav-link hover:text-txt">Công cụ AI</a>
         <a href="#blog" class="nav-link hover:text-txt">Kiến thức</a>
         <a href="#faq" class="nav-link hover:text-txt">FAQ</a>
@@ -105,6 +106,7 @@
       <nav class="flex flex-col px-5 py-4 gap-4 text-sm font-medium text-txt2">
         <a href="#dich-vu" class="hover:text-txt">Dịch vụ</a>
         <a href="#bang-gia" class="hover:text-txt">Bảng giá</a>
+        <a href="#thanh-toan" class="hover:text-txt">Thanh toán</a>
         <a href="#cong-cu" class="hover:text-txt">Công cụ AI</a>
         <a href="#blog" class="hover:text-txt">Kiến thức</a>
         <a href="#faq" class="hover:text-txt">FAQ</a>
@@ -259,6 +261,56 @@
           <a href="#lien-he" class="btn-ghost block text-center border border-border font-semibold py-3 rounded-full">Liên hệ tư vấn</a>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Thanh toán QR -->
+  <section id="thanh-toan" class="max-w-7xl mx-auto px-5 md:px-8 py-20 md:py-28">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <span class="text-xs font-semibold tracking-widest text-accent2">THANH TOÁN</span>
+      <h2 class="text-3xl md:text-4xl font-extrabold mt-3 mb-4">Quét mã để thanh toán nhanh chóng</h2>
+      <p class="text-txt2 leading-relaxed">Chuyển khoản trực tiếp qua VietQR — quét bằng app ngân hàng bất kỳ, thông tin tự động điền sẵn.</p>
+    </div>
+
+    <div class="card-hover max-w-md mx-auto bg-card border border-border rounded-3xl p-8 md:p-10 text-center">
+      <div class="w-14 h-14 rounded-xl grad-btn flex items-center justify-center mx-auto mb-5">
+        <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 4.5h4.5v4.5h-4.5v-4.5Zm0 10.5h4.5v4.5h-4.5v-4.5Zm10.5-10.5h4.5v4.5h-4.5v-4.5Zm.75 8.25v1.5m0 3v1.5m3-3h1.5m-6 0h1.5"/></svg>
+      </div>
+      <p class="text-txt2 text-sm mb-1">Ngân hàng</p>
+      <p class="font-bold text-lg mb-5">Vietcombank</p>
+
+      <div class="bg-white rounded-2xl p-3 w-56 mx-auto mb-6">
+        <img
+          src="https://img.vietqr.io/image/970436-0541000305083-compact2.png?accountName=NGUYEN%20VAN%20HUNG"
+          alt="Mã QR chuyển khoản Vietcombank - NGUYEN VAN HUNG"
+          class="w-full h-auto rounded-lg"
+          loading="lazy"
+        >
+      </div>
+
+      <div class="space-y-3 text-left bg-card2 border border-border rounded-xl p-4 mb-2">
+        <div class="flex items-center justify-between gap-3">
+          <div class="min-w-0">
+            <p class="text-txt2 text-xs">Chủ tài khoản</p>
+            <p class="font-semibold truncate">NGUYEN VAN HUNG</p>
+          </div>
+        </div>
+        <div class="flex items-center justify-between gap-3 border-t border-border pt-3">
+          <div class="min-w-0">
+            <p class="text-txt2 text-xs">Số tài khoản</p>
+            <p class="font-semibold" id="stkText">0541000305083</p>
+          </div>
+          <button
+            id="copyStkBtn"
+            data-stk="0541000305083"
+            class="btn-ghost shrink-0 border border-border text-xs font-semibold px-3.5 py-2 rounded-full flex items-center gap-1.5"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"/></svg>
+            <span id="copyStkLabel">Sao chép</span>
+          </button>
+        </div>
+      </div>
+      <p class="text-txt2 text-xs">Nội dung chuyển khoản: ghi rõ tên + dịch vụ đăng ký</p>
     </div>
   </section>
 
@@ -433,6 +485,7 @@
         <ul class="space-y-3 text-sm text-txt2">
           <li><a href="#dich-vu" class="hover:text-txt transition-colors">Dịch vụ</a></li>
           <li><a href="#bang-gia" class="hover:text-txt transition-colors">Bảng giá</a></li>
+          <li><a href="#thanh-toan" class="hover:text-txt transition-colors">Thanh toán</a></li>
           <li><a href="#cong-cu" class="hover:text-txt transition-colors">Công cụ AI</a></li>
           <li><a href="#blog" class="hover:text-txt transition-colors">Kiến thức</a></li>
         </ul>
@@ -475,6 +528,30 @@
       mobileMenu.style.maxHeight = '0';
       mobileMenu.style.opacity = '0';
     }));
+
+    const copyStkBtn = document.getElementById('copyStkBtn');
+    if (copyStkBtn) {
+      copyStkBtn.addEventListener('click', async () => {
+        const stk = copyStkBtn.dataset.stk;
+        const label = document.getElementById('copyStkLabel');
+        try {
+          await navigator.clipboard.writeText(stk);
+        } catch (e) {
+          const temp = document.createElement('textarea');
+          temp.value = stk;
+          document.body.appendChild(temp);
+          temp.select();
+          document.execCommand('copy');
+          document.body.removeChild(temp);
+        }
+        copyStkBtn.classList.add('scale-95');
+        label.textContent = 'Đã sao chép ✓';
+        setTimeout(() => {
+          copyStkBtn.classList.remove('scale-95');
+          label.textContent = 'Sao chép';
+        }, 1500);
+      });
+    }
 
     document.querySelectorAll('.faq-item').forEach(item => {
       const trigger = item.querySelector('.faq-trigger');
