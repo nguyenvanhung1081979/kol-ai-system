@@ -1,0 +1,495 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KOL AI SYSTEM — Hệ thống AI dành cho KOL &amp; Nhà sáng tạo nội dung</title>
+<meta name="description" content="KOL AI SYSTEM bởi Vừng Ali Shop — Giải pháp AI toàn diện: sáng tạo nội dung, tự động hoá, công cụ AI cho KOL và doanh nghiệp.">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: { sans: ['"Be Vietnam Pro"', 'sans-serif'] },
+        colors: {
+          bg: '#0A0A0D',
+          card: '#15151B',
+          card2: '#1A1A22',
+          border: '#26262E',
+          accent: '#E8342B',
+          accent2: '#FF5A3C',
+          txt: '#F5F5F7',
+          txt2: '#9A9AA5',
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { background: #0A0A0D; }
+  .grad-text {
+    background: linear-gradient(90deg, #E8342B 0%, #FF5A3C 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .grad-btn {
+    background: linear-gradient(90deg, #E8342B 0%, #FF5A3C 100%);
+    transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+  }
+  .grad-btn:hover { filter: brightness(1.08); box-shadow: 0 8px 24px -8px rgba(232,52,43,.5); transform: translateY(-2px); }
+  .grad-btn:active { transform: translateY(0) scale(.97); }
+  .btn-ghost { transition: all .18s ease; }
+  .btn-ghost:hover { border-color: #E8342B; color: #F5F5F7; background: rgba(232,52,43,.08); }
+  .btn-ghost:active { transform: scale(.97); }
+  .card-hover { transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
+  .card-hover:hover { transform: translateY(-4px); border-color: #E8342B55; box-shadow: 0 12px 32px -12px rgba(232,52,43,.25); }
+  .card-hover:active { transform: translateY(-1px) scale(.99); }
+  .glow {
+    background: radial-gradient(600px circle at 50% 0%, rgba(232,52,43,.18), transparent 60%);
+  }
+  .nav-link { position: relative; }
+  .nav-link::after {
+    content: ''; position: absolute; left: 0; bottom: -4px; width: 0; height: 2px;
+    background: linear-gradient(90deg, #E8342B, #FF5A3C); transition: width .2s ease;
+  }
+  .nav-link:hover::after { width: 100%; }
+  .faq-icon { transition: transform .25s ease; }
+  .faq-item[data-open="true"] .faq-icon { transform: rotate(45deg); }
+  .faq-panel { max-height: 0; overflow: hidden; transition: max-height .3s ease, padding .3s ease; }
+  .social-icon { transition: transform .2s ease, background .2s ease, border-color .2s ease; }
+  .social-icon:hover { transform: translateY(-3px); border-color: #E8342B; }
+  .social-icon:active { transform: scale(.92); }
+  .mobile-menu { transition: max-height .3s ease, opacity .25s ease; }
+  .rank-badge { transition: transform .2s ease; }
+  .card-hover:hover .rank-badge { transform: scale(1.08); }
+  ::selection { background: #E8342B; color: #fff; }
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: #0A0A0D; }
+  ::-webkit-scrollbar-thumb { background: #26262E; border-radius: 8px; }
+</style>
+
+<body class="bg-bg text-txt font-sans antialiased">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-bg/85 backdrop-blur border-b border-border">
+    <div class="max-w-7xl mx-auto px-5 md:px-8 h-16 md:h-20 flex items-center justify-between">
+      <a href="#top" class="flex items-center gap-2 shrink-0">
+        <span class="w-9 h-9 rounded-lg grad-btn flex items-center justify-center font-black text-white text-sm">AI</span>
+        <span class="font-extrabold text-base sm:text-lg tracking-tight whitespace-nowrap">KOL <span class="grad-text">AI SYSTEM</span></span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-txt2">
+        <a href="#dich-vu" class="nav-link hover:text-txt">Dịch vụ</a>
+        <a href="#bang-gia" class="nav-link hover:text-txt">Bảng giá</a>
+        <a href="#cong-cu" class="nav-link hover:text-txt">Công cụ AI</a>
+        <a href="#blog" class="nav-link hover:text-txt">Kiến thức</a>
+        <a href="#faq" class="nav-link hover:text-txt">FAQ</a>
+        <a href="#lien-he" class="nav-link hover:text-txt">Liên hệ</a>
+      </nav>
+
+      <div class="flex items-center gap-2 md:gap-3">
+        <a href="tel:0912919686" class="hidden md:inline-block text-sm font-semibold text-txt2 hover:text-txt transition-colors whitespace-nowrap">0912 919 686</a>
+        <a href="#lien-he" class="grad-btn text-white text-xs sm:text-sm font-semibold px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full whitespace-nowrap">Tư vấn ngay</a>
+        <button id="menuBtn" class="lg:hidden w-9 h-9 sm:w-10 sm:h-10 shrink-0 flex items-center justify-center rounded-lg border border-border btn-ghost" aria-label="Mở menu">
+          <svg id="iconMenu" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobileMenu" class="mobile-menu lg:hidden max-h-0 opacity-0 overflow-hidden border-t border-border">
+      <nav class="flex flex-col px-5 py-4 gap-4 text-sm font-medium text-txt2">
+        <a href="#dich-vu" class="hover:text-txt">Dịch vụ</a>
+        <a href="#bang-gia" class="hover:text-txt">Bảng giá</a>
+        <a href="#cong-cu" class="hover:text-txt">Công cụ AI</a>
+        <a href="#blog" class="hover:text-txt">Kiến thức</a>
+        <a href="#faq" class="hover:text-txt">FAQ</a>
+        <a href="#lien-he" class="hover:text-txt">Liên hệ</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="top" class="relative glow overflow-hidden">
+    <div class="max-w-7xl mx-auto px-5 md:px-8 pt-16 pb-20 md:pt-24 md:pb-28 grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <span class="inline-block text-xs font-semibold tracking-wide text-accent2 bg-accent/10 border border-accent/30 rounded-full px-4 py-1.5 mb-6">HỆ THỐNG AI DÀNH CHO KOL</span>
+        <h1 class="text-4xl md:text-6xl font-extrabold leading-[1.1] tracking-tight mb-6">
+          Bứt phá nội dung<br>
+          cùng <span class="grad-text">AI System</span>
+        </h1>
+        <p class="text-txt2 text-base md:text-lg leading-relaxed mb-8 max-w-lg">
+          Vừng Ali Shop mang đến giải pháp AI toàn diện: sáng tạo nội dung, tự động hoá quy trình và bộ công cụ AI thực chiến — giúp KOL và doanh nghiệp tăng trưởng nhanh, chuyên nghiệp hơn.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#lien-he" class="grad-btn text-white font-semibold px-7 py-3.5 rounded-full">Tư vấn miễn phí</a>
+          <a href="#dich-vu" class="btn-ghost border border-border text-txt2 font-semibold px-7 py-3.5 rounded-full">Xem dịch vụ</a>
+        </div>
+      </div>
+
+      <div class="relative">
+        <div class="aspect-square max-w-md mx-auto rounded-3xl border border-border bg-card/60 backdrop-blur flex items-center justify-center relative overflow-hidden">
+          <div class="absolute inset-0 glow"></div>
+          <svg class="w-1/2 h-1/2 text-accent2 relative" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z" />
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="max-w-6xl mx-auto px-5 md:px-8 pb-16">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 border-t border-border pt-10">
+        <div class="text-center">
+          <p class="text-3xl md:text-4xl font-extrabold grad-text">500+</p>
+          <p class="text-txt2 text-sm mt-1">Khách hàng tin dùng</p>
+        </div>
+        <div class="text-center">
+          <p class="text-3xl md:text-4xl font-extrabold grad-text">50+</p>
+          <p class="text-txt2 text-sm mt-1">Dịch vụ &amp; công cụ AI</p>
+        </div>
+        <div class="text-center">
+          <p class="text-3xl md:text-4xl font-extrabold grad-text">5</p>
+          <p class="text-txt2 text-sm mt-1">Năm kinh nghiệm</p>
+        </div>
+        <div class="text-center">
+          <p class="text-3xl md:text-4xl font-extrabold grad-text">24/7</p>
+          <p class="text-txt2 text-sm mt-1">Hỗ trợ tận tâm</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="dich-vu" class="max-w-7xl mx-auto px-5 md:px-8 py-20 md:py-28">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <span class="text-xs font-semibold tracking-widest text-accent2">DỊCH VỤ CỦA CHÚNG TÔI</span>
+      <h2 class="text-3xl md:text-4xl font-extrabold mt-3 mb-4">Hệ thống AI thực chiến</h2>
+      <p class="text-txt2 leading-relaxed">Từ sáng tạo nội dung đến tự động hoá vận hành — giải pháp AI được thiết kế riêng cho KOL và doanh nghiệp.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="card-hover bg-card border border-border rounded-2xl p-6">
+        <div class="w-11 h-11 rounded-xl grad-btn flex items-center justify-center mb-5">
+          <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 0 0-5.78 1.128 2.25 2.25 0 0 1-2.4 2.245 4.5 4.5 0 0 0 8.4-2.245c0-.399-.078-.78-.22-1.128Zm0 0a15.998 15.998 0 0 0 3.388-1.62m-5.043-.025a15.994 15.994 0 0 1 1.622-3.395m3.42 3.42a15.995 15.995 0 0 0 4.764-4.648l3.876-5.814a1.151 1.151 0 0 0-1.597-1.597L14.146 6.32a15.996 15.996 0 0 0-4.649 4.763m3.42 3.42a6.776 6.776 0 0 0-3.42-3.42"/></svg>
+        </div>
+        <h3 class="font-bold text-lg mb-2">Sáng tạo nội dung AI</h3>
+        <p class="text-txt2 text-sm leading-relaxed mb-4">Viết kịch bản, caption, hình ảnh AI phục vụ sản xuất nội dung hàng loạt, đúng chất riêng của bạn.</p>
+        <a href="#" class="text-accent2 text-sm font-semibold hover:underline">Tìm hiểu thêm →</a>
+      </div>
+
+      <div class="card-hover bg-card border border-border rounded-2xl p-6">
+        <div class="w-11 h-11 rounded-xl grad-btn flex items-center justify-center mb-5">
+          <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0 0 15 0m-15 0a7.5 7.5 0 1 1 15 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077 1.41-.513m14.095-5.13 1.41-.513M5.106 17.785l1.15-.964m11.49-9.642 1.149-.964M7.501 19.795l.75-1.3m7.5-12.99.75-1.3m-6.063 16.658.26-1.477m2.605-14.772.26-1.477m0 17.726-.26-1.477M10.698 4.614l-.26-1.477"/></svg>
+        </div>
+        <h3 class="font-bold text-lg mb-2">Tự động hoá quy trình</h3>
+        <p class="text-txt2 text-sm leading-relaxed mb-4">Xây dựng workflow AI tự động cho đăng bài, chăm sóc khách hàng và vận hành kênh.</p>
+        <a href="#" class="text-accent2 text-sm font-semibold hover:underline">Tìm hiểu thêm →</a>
+      </div>
+
+      <div class="card-hover bg-card border border-border rounded-2xl p-6">
+        <div class="w-11 h-11 rounded-xl grad-btn flex items-center justify-center mb-5">
+          <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75"/></svg>
+        </div>
+        <h3 class="font-bold text-lg mb-2">Bộ công cụ AI Tools</h3>
+        <p class="text-txt2 text-sm leading-relaxed mb-4">Tuyển chọn &amp; tối ưu công cụ AI hàng đầu, sẵn sàng ứng dụng ngay vào công việc.</p>
+        <a href="#" class="text-accent2 text-sm font-semibold hover:underline">Tìm hiểu thêm →</a>
+      </div>
+
+      <div class="card-hover bg-card border border-border rounded-2xl p-6">
+        <div class="w-11 h-11 rounded-xl grad-btn flex items-center justify-center mb-5">
+          <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z"/></svg>
+        </div>
+        <h3 class="font-bold text-lg mb-2">Tư vấn triển khai AI</h3>
+        <p class="text-txt2 text-sm leading-relaxed mb-4">Đồng hành cùng đội ngũ, tư vấn lộ trình ứng dụng AI phù hợp với mục tiêu kinh doanh.</p>
+        <a href="#" class="text-accent2 text-sm font-semibold hover:underline">Tìm hiểu thêm →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="bang-gia" class="bg-card2/40 border-y border-border">
+    <div class="max-w-7xl mx-auto px-5 md:px-8 py-20 md:py-28">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-xs font-semibold tracking-widest text-accent2">BẢNG GIÁ</span>
+        <h2 class="text-3xl md:text-4xl font-extrabold mt-3 mb-4">Gói dịch vụ phù hợp mọi nhu cầu</h2>
+        <p class="text-txt2 leading-relaxed">Chọn gói phù hợp với quy mô kênh và mục tiêu tăng trưởng của bạn.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 items-start">
+        <div class="card-hover bg-card border border-border rounded-2xl p-8">
+          <h3 class="font-bold text-lg mb-1">Cơ bản</h3>
+          <p class="text-txt2 text-sm mb-6">Dành cho KOL mới bắt đầu</p>
+          <p class="text-4xl font-extrabold mb-6">1.990.000<span class="text-base font-medium text-txt2">đ/tháng</span></p>
+          <ul class="space-y-3 text-sm text-txt2 mb-8">
+            <li class="flex gap-2"><span class="text-accent2">✓</span> 5 công cụ AI cơ bản</li>
+            <li class="flex gap-2"><span class="text-accent2">✓</span> Hỗ trợ qua email</li>
+            <li class="flex gap-2"><span class="text-accent2">✓</span> Báo cáo hàng tháng</li>
+          </ul>
+          <a href="#lien-he" class="btn-ghost block text-center border border-border font-semibold py-3 rounded-full">Chọn gói này</a>
+        </div>
+
+        <div class="card-hover relative bg-card2 border-2 border-accent rounded-2xl p-8 md:-translate-y-3">
+          <span class="absolute -top-3 left-1/2 -translate-x-1/2 grad-btn text-white text-xs font-bold px-4 py-1 rounded-full">PHỔ BIẾN NHẤT</span>
+          <h3 class="font-bold text-lg mb-1">Chuyên nghiệp</h3>
+          <p class="text-txt2 text-sm mb-6">Dành cho KOL &amp; team nội dung</p>
+          <p class="text-4xl font-extrabold mb-6"><span class="grad-text">4.990.000</span><span class="text-base font-medium text-txt2">đ/tháng</span></p>
+          <ul class="space-y-3 text-sm text-txt2 mb-8">
+            <li class="flex gap-2"><span class="text-accent2">✓</span> Toàn bộ công cụ AI</li>
+            <li class="flex gap-2"><span class="text-accent2">✓</span> Tự động hoá quy trình</li>
+            <li class="flex gap-2"><span class="text-accent2">✓</span> Hỗ trợ ưu tiên 24/7</li>
+            <li class="flex gap-2"><span class="text-accent2">✓</span> Tư vấn chiến lược riêng</li>
+          </ul>
+          <a href="#lien-he" class="grad-btn block text-center text-white font-semibold py-3 rounded-full">Chọn gói này</a>
+        </div>
+
+        <div class="card-hover bg-card border border-border rounded-2xl p-8">
+          <h3 class="font-bold text-lg mb-1">Doanh nghiệp</h3>
+          <p class="text-txt2 text-sm mb-6">Giải pháp theo yêu cầu riêng</p>
+          <p class="text-4xl font-extrabold mb-6">Liên hệ</p>
+          <ul class="space-y-3 text-sm text-txt2 mb-8">
+            <li class="flex gap-2"><span class="text-accent2">✓</span> Triển khai AI tuỳ chỉnh</li>
+            <li class="flex gap-2"><span class="text-accent2">✓</span> Đội ngũ chuyên trách</li>
+            <li class="flex gap-2"><span class="text-accent2">✓</span> Cam kết SLA</li>
+          </ul>
+          <a href="#lien-he" class="btn-ghost block text-center border border-border font-semibold py-3 rounded-full">Liên hệ tư vấn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI Tools Ranking -->
+  <section id="cong-cu" class="max-w-7xl mx-auto px-5 md:px-8 py-20 md:py-28">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <span class="text-xs font-semibold tracking-widest text-accent2">CÔNG CỤ AI</span>
+      <h2 class="text-3xl md:text-4xl font-extrabold mt-3 mb-4">Bảng xếp hạng AI Tools</h2>
+      <p class="text-txt2 leading-relaxed">Những công cụ AI được đội ngũ KOL AI SYSTEM tuyển chọn và khuyên dùng.</p>
+    </div>
+
+    <div class="space-y-4 max-w-3xl mx-auto">
+      <div class="card-hover flex items-center gap-5 bg-card border border-border rounded-2xl p-5">
+        <span class="rank-badge shrink-0 w-10 h-10 rounded-full grad-btn text-white font-extrabold flex items-center justify-center">1</span>
+        <div class="flex-1 min-w-0">
+          <h3 class="font-bold">AI Content Studio</h3>
+          <p class="text-txt2 text-sm truncate">Tạo caption, kịch bản video tự động theo phong cách cá nhân</p>
+        </div>
+        <a href="#lien-he" class="shrink-0 grad-btn text-white text-sm font-semibold px-5 py-2 rounded-full">Dùng thử</a>
+      </div>
+
+      <div class="card-hover flex items-center gap-5 bg-card border border-border rounded-2xl p-5">
+        <span class="rank-badge shrink-0 w-10 h-10 rounded-full bg-card2 border border-border font-extrabold flex items-center justify-center">2</span>
+        <div class="flex-1 min-w-0">
+          <h3 class="font-bold">AutoFlow AI</h3>
+          <p class="text-txt2 text-sm truncate">Tự động hoá đăng bài đa nền tảng và chăm sóc khách hàng</p>
+        </div>
+        <a href="#lien-he" class="shrink-0 btn-ghost border border-border text-sm font-semibold px-5 py-2 rounded-full">Dùng thử</a>
+      </div>
+
+      <div class="card-hover flex items-center gap-5 bg-card border border-border rounded-2xl p-5">
+        <span class="rank-badge shrink-0 w-10 h-10 rounded-full bg-card2 border border-border font-extrabold flex items-center justify-center">3</span>
+        <div class="flex-1 min-w-0">
+          <h3 class="font-bold">Visual AI Pro</h3>
+          <p class="text-txt2 text-sm truncate">Tạo hình ảnh, thumbnail chuẩn thương hiệu chỉ trong vài giây</p>
+        </div>
+        <a href="#lien-he" class="shrink-0 btn-ghost border border-border text-sm font-semibold px-5 py-2 rounded-full">Dùng thử</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog -->
+  <section id="blog" class="bg-card2/40 border-y border-border">
+    <div class="max-w-7xl mx-auto px-5 md:px-8 py-20 md:py-28">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-xs font-semibold tracking-widest text-accent2">KIẾN THỨC AI</span>
+        <h2 class="text-3xl md:text-4xl font-extrabold mt-3 mb-4">Cập nhật xu hướng AI mới nhất</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <article class="card-hover bg-card border border-border rounded-2xl overflow-hidden">
+          <div class="h-40 glow bg-card2 flex items-center justify-center border-b border-border">
+            <span class="text-4xl font-black grad-text">AI</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-bold mb-2">5 xu hướng AI content năm 2026</h3>
+            <p class="text-txt2 text-sm leading-relaxed mb-4">Những thay đổi lớn trong cách KOL sáng tạo nội dung với sự hỗ trợ của AI.</p>
+            <a href="#" class="text-accent2 text-sm font-semibold hover:underline">Đọc thêm →</a>
+          </div>
+        </article>
+
+        <article class="card-hover bg-card border border-border rounded-2xl overflow-hidden">
+          <div class="h-40 glow bg-card2 flex items-center justify-center border-b border-border">
+            <span class="text-4xl font-black grad-text">GPT</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-bold mb-2">Ứng dụng AI vào quy trình vận hành</h3>
+            <p class="text-txt2 text-sm leading-relaxed mb-4">Hướng dẫn tự động hoá các tác vụ lặp lại giúp tiết kiệm thời gian.</p>
+            <a href="#" class="text-accent2 text-sm font-semibold hover:underline">Đọc thêm →</a>
+          </div>
+        </article>
+
+        <article class="card-hover bg-card border border-border rounded-2xl overflow-hidden">
+          <div class="h-40 glow bg-card2 flex items-center justify-center border-b border-border">
+            <span class="text-4xl font-black grad-text">KOL</span>
+          </div>
+          <div class="p-6">
+            <h3 class="font-bold mb-2">Case study: Tăng trưởng nhờ AI</h3>
+            <p class="text-txt2 text-sm leading-relaxed mb-4">Câu chuyện thực tế từ khách hàng đã triển khai hệ thống AI cùng chúng tôi.</p>
+            <a href="#" class="text-accent2 text-sm font-semibold hover:underline">Đọc thêm →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="max-w-3xl mx-auto px-5 md:px-8 py-20 md:py-28">
+    <div class="text-center mb-14">
+      <span class="text-xs font-semibold tracking-widest text-accent2">HỎI ĐÁP</span>
+      <h2 class="text-3xl md:text-4xl font-extrabold mt-3">Anh/chị hay hỏi gì?</h2>
+    </div>
+
+    <div class="space-y-3" id="faqList">
+      <div class="faq-item bg-card border border-border rounded-2xl overflow-hidden" data-open="false">
+        <button class="faq-trigger w-full flex items-center justify-between gap-4 p-5 text-left font-semibold">
+          <span>KOL AI SYSTEM phù hợp với ai?</span>
+          <span class="faq-icon shrink-0 text-accent2 text-xl leading-none">+</span>
+        </button>
+        <div class="faq-panel px-5 text-txt2 text-sm leading-relaxed">
+          <p class="pb-5">Phù hợp với KOL, nhà sáng tạo nội dung, và doanh nghiệp muốn ứng dụng AI để tăng tốc sản xuất nội dung và tự động hoá vận hành.</p>
+        </div>
+      </div>
+
+      <div class="faq-item bg-card border border-border rounded-2xl overflow-hidden" data-open="false">
+        <button class="faq-trigger w-full flex items-center justify-between gap-4 p-5 text-left font-semibold">
+          <span>Thời gian triển khai mất bao lâu?</span>
+          <span class="faq-icon shrink-0 text-accent2 text-xl leading-none">+</span>
+        </button>
+        <div class="faq-panel px-5 text-txt2 text-sm leading-relaxed">
+          <p class="pb-5">Tuỳ gói dịch vụ, thời gian triển khai thường từ 3–7 ngày làm việc sau khi thống nhất yêu cầu.</p>
+        </div>
+      </div>
+
+      <div class="faq-item bg-card border border-border rounded-2xl overflow-hidden" data-open="false">
+        <button class="faq-trigger w-full flex items-center justify-between gap-4 p-5 text-left font-semibold">
+          <span>Có hỗ trợ dùng thử trước khi mua không?</span>
+          <span class="faq-icon shrink-0 text-accent2 text-xl leading-none">+</span>
+        </button>
+        <div class="faq-panel px-5 text-txt2 text-sm leading-relaxed">
+          <p class="pb-5">Có. Bạn có thể đăng ký tư vấn miễn phí và trải nghiệm demo trước khi quyết định.</p>
+        </div>
+      </div>
+
+      <div class="faq-item bg-card border border-border rounded-2xl overflow-hidden" data-open="false">
+        <button class="faq-trigger w-full flex items-center justify-between gap-4 p-5 text-left font-semibold">
+          <span>Tôi có thể huỷ hoặc đổi gói dịch vụ không?</span>
+          <span class="faq-icon shrink-0 text-accent2 text-xl leading-none">+</span>
+        </button>
+        <div class="faq-panel px-5 text-txt2 text-sm leading-relaxed">
+          <p class="pb-5">Hoàn toàn được. Bạn có thể nâng cấp, hạ cấp hoặc huỷ gói bất kỳ lúc nào, liên hệ đội ngũ hỗ trợ để được xử lý nhanh chóng.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA / Contact -->
+  <section id="lien-he" class="max-w-7xl mx-auto px-5 md:px-8 pb-20 md:pb-28">
+    <div class="glow bg-card border border-border rounded-3xl p-10 md:p-14 flex flex-col md:flex-row items-center justify-between gap-8">
+      <div class="text-center md:text-left">
+        <h2 class="text-2xl md:text-3xl font-extrabold mb-2">Sẵn sàng bứt phá cùng AI?</h2>
+        <p class="text-txt2">Để lại thông tin, đội ngũ KOL AI SYSTEM sẽ liên hệ tư vấn miễn phí trong 24h.</p>
+      </div>
+      <div class="flex flex-wrap justify-center gap-4 shrink-0">
+        <a href="tel:0912919686" class="grad-btn text-white font-semibold px-7 py-3.5 rounded-full">Gọi 0912 919 686</a>
+        <a href="https://www.facebook.com/vungalishop" target="_blank" rel="noopener" class="btn-ghost border border-border font-semibold px-7 py-3.5 rounded-full">Nhắn Fanpage</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-border">
+    <div class="max-w-7xl mx-auto px-5 md:px-8 pt-16 pb-10 grid md:grid-cols-4 gap-10">
+      <div class="md:col-span-2">
+        <a href="#top" class="flex items-center gap-2 mb-4">
+          <span class="w-9 h-9 rounded-lg grad-btn flex items-center justify-center font-black text-white text-sm">AI</span>
+          <span class="font-extrabold text-lg">KOL <span class="grad-text">AI SYSTEM</span></span>
+        </a>
+        <p class="text-txt2 text-sm leading-relaxed max-w-sm mb-5">Thương hiệu bởi <strong class="text-txt">Vừng Ali Shop</strong> — giải pháp AI toàn diện dành cho KOL, nhà sáng tạo nội dung và doanh nghiệp.</p>
+        <div class="flex gap-3">
+          <a href="https://www.facebook.com/vungalishop" target="_blank" rel="noopener" class="social-icon w-10 h-10 rounded-full border border-border flex items-center justify-center" aria-label="Facebook">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.16 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.5 1.49-3.89 3.78-3.89 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.9h-2.34V22c4.78-.78 8.44-4.94 8.44-9.94Z"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@vungalishop" target="_blank" rel="noopener" class="social-icon w-10 h-10 rounded-full border border-border flex items-center justify-center" aria-label="Tiktok">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M16.6 5.82a4.28 4.28 0 0 1-3.2-1.44V15.4a5.6 5.6 0 1 1-4.8-5.54v2.5a3.1 3.1 0 1 0 2.2 2.97V2h2.4a4.28 4.28 0 0 0 3.4 4.2v2.5a6.7 6.7 0 0 1-2.4-.46 6.5 6.5 0 0 0 2.4 3.58Z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="font-semibold mb-4 text-sm">Liên kết</h4>
+        <ul class="space-y-3 text-sm text-txt2">
+          <li><a href="#dich-vu" class="hover:text-txt transition-colors">Dịch vụ</a></li>
+          <li><a href="#bang-gia" class="hover:text-txt transition-colors">Bảng giá</a></li>
+          <li><a href="#cong-cu" class="hover:text-txt transition-colors">Công cụ AI</a></li>
+          <li><a href="#blog" class="hover:text-txt transition-colors">Kiến thức</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-semibold mb-4 text-sm">Liên hệ</h4>
+        <ul class="space-y-3 text-sm text-txt2">
+          <li>Vừng Ali Shop</li>
+          <li><a href="tel:0912919686" class="hover:text-txt transition-colors">0912 919 686</a></li>
+          <li><a href="mailto:hungvannguyen@gmail.com" class="hover:text-txt transition-colors">hungvannguyen@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-border">
+      <div class="max-w-7xl mx-auto px-5 md:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-txt2">
+        <p>© 2026 KOL AI SYSTEM — Vừng Ali Shop. All rights reserved.</p>
+        <p>Made with AI ❤ for KOL Vietnam</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    let menuOpen = false;
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      if (menuOpen) {
+        mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 'px';
+        mobileMenu.style.opacity = '1';
+      } else {
+        mobileMenu.style.maxHeight = '0';
+        mobileMenu.style.opacity = '0';
+      }
+    });
+    document.querySelectorAll('#mobileMenu a').forEach(a => a.addEventListener('click', () => {
+      menuOpen = false;
+      mobileMenu.style.maxHeight = '0';
+      mobileMenu.style.opacity = '0';
+    }));
+
+    document.querySelectorAll('.faq-item').forEach(item => {
+      const trigger = item.querySelector('.faq-trigger');
+      const panel = item.querySelector('.faq-panel');
+      trigger.addEventListener('click', () => {
+        const isOpen = item.getAttribute('data-open') === 'true';
+        document.querySelectorAll('.faq-item').forEach(other => {
+          other.setAttribute('data-open', 'false');
+          other.querySelector('.faq-panel').style.maxHeight = '0';
+        });
+        if (!isOpen) {
+          item.setAttribute('data-open', 'true');
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+        }
+      });
+    });
+  </script>
+</body>
