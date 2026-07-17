@@ -1,11 +1,24 @@
 import Link from "next/link";
 import { footerLinks, siteConfig } from "@/lib/constants";
 import { FacebookIcon, TiktokIcon } from "@/components/ui/Icons";
+import { NewsletterForm } from "@/components/ui/NewsletterForm";
 
 export function Footer() {
   return (
     <footer className="border-t border-border">
-      <div className="max-w-7xl mx-auto px-5 md:px-8 pt-16 pb-10 grid md:grid-cols-4 gap-10">
+      <div className="max-w-7xl mx-auto px-5 md:px-8 pt-12">
+        <div className="bg-card2/60 border border-border rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-5">
+          <div className="text-center md:text-left">
+            <p className="font-bold">Nhận tin tức AI mới nhất</p>
+            <p className="text-txt2 text-sm">
+              Cập nhật xu hướng AI, ưu đãi mới của KOL AI SYSTEM qua email.
+            </p>
+          </div>
+          <NewsletterForm />
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-5 md:px-8 pt-10 pb-10 grid md:grid-cols-4 gap-10">
         <div className="md:col-span-2">
           <Link href="/#top" className="flex items-center gap-2 mb-4">
             <span className="w-9 h-9 rounded-lg grad-btn flex items-center justify-center font-black text-white text-sm">

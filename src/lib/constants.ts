@@ -203,21 +203,98 @@ export const aiTools = [
   },
 ];
 
-export const blogPosts = [
+export type BlogPost = {
+  slug: string;
+  tag: string;
+  title: string;
+  desc: string;
+  date: string;
+  readTime: string;
+  sections: { heading: string; body: string }[];
+};
+
+export const blogPosts: BlogPost[] = [
   {
+    slug: "5-xu-huong-ai-content-nam-2026",
     tag: "AI",
     title: "5 xu hướng AI content năm 2026",
     desc: "Những thay đổi lớn trong cách KOL sáng tạo nội dung với sự hỗ trợ của AI.",
+    date: "10/01/2026",
+    readTime: "5 phút đọc",
+    sections: [
+      {
+        heading: "1. Video ngắn dựng sẵn kịch bản bằng AI",
+        body: "Thay vì mất hàng giờ lên ý tưởng và viết kịch bản, AI có thể tạo ra hàng chục phương án kịch bản video ngắn chỉ trong vài phút, giúp KOL chọn lọc và sản xuất nhanh hơn nhiều lần. Xu hướng năm 2026 là kết hợp prompt chuyên biệt theo từng nền tảng (TikTok, Reels, Shorts) để tối ưu tỉ lệ giữ chân người xem ngay từ 3 giây đầu.",
+      },
+      {
+        heading: "2. Nhân vật ảo và người dẫn AI nhất quán",
+        body: "Công nghệ tạo nhân vật AI nhất quán qua nhiều video (consistent character) ngày càng phổ biến, cho phép xây dựng một 'gương mặt thương hiệu' ảo xuất hiện đều đặn mà không cần quay dựng thủ công liên tục — tiết kiệm chi phí sản xuất đáng kể cho các kênh đăng bài dày đặc.",
+      },
+      {
+        heading: "3. Cá nhân hoá nội dung theo từng nhóm khán giả",
+        body: "AI giúp phân tích hành vi khán giả và tự động điều chỉnh góc độ nội dung (tone, độ dài, định dạng) phù hợp với từng nhóm nhỏ thay vì sản xuất một phiên bản chung cho tất cả — tăng đáng kể tỉ lệ tương tác so với cách làm truyền thống.",
+      },
+      {
+        heading: "4. AI hỗ trợ săn xu hướng theo thời gian thực",
+        body: "Các công cụ AI theo dõi xu hướng mạng xã hội theo thời gian thực giúp KOL nắm bắt chủ đề đang lên sớm hơn, thay vì chạy theo trend khi nó đã bão hoà. Đây là lợi thế cạnh tranh rõ rệt cho những kênh cần tốc độ ra nội dung nhanh.",
+      },
+      {
+        heading: "5. Kết hợp người thật và AI, không thay thế hoàn toàn",
+        body: "Xu hướng bền vững nhất không phải là để AI làm thay 100%, mà là dùng AI xử lý phần lặp lại, tốn thời gian (dựng khung kịch bản, chỉnh sửa, tạo biến thể), để KOL dành nhiều thời gian hơn cho phần thể hiện cá tính và kết nối thật với khán giả — yếu tố AI không thể thay thế.",
+      },
+    ],
   },
   {
+    slug: "ung-dung-ai-vao-quy-trinh-van-hanh",
     tag: "GPT",
     title: "Ứng dụng AI vào quy trình vận hành",
     desc: "Hướng dẫn tự động hoá các tác vụ lặp lại giúp tiết kiệm thời gian.",
+    date: "18/01/2026",
+    readTime: "6 phút đọc",
+    sections: [
+      {
+        heading: "Vì sao nên tự động hoá quy trình lặp lại",
+        body: "Phần lớn thời gian vận hành của một kênh nội dung hoặc doanh nghiệp nhỏ bị tiêu tốn vào các tác vụ lặp đi lặp lại: lên lịch đăng bài, trả lời tin nhắn tương tự nhau, tổng hợp báo cáo thủ công. Tự động hoá những phần này không làm mất đi sự cá nhân hoá — ngược lại, nó giải phóng thời gian để tập trung vào việc cần con người ra quyết định.",
+      },
+      {
+        heading: "Bắt đầu từ đâu trước",
+        body: "Nên ưu tiên tự động hoá theo thứ tự: (1) đăng bài đa nền tảng theo lịch cố định, (2) trả lời các câu hỏi thường gặp của khách hàng, (3) tổng hợp số liệu tương tác/doanh thu định kỳ. Đây là ba nhóm việc tốn nhiều thời gian nhất nhưng lại dễ tự động hoá nhất vì có quy tắc rõ ràng.",
+      },
+      {
+        heading: "Chọn công cụ phù hợp thay vì chạy theo trend",
+        body: "Không phải công cụ AI nào 'hot' cũng phù hợp với quy mô và ngân sách của bạn. Nguyên tắc chọn công cụ nên dựa trên: mức độ tích hợp với nền tảng đang dùng, chi phí trên mỗi tác vụ tự động, và thời gian học sử dụng — một công cụ mạnh nhưng khó dùng thường bị bỏ dở sau vài tuần.",
+      },
+      {
+        heading: "Đo lường hiệu quả sau khi tự động hoá",
+        body: "Sau khi triển khai, nên theo dõi ít nhất hai chỉ số: thời gian tiết kiệm được mỗi tuần và tỉ lệ lỗi/sai sót so với làm thủ công. Nếu một quy trình tự động không tiết kiệm thời gian rõ rệt sau một tháng, cần xem lại cách cấu hình thay vì bỏ cuộc hoàn toàn.",
+      },
+    ],
   },
   {
+    slug: "case-study-tang-truong-nho-ai",
     tag: "KOL",
     title: "Case study: Tăng trưởng nhờ AI",
-    desc: "Câu chuyện thực tế từ khách hàng đã triển khai hệ thống AI cùng chúng tôi.",
+    desc: "Mô hình triển khai điển hình mà KOL AI SYSTEM áp dụng cho khách hàng, minh hoạ quy trình và kết quả có thể đạt được.",
+    date: "25/01/2026",
+    readTime: "4 phút đọc",
+    sections: [
+      {
+        heading: "Bối cảnh trước khi triển khai",
+        body: "Đây là mô hình triển khai điển hình cho một kênh nội dung quy mô nhỏ (dưới 5 người), gặp khó khăn phổ biến: sản xuất nội dung chậm do khâu lên ý tưởng và viết kịch bản tốn nhiều thời gian, đội ngũ mỏng nên không đủ người trực fanpage liên tục để chăm sóc khách hàng.",
+      },
+      {
+        heading: "Giải pháp AI đã áp dụng",
+        body: "Kết hợp ba phần: (1) hệ thống AI hỗ trợ sinh kịch bản và caption theo đúng giọng văn thương hiệu, (2) workflow tự động hoá đăng bài và trả lời tin nhắn cơ bản ngoài giờ hành chính, (3) bộ công cụ AI Tools được tuyển chọn sẵn để rút ngắn thời gian dựng hình ảnh sản phẩm.",
+      },
+      {
+        heading: "Kết quả điển hình có thể đạt được",
+        body: "Với mô hình triển khai tương tự, thời gian sản xuất một video ngắn thường giảm từ vài giờ xuống còn khoảng 30-45 phút, và thời gian phản hồi khách hàng ngoài giờ được rút ngắn đáng kể nhờ tự động hoá phần trả lời cơ bản. Kết quả thực tế sẽ khác nhau tuỳ ngành hàng và mức độ đầu tư triển khai.",
+      },
+      {
+        heading: "Bài học rút ra",
+        body: "Yếu tố quyết định không phải là dùng công cụ AI nào, mà là xây dựng đúng quy trình trước khi tự động hoá. Áp dụng AI vào một quy trình lộn xộn sẽ chỉ khiến sự lộn xộn đó diễn ra nhanh hơn — vì vậy bước tư vấn và chuẩn hoá quy trình luôn đi trước bước triển khai công cụ.",
+      },
+    ],
   },
 ];
 

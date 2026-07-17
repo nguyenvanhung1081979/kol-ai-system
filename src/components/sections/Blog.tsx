@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { blogPosts } from "@/lib/constants";
 import { BlogCover } from "@/components/ui/BlogCover";
 
@@ -15,16 +16,21 @@ export function Blog() {
         <div className="grid md:grid-cols-3 gap-6">
           {blogPosts.map((post) => (
             <article
-              key={post.title}
+              key={post.slug}
               className="card-hover bg-card border border-border rounded-2xl overflow-hidden"
             >
-              <BlogCover tag={post.tag} />
+              <Link href={`/kien-thuc/${post.slug}`}>
+                <BlogCover tag={post.tag} />
+              </Link>
               <div className="p-6">
                 <h3 className="font-bold mb-2">{post.title}</h3>
                 <p className="text-txt2 text-sm leading-relaxed mb-4">{post.desc}</p>
-                <a href="#" className="text-accent2 text-sm font-semibold hover:underline">
+                <Link
+                  href={`/kien-thuc/${post.slug}`}
+                  className="text-accent2 text-sm font-semibold hover:underline"
+                >
                   Đọc thêm →
-                </a>
+                </Link>
               </div>
             </article>
           ))}

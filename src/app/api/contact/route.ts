@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 type ContactPayload = {
   name: string;
-  phone: string;
+  phone?: string;
   service?: string;
   message?: string;
 };
@@ -10,11 +10,8 @@ type ContactPayload = {
 export async function POST(request: Request) {
   const body = (await request.json()) as ContactPayload;
 
-  if (!body.name?.trim() || !body.phone?.trim()) {
-    return NextResponse.json(
-      { ok: false, error: "Thiếu họ tên hoặc số điện thoại." },
-      { status: 400 }
-    );
+  if (!body.name?.trim()) {
+    return NextResponse.json({ ok: false, error: "Thiếu họ tên." }, { status: 400 });
   }
 
   const webhookUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
@@ -33,7 +30,7 @@ export async function POST(request: Request) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         name: body.name.trim(),
-        phone: body.phone.trim(),
+        phone: body.phone?.trim() ?? "",
         service: body.service ?? "",
         message: body.message ?? "",
       }),
