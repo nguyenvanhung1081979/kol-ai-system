@@ -21,6 +21,7 @@ export const navLinks = [
   { label: "Bảng giá", href: "/#bang-gia" },
   { label: "Thanh toán", href: "/#thanh-toan" },
   { label: "Công cụ AI", href: "/#cong-cu" },
+  { label: "Quà tặng AI", href: "/qua-tang" },
   { label: "Kiến thức", href: "/#blog" },
   { label: "FAQ", href: "/#faq" },
   { label: "Liên hệ", href: "/#lien-he" },

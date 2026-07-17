@@ -8,10 +8,12 @@ import { Blog } from "@/components/sections/Blog";
 import { Faq } from "@/components/sections/Faq";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { Footer } from "@/components/sections/Footer";
+import { GiftPopup } from "@/components/ui/GiftPopup";
 
 export default function Home() {
   return (
     <>
+      <GiftPopup />
       <Header />
       <Hero />
       <Services />
