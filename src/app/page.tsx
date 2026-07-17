@@ -9,11 +9,13 @@ import { Faq } from "@/components/sections/Faq";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { Footer } from "@/components/sections/Footer";
 import { GiftPopup } from "@/components/ui/GiftPopup";
+import { PromptPopup } from "@/components/ui/PromptPopup";
 
 export default function Home() {
   return (
     <>
       <GiftPopup />
+      <PromptPopup />
       <Header />
       <Hero />
       <Services />

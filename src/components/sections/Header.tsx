@@ -22,7 +22,7 @@ export function Header() {
           </span>
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-8 text-sm font-medium text-txt2">
+        <nav className="hidden xl:flex items-center gap-5 text-sm font-medium text-txt2 whitespace-nowrap">
           {navLinks.map((link) => (
             <Link key={link.href} href={link.href} className="nav-link hover:text-txt">
               {link.label}
@@ -47,7 +47,7 @@ export function Header() {
           </Link>
           <button
             onClick={() => setOpen((v) => !v)}
-            className="lg:hidden w-9 h-9 sm:w-10 sm:h-10 shrink-0 flex items-center justify-center rounded-lg border border-border btn-ghost"
+            className="xl:hidden w-9 h-9 sm:w-10 sm:h-10 shrink-0 flex items-center justify-center rounded-lg border border-border btn-ghost"
             aria-label="Mở menu"
           >
             <MenuIcon className="w-5 h-5" />
@@ -56,7 +56,7 @@ export function Header() {
       </div>
 
       <div
-        className="lg:hidden overflow-hidden border-t border-border transition-[max-height,opacity] duration-300 ease-in-out"
+        className="xl:hidden overflow-hidden border-t border-border transition-[max-height,opacity] duration-300 ease-in-out"
         style={{
           maxHeight: open ? 400 : 0,
           opacity: open ? 1 : 0,
