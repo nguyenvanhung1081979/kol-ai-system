@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { navLinks, siteConfig } from "@/lib/constants";
+import { footerLinks, siteConfig } from "@/lib/constants";
 import { FacebookIcon, TiktokIcon } from "@/components/ui/Icons";
 
 export function Footer() {
@@ -44,15 +44,13 @@ export function Footer() {
         <div>
           <h4 className="font-semibold mb-4 text-sm">Liên kết</h4>
           <ul className="space-y-3 text-sm text-txt2">
-            {navLinks
-              .filter((l) => l.href !== "/#faq" && l.href !== "/#lien-he")
-              .map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="hover:text-txt transition-colors">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+            {footerLinks.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} className="hover:text-txt transition-colors">
+                  {link.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 

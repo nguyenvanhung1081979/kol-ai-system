@@ -16,16 +16,35 @@ export const bankInfo = {
   accountName: "NGUYEN VAN HUNG",
 };
 
-export const navLinks = [
+export type NavItem =
+  | { label: string; href: string; children?: undefined }
+  | { label: string; href?: undefined; children: { label: string; href: string }[] };
+
+export const navLinks: NavItem[] = [
   { label: "Dịch vụ", href: "/#dich-vu" },
   { label: "Bảng giá", href: "/#bang-gia" },
   { label: "Thanh toán", href: "/#thanh-toan" },
   { label: "Công cụ AI", href: "/#cong-cu" },
-  { label: "Quà tặng AI", href: "/qua-tang" },
-  { label: "Kho Prompt AI", href: "/kho-prompt" },
+  {
+    label: "Quà tặng",
+    children: [
+      { label: "Công cụ", href: "/qua-tang" },
+      { label: "Prompt", href: "/kho-prompt" },
+    ],
+  },
   { label: "Kiến thức", href: "/#blog" },
   { label: "FAQ", href: "/#faq" },
   { label: "Liên hệ", href: "/#lien-he" },
+];
+
+export const footerLinks: { label: string; href: string }[] = [
+  { label: "Dịch vụ", href: "/#dich-vu" },
+  { label: "Bảng giá", href: "/#bang-gia" },
+  { label: "Thanh toán", href: "/#thanh-toan" },
+  { label: "Công cụ AI", href: "/#cong-cu" },
+  { label: "Quà tặng AI Tools", href: "/qua-tang" },
+  { label: "Kho Prompt AI", href: "/kho-prompt" },
+  { label: "Kiến thức", href: "/#blog" },
 ];
 
 export const heroStats = [
