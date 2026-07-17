@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+:root {
+  --color-bg: #0a0a0d;
+  --color-card: #15151b;
+  --color-card2: #1a1a22;
+  --color-border: #26262e;
+  --color-accent: #e8342b;
+  --color-accent2: #ff5a3c;
+  --color-txt: #f5f5f7;
+  --color-txt2: #9a9aa5;
+}
+
+@theme inline {
+  --color-bg: var(--color-bg);
+  --color-card: var(--color-card);
+  --color-card2: var(--color-card2);
+  --color-border: var(--color-border);
+  --color-accent: var(--color-accent);
+  --color-accent2: var(--color-accent2);
+  --color-txt: var(--color-txt);
+  --color-txt2: var(--color-txt2);
+  --font-sans: var(--font-be-vietnam-pro);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-txt);
+}
+
+.grad-text {
+  background: linear-gradient(90deg, #e8342b 0%, #ff5a3c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.grad-btn {
+  background: linear-gradient(90deg, #e8342b 0%, #ff5a3c 100%);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+.grad-btn:hover {
+  filter: brightness(1.08);
+  box-shadow: 0 8px 24px -8px rgba(232, 52, 43, 0.5);
+  transform: translateY(-2px);
+}
+.grad-btn:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.btn-ghost {
+  transition: all 0.18s ease;
+}
+.btn-ghost:hover {
+  border-color: #e8342b;
+  color: #f5f5f7;
+  background: rgba(232, 52, 43, 0.08);
+}
+.btn-ghost:active {
+  transform: scale(0.97);
+}
+
+.card-hover {
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  border-color: #e8342b55;
+  box-shadow: 0 12px 32px -12px rgba(232, 52, 43, 0.25);
+}
+.card-hover:active {
+  transform: translateY(-1px) scale(0.99);
+}
+
+.glow {
+  background: radial-gradient(600px circle at 50% 0%, rgba(232, 52, 43, 0.18), transparent 60%);
+}
+
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #e8342b, #ff5a3c);
+  transition: width 0.2s ease;
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.faq-icon {
+  transition: transform 0.25s ease;
+}
+.faq-item[data-open="true"] .faq-icon {
+  transform: rotate(45deg);
+}
+
+.social-icon {
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+.social-icon:hover {
+  transform: translateY(-3px);
+  border-color: #e8342b;
+}
+.social-icon:active {
+  transform: scale(0.92);
+}
+
+.rank-badge {
+  transition: transform 0.2s ease;
+}
+.card-hover:hover .rank-badge {
+  transform: scale(1.08);
+}
+
+::selection {
+  background: #e8342b;
+  color: #fff;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0d;
+}
+::-webkit-scrollbar-thumb {
+  background: #26262e;
+  border-radius: 8px;
+}
