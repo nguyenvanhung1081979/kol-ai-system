@@ -17,13 +17,13 @@ export const bankInfo = {
 };
 
 export const navLinks = [
-  { label: "Dịch vụ", href: "#dich-vu" },
-  { label: "Bảng giá", href: "#bang-gia" },
-  { label: "Thanh toán", href: "#thanh-toan" },
-  { label: "Công cụ AI", href: "#cong-cu" },
-  { label: "Kiến thức", href: "#blog" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Liên hệ", href: "#lien-he" },
+  { label: "Dịch vụ", href: "/#dich-vu" },
+  { label: "Bảng giá", href: "/#bang-gia" },
+  { label: "Thanh toán", href: "/#thanh-toan" },
+  { label: "Công cụ AI", href: "/#cong-cu" },
+  { label: "Kiến thức", href: "/#blog" },
+  { label: "FAQ", href: "/#faq" },
+  { label: "Liên hệ", href: "/#lien-he" },
 ];
 
 export const heroStats = [
@@ -35,26 +35,96 @@ export const heroStats = [
 
 export type ServiceIcon = "content" | "automation" | "tools" | "consult";
 
-export const services: { icon: ServiceIcon; title: string; desc: string }[] = [
+export type Service = {
+  slug: string;
+  icon: ServiceIcon;
+  title: string;
+  desc: string;
+  longDescription: string;
+  benefits: string[];
+  process: { title: string; desc: string }[];
+};
+
+export const services: Service[] = [
   {
+    slug: "sang-tao-noi-dung-ai",
     icon: "content",
     title: "Sáng tạo nội dung AI",
     desc: "Viết kịch bản, caption, hình ảnh AI phục vụ sản xuất nội dung hàng loạt, đúng chất riêng của bạn.",
+    longDescription:
+      "Hệ thống AI được huấn luyện theo giọng văn và phong cách riêng của bạn, giúp sản xuất kịch bản video, caption, ý tưởng nội dung và hình ảnh với tốc độ gấp nhiều lần cách làm thủ công — mà vẫn giữ đúng chất riêng, không bị 'nhàm' như nội dung AI đại trà.",
+    benefits: [
+      "Rút ngắn thời gian lên ý tưởng và viết nội dung từ hàng giờ xuống còn vài phút",
+      "Giữ nhất quán giọng văn, phong cách thương hiệu trên mọi nền tảng",
+      "Đa dạng định dạng: kịch bản video, caption, blog, hình ảnh AI",
+      "Sản xuất nội dung hàng loạt mà vẫn đảm bảo chất lượng",
+    ],
+    process: [
+      { title: "Phân tích phong cách & mục tiêu", desc: "Đội ngũ tìm hiểu chất riêng, đối tượng khán giả và mục tiêu nội dung của bạn." },
+      { title: "AI tạo bản nháp nội dung", desc: "Hệ thống AI sản xuất kịch bản, caption, hình ảnh theo đúng định hướng đã thống nhất." },
+      { title: "Tinh chỉnh & phê duyệt", desc: "Bạn xem, góp ý và chốt phiên bản cuối cùng cùng đội ngũ hỗ trợ." },
+      { title: "Xuất bản & đo lường", desc: "Nội dung được đăng tải và theo dõi hiệu quả để tối ưu cho lần sau." },
+    ],
   },
   {
+    slug: "tu-dong-hoa-quy-trinh",
     icon: "automation",
     title: "Tự động hoá quy trình",
     desc: "Xây dựng workflow AI tự động cho đăng bài, chăm sóc khách hàng và vận hành kênh.",
+    longDescription:
+      "Thiết kế các workflow AI tự động hoá những tác vụ lặp lại — từ lên lịch đăng bài đa nền tảng, trả lời tin nhắn khách hàng, đến tổng hợp báo cáo — giúp bạn và đội ngũ tập trung vào việc sáng tạo và ra quyết định thay vì thao tác thủ công.",
+    benefits: [
+      "Tiết kiệm hàng chục giờ vận hành mỗi tuần",
+      "Giảm sai sót do thao tác thủ công lặp lại",
+      "Phản hồi khách hàng tức thì, không bỏ lỡ tin nhắn",
+      "Vận hành nhiều kênh cùng lúc mà không cần tăng nhân sự",
+    ],
+    process: [
+      { title: "Khảo sát quy trình hiện tại", desc: "Xác định các bước lặp lại, tốn thời gian nhất trong vận hành của bạn." },
+      { title: "Thiết kế workflow tự động", desc: "Xây dựng luồng tự động hoá phù hợp với công cụ và kênh bạn đang dùng." },
+      { title: "Tích hợp công cụ AI", desc: "Kết nối AI vào workflow để xử lý nội dung, tin nhắn, dữ liệu tự động." },
+      { title: "Giám sát & tối ưu liên tục", desc: "Theo dõi hiệu quả vận hành và điều chỉnh workflow khi cần." },
+    ],
   },
   {
+    slug: "bo-cong-cu-ai-tools",
     icon: "tools",
     title: "Bộ công cụ AI Tools",
     desc: "Tuyển chọn & tối ưu công cụ AI hàng đầu, sẵn sàng ứng dụng ngay vào công việc.",
+    longDescription:
+      "Thay vì tự mày mò giữa hàng trăm công cụ AI trên thị trường, đội ngũ KOL AI SYSTEM tuyển chọn, kiểm chứng và cấu hình sẵn bộ công cụ phù hợp nhất với nhu cầu của bạn — tiết kiệm thời gian thử-sai và chi phí đăng ký thừa thãi.",
+    benefits: [
+      "Tuyển chọn công cụ AI phù hợp đúng nhu cầu, không lãng phí",
+      "Tối ưu chi phí bản quyền/subscription giữa nhiều lựa chọn",
+      "Luôn cập nhật công cụ mới nhất trên thị trường",
+      "Được hướng dẫn sử dụng thực chiến, không chỉ lý thuyết",
+    ],
+    process: [
+      { title: "Đánh giá nhu cầu", desc: "Xác định công việc cụ thể bạn cần AI hỗ trợ: nội dung, hình ảnh, dữ liệu..." },
+      { title: "Đề xuất bộ công cụ", desc: "Gợi ý danh sách công cụ AI phù hợp nhất, kèm phân tích chi phí – hiệu quả." },
+      { title: "Đào tạo sử dụng", desc: "Hướng dẫn thao tác thực tế để bạn làm chủ công cụ nhanh chóng." },
+      { title: "Hỗ trợ vận hành", desc: "Đồng hành xử lý vướng mắc trong quá trình sử dụng lâu dài." },
+    ],
   },
   {
+    slug: "tu-van-trien-khai-ai",
     icon: "consult",
     title: "Tư vấn triển khai AI",
     desc: "Đồng hành cùng đội ngũ, tư vấn lộ trình ứng dụng AI phù hợp với mục tiêu kinh doanh.",
+    longDescription:
+      "Không phải cứ dùng AI là hiệu quả — cần đúng lộ trình, đúng ưu tiên. Đội ngũ KOL AI SYSTEM tư vấn chiến lược ứng dụng AI bài bản, từ đánh giá hiện trạng đến triển khai thí điểm và nhân rộng, giúp bạn đầu tư đúng chỗ và đo lường được kết quả.",
+    benefits: [
+      "Lộ trình ứng dụng AI rõ ràng, đúng ưu tiên kinh doanh",
+      "Giảm rủi ro đầu tư sai công cụ hoặc sai thời điểm",
+      "Đội ngũ đồng hành dài hạn, không chỉ tư vấn một lần",
+      "Đo lường được hiệu quả (ROI) sau mỗi giai đoạn triển khai",
+    ],
+    process: [
+      { title: "Đánh giá hiện trạng", desc: "Phân tích quy trình, nguồn lực và mục tiêu kinh doanh hiện tại của bạn." },
+      { title: "Xây dựng lộ trình AI", desc: "Đề xuất lộ trình ứng dụng AI theo từng giai đoạn, ưu tiên tác động cao trước." },
+      { title: "Triển khai thí điểm", desc: "Áp dụng thử ở quy mô nhỏ để kiểm chứng hiệu quả trước khi mở rộng." },
+      { title: "Nhân rộng & đo lường ROI", desc: "Mở rộng áp dụng toàn diện và theo dõi kết quả đầu tư theo số liệu cụ thể." },
+    ],
   },
 ];
 

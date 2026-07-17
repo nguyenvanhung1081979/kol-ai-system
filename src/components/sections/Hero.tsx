@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { heroStats } from "@/lib/constants";
 import { HeroVisual } from "@/components/ui/HeroVisual";
 
@@ -20,15 +21,15 @@ export function Hero() {
             chuyên nghiệp hơn.
           </p>
           <div className="flex flex-wrap gap-4">
-            <a href="#lien-he" className="grad-btn text-white font-semibold px-7 py-3.5 rounded-full">
+            <Link href="/#lien-he" className="grad-btn text-white font-semibold px-7 py-3.5 rounded-full">
               Tư vấn miễn phí
-            </a>
-            <a
-              href="#dich-vu"
+            </Link>
+            <Link
+              href="/#dich-vu"
               className="btn-ghost border border-border text-txt2 font-semibold px-7 py-3.5 rounded-full"
             >
               Xem dịch vụ
-            </a>
+            </Link>
           </div>
         </div>
 

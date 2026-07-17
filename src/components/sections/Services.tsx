@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { services } from "@/lib/constants";
 import { serviceIcons } from "@/components/ui/Icons";
 
@@ -20,7 +21,7 @@ export function Services() {
           const Icon = serviceIcons[service.icon];
           return (
             <div
-              key={service.title}
+              key={service.slug}
               className="card-hover bg-card border border-border rounded-2xl p-6"
             >
               <div className="w-11 h-11 rounded-xl grad-btn flex items-center justify-center mb-5">
@@ -28,9 +29,12 @@ export function Services() {
               </div>
               <h3 className="font-bold text-lg mb-2">{service.title}</h3>
               <p className="text-txt2 text-sm leading-relaxed mb-4">{service.desc}</p>
-              <a href="#" className="text-accent2 text-sm font-semibold hover:underline">
+              <Link
+                href={`/dich-vu/${service.slug}`}
+                className="text-accent2 text-sm font-semibold hover:underline"
+              >
                 Tìm hiểu thêm →
-              </a>
+              </Link>
             </div>
           );
         })}

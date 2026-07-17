@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { aiTools } from "@/lib/constants";
 
 export function AiToolsRanking() {
@@ -30,8 +31,8 @@ export function AiToolsRanking() {
               <h3 className="font-bold">{tool.name}</h3>
               <p className="text-txt2 text-sm truncate">{tool.desc}</p>
             </div>
-            <a
-              href="#lien-he"
+            <Link
+              href="/#lien-he"
               className={`shrink-0 text-sm font-semibold px-5 py-2 rounded-full ${
                 tool.rank === 1
                   ? "grad-btn text-white"
@@ -39,7 +40,7 @@ export function AiToolsRanking() {
               }`}
             >
               Dùng thử
-            </a>
+            </Link>
           </div>
         ))}
       </div>

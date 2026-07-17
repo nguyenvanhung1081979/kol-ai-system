@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { pricingPlans } from "@/lib/constants";
 
 export function Pricing() {
@@ -48,8 +49,8 @@ export function Pricing() {
                   </li>
                 ))}
               </ul>
-              <a
-                href="#lien-he"
+              <Link
+                href="/#lien-he"
                 className={`block text-center font-semibold py-3 rounded-full ${
                   plan.highlighted
                     ? "grad-btn text-white"
@@ -57,7 +58,7 @@ export function Pricing() {
                 }`}
               >
                 {plan.cta}
-              </a>
+              </Link>
             </div>
           ))}
         </div>

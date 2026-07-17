@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { navLinks, siteConfig } from "@/lib/constants";
 import { MenuIcon } from "@/components/ui/Icons";
 
@@ -12,20 +13,20 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 bg-bg/85 backdrop-blur border-b border-border">
       <div className="max-w-7xl mx-auto px-5 md:px-8 h-16 md:h-20 flex items-center justify-between">
-        <a href="#top" className="flex items-center gap-2 shrink-0">
+        <Link href="/#top" className="flex items-center gap-2 shrink-0">
           <span className="w-9 h-9 rounded-lg grad-btn flex items-center justify-center font-black text-white text-sm">
             AI
           </span>
           <span className="font-extrabold text-base sm:text-lg tracking-tight whitespace-nowrap">
             KOL <span className="grad-text">AI SYSTEM</span>
           </span>
-        </a>
+        </Link>
 
         <nav className="hidden lg:flex items-center gap-8 text-sm font-medium text-txt2">
           {navLinks.map((link) => (
-            <a key={link.href} href={link.href} className="nav-link hover:text-txt">
+            <Link key={link.href} href={link.href} className="nav-link hover:text-txt">
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -38,12 +39,12 @@ export function Header() {
           >
             {siteConfig.phoneDisplay}
           </a>
-          <a
-            href="#lien-he"
+          <Link
+            href="/#lien-he"
             className="grad-btn text-white text-xs sm:text-sm font-semibold px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full whitespace-nowrap"
           >
             Tư vấn ngay
-          </a>
+          </Link>
           <button
             onClick={() => setOpen((v) => !v)}
             className="lg:hidden w-9 h-9 sm:w-10 sm:h-10 shrink-0 flex items-center justify-center rounded-lg border border-border btn-ghost"
@@ -63,9 +64,9 @@ export function Header() {
       >
         <nav className="flex flex-col px-5 py-4 gap-4 text-sm font-medium text-txt2">
           {navLinks.map((link) => (
-            <a key={link.href} href={link.href} onClick={close} className="hover:text-txt">
+            <Link key={link.href} href={link.href} onClick={close} className="hover:text-txt">
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
       </div>
