@@ -50,7 +50,7 @@ export function Pricing() {
                 ))}
               </ul>
               <Link
-                href="/#lien-he"
+                href={`/?goi=${encodeURIComponent(plan.name)}#lien-he`}
                 className={`block text-center font-semibold py-3 rounded-full ${
                   plan.highlighted
                     ? "grad-btn text-white"

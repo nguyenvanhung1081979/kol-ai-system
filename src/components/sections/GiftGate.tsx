@@ -166,6 +166,7 @@ export function GiftGate() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Tìm công cụ theo tên..."
+          aria-label="Tìm công cụ theo tên"
           className="w-full max-w-md mx-auto block bg-card2 border border-border rounded-full px-5 py-3 text-sm outline-none transition-colors focus:border-accent"
         />
       </div>

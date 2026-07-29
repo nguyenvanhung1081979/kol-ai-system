@@ -1,11 +1,14 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
 import { useState, type FormEvent } from "react";
 import { services, siteConfig } from "@/lib/constants";
 
 type Status = "idle" | "loading" | "success" | "error";
 
 export function ContactSection() {
+  const searchParams = useSearchParams();
+  const plan = searchParams.get("goi");
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -125,10 +128,12 @@ export function ContactSection() {
               Lời nhắn
             </label>
             <textarea
+              key={plan ?? "default"}
               id="message"
               name="message"
               rows={3}
               placeholder="Bạn cần hỗ trợ gì?"
+              defaultValue={plan ? `Tôi quan tâm đến gói "${plan}", vui lòng tư vấn thêm.` : ""}
               className="w-full bg-card2 border border-border rounded-xl px-4 py-2.5 text-sm outline-none resize-none transition-colors focus:border-accent"
             />
           </div>

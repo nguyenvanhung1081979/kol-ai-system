@@ -96,7 +96,14 @@ export function Footer() {
       <div className="border-t border-border">
         <div className="max-w-7xl mx-auto px-5 md:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-txt2">
           <p>© 2026 KOL AI SYSTEM — {siteConfig.shopName}. All rights reserved.</p>
-          <p>Made with AI ❤ for KOL Vietnam</p>
+          <div className="flex items-center gap-4">
+            <Link href="/chinh-sach-bao-mat" className="hover:text-txt transition-colors">
+              Chính sách bảo mật
+            </Link>
+            <Link href="/dieu-khoan-su-dung" className="hover:text-txt transition-colors">
+              Điều khoản sử dụng
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

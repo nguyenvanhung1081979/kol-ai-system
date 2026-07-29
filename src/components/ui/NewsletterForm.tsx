@@ -41,24 +41,27 @@ export function NewsletterForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-      <input
-        type="email"
-        name="email"
-        required
-        placeholder="Email của bạn"
-        className="bg-card border border-border rounded-full px-4 py-2.5 text-sm outline-none transition-colors focus:border-accent w-full sm:w-64"
-      />
-      <button
-        type="submit"
-        disabled={status === "loading"}
-        className="grad-btn shrink-0 text-white text-sm font-semibold px-6 py-2.5 rounded-full disabled:opacity-60 disabled:cursor-not-allowed"
-      >
-        {status === "loading" ? "Đang gửi..." : "Đăng ký"}
-      </button>
+    <div className="flex flex-col gap-2 w-full sm:w-auto sm:items-end">
+      <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+        <input
+          type="email"
+          name="email"
+          required
+          placeholder="Email của bạn"
+          aria-label="Email đăng ký nhận tin"
+          className="bg-card border border-border rounded-full px-4 py-2.5 text-sm outline-none transition-colors focus:border-accent w-full sm:w-64"
+        />
+        <button
+          type="submit"
+          disabled={status === "loading"}
+          className="grad-btn shrink-0 text-white text-sm font-semibold px-6 py-2.5 rounded-full disabled:opacity-60 disabled:cursor-not-allowed"
+        >
+          {status === "loading" ? "Đang gửi..." : "Đăng ký"}
+        </button>
+      </form>
       {status === "error" && (
-        <p className="text-accent2 text-xs sm:hidden">Có lỗi, vui lòng thử lại.</p>
+        <p className="text-accent2 text-xs">Có lỗi, vui lòng thử lại.</p>
       )}
-    </form>
+    </div>
   );
 }

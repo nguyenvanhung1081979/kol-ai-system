@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Header } from "@/components/sections/Header";
@@ -116,7 +117,9 @@ export default async function ServiceDetailPage({
         </div>
       </section>
 
-      <ContactSection />
+      <Suspense fallback={null}>
+        <ContactSection />
+      </Suspense>
       <Footer />
     </>
   );
