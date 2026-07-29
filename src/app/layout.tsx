@@ -9,7 +9,7 @@ const beVietnamPro = Be_Vietnam_Pro({
   weight: ["400", "500", "600", "700", "800", "900"],
 });
 
-const siteUrl = "https://kol-ai-system.vercel.app";
+const siteUrl = "https://vungalishop.vercel.app";
 const title = "KOL AI SYSTEM — Hệ thống AI dành cho KOL & Nhà sáng tạo nội dung";
 const description =
   "KOL AI SYSTEM bởi Vừng Ali Shop — Giải pháp AI toàn diện: sáng tạo nội dung, tự động hoá, công cụ AI cho KOL và doanh nghiệp.";
