@@ -7,10 +7,13 @@ hoạt** — trang vẫn đang chạy luồng thủ công cũ (QR tĩnh + nhắn
 
 ## 1. Upstash Redis (lưu trạng thái đơn hàng)
 
-1. Vào Vercel Dashboard → project `vungalishop` (hoặc `kol-ai-system`, tuỳ tên hiện tại) → tab
-   **Storage** → **Create Database** → chọn **Upstash** → **Redis**.
-2. Sau khi tạo xong, Vercel tự thêm 2 biến môi trường vào project: `UPSTASH_REDIS_REST_URL` và
-   `UPSTASH_REDIS_REST_TOKEN`. Không cần copy tay nếu tạo qua Vercel Marketplace — nó tự inject.
+1. Vào Vercel Dashboard → project `vungalishop` → tab **Storage** → **Create Database** →
+   **Marketplace Database Providers** → **Upstash** → **Upstash for Redis**.
+2. Chọn Primary Region gần Việt Nam (VD Singapore), giữ gói **Free**, bấm Continue → Connect to
+   Project → chọn đúng project `vungalishop`, **để trống ô Custom Prefix**, bấm **Connect**.
+3. Vercel tự thêm các biến môi trường vào project theo tên gọi kiểu Vercel KV cũ:
+   `KV_REST_API_URL`, `KV_REST_API_TOKEN`, `KV_REST_API_READ_ONLY_TOKEN`, `KV_URL`, `REDIS_URL`.
+   Code đã được viết để tự đọc đúng `KV_REST_API_URL` / `KV_REST_API_TOKEN` — không cần đổi tên gì.
 
 ## 2. Vercel Blob (lưu file sản phẩm + sinh link tải có hạn)
 

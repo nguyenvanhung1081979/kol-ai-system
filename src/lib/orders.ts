@@ -20,8 +20,10 @@ const PENDING_TTL_SECONDS = 60 * 60; // 1h to complete payment
 const PAID_TTL_SECONDS = 60 * 60 * 24 * 30; // keep paid orders 30 days
 
 function redis(): Redis | null {
-  const url = process.env.UPSTASH_REDIS_REST_URL;
-  const token = process.env.UPSTASH_REDIS_REST_TOKEN;
+  // Vercel's Upstash-for-Redis marketplace integration provisions these under the
+  // legacy Vercel KV naming (KV_REST_API_*) rather than UPSTASH_REDIS_REST_*.
+  const url = process.env.KV_REST_API_URL ?? process.env.UPSTASH_REDIS_REST_URL;
+  const token = process.env.KV_REST_API_TOKEN ?? process.env.UPSTASH_REDIS_REST_TOKEN;
   if (!url || !token) return null;
   return new Redis({ url, token });
 }
