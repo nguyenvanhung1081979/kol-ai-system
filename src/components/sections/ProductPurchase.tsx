@@ -1,32 +1,44 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { bankInfo, siteConfig, type Product } from "@/lib/constants";
 import { BankIcon, CopyIcon } from "@/components/ui/Icons";
 
-export function ProductPurchase({ product }: { product: Product }) {
-  const [copied, setCopied] = useState(false);
+type Mode = "form" | "waiting" | "paid" | "fallback";
 
-  const amount = product.price.replace(/\./g, "");
-  const addInfo = `${product.name} - ${siteConfig.shopName}`;
-  const qrUrl = `https://img.vietqr.io/image/${bankInfo.bankBin}-${bankInfo.accountNumber}-compact2.png?amount=${amount}&addInfo=${encodeURIComponent(
-    addInfo
-  )}&accountName=${encodeURIComponent(bankInfo.accountName)}`;
+type OrderInfo = {
+  code: string;
+  amount: number;
+};
 
-  async function handleCopy() {
-    try {
-      await navigator.clipboard.writeText(bankInfo.accountNumber);
-    } catch {
-      const temp = document.createElement("textarea");
-      temp.value = bankInfo.accountNumber;
-      document.body.appendChild(temp);
-      temp.select();
-      document.execCommand("copy");
-      document.body.removeChild(temp);
-    }
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
+const POLL_INTERVAL_MS = 4000;
+const POLL_TIMEOUT_MS = 20 * 60 * 1000; // ngừng poll sau 20 phút
+
+async function copyToClipboard(text: string) {
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch {
+    const temp = document.createElement("textarea");
+    temp.value = text;
+    document.body.appendChild(temp);
+    temp.select();
+    document.execCommand("copy");
+    document.body.removeChild(temp);
   }
+}
+
+function QrBlock({
+  qrUrl,
+  amountLabel,
+  addInfo,
+  children,
+}: {
+  qrUrl: string;
+  amountLabel: ReactNode;
+  addInfo: string;
+  children?: ReactNode;
+}) {
+  const [copied, setCopied] = useState(false);
 
   return (
     <div className="card-hover max-w-md mx-auto bg-card border border-border rounded-3xl p-8 md:p-10 text-center">
@@ -34,16 +46,13 @@ export function ProductPurchase({ product }: { product: Product }) {
         <BankIcon className="w-7 h-7 text-white" />
       </div>
       <p className="text-txt2 text-sm mb-1">Số tiền cần chuyển</p>
-      <p className="mb-5">
-        <span className="font-extrabold text-2xl grad-text">{product.price}</span>
-        <span className="text-txt2 text-sm font-medium">{product.priceSuffix}</span>
-      </p>
+      <p className="mb-5">{amountLabel}</p>
 
       <div className="bg-white rounded-2xl p-3 w-56 mx-auto mb-6">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={qrUrl}
-          alt={`Mã QR chuyển khoản ${bankInfo.bankName} cho ${product.name}`}
+          alt="Mã QR chuyển khoản"
           className="w-full h-auto rounded-lg"
           loading="lazy"
         />
@@ -68,7 +77,11 @@ export function ProductPurchase({ product }: { product: Product }) {
             <p className="font-semibold">{bankInfo.accountNumber}</p>
           </div>
           <button
-            onClick={handleCopy}
+            onClick={async () => {
+              await copyToClipboard(bankInfo.accountNumber);
+              setCopied(true);
+              setTimeout(() => setCopied(false), 1500);
+            }}
             className={`btn-ghost shrink-0 border border-border text-xs font-semibold px-3.5 py-2 rounded-full flex items-center gap-1.5 ${
               copied ? "scale-95" : ""
             }`}
@@ -78,11 +91,224 @@ export function ProductPurchase({ product }: { product: Product }) {
           </button>
         </div>
         <div className="border-t border-border pt-3">
-          <p className="text-txt2 text-xs">Nội dung chuyển khoản</p>
+          <p className="text-txt2 text-xs">Nội dung chuyển khoản (bắt buộc)</p>
           <p className="font-semibold">{addInfo}</p>
         </div>
       </div>
 
+      {children}
+    </div>
+  );
+}
+
+export function ProductPurchase({ product }: { product: Product }) {
+  const [mode, setMode] = useState<Mode>("form");
+  const [submitting, setSubmitting] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [order, setOrder] = useState<OrderInfo | null>(null);
+  const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
+  const pollRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (pollRef.current) clearInterval(pollRef.current);
+    };
+  }, []);
+
+  function startPolling(code: string) {
+    const startedAt = Date.now();
+    pollRef.current = setInterval(async () => {
+      if (Date.now() - startedAt > POLL_TIMEOUT_MS) {
+        if (pollRef.current) clearInterval(pollRef.current);
+        return;
+      }
+      try {
+        const res = await fetch(`/api/orders/${code}`);
+        const json = await res.json();
+        if (json.ok && json.status === "paid" && json.downloadUrl) {
+          setDownloadUrl(json.downloadUrl);
+          setMode("paid");
+          if (pollRef.current) clearInterval(pollRef.current);
+        }
+      } catch {
+        // bỏ qua lỗi mạng tạm thời, vòng lặp sẽ tự thử lại
+      }
+    }, POLL_INTERVAL_MS);
+  }
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const name = String(data.get("name") ?? "").trim();
+    const phone = String(data.get("phone") ?? "").trim();
+
+    setSubmitting(true);
+    setErrorMsg("");
+
+    try {
+      const res = await fetch("/api/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ productSlug: product.slug, name, phone }),
+      });
+
+      if (res.status === 503) {
+        // Thanh toán tự động chưa được cấu hình -> dùng luồng thủ công như cũ.
+        setMode("fallback");
+        return;
+      }
+
+      const json = await res.json();
+      if (!res.ok || !json.ok) {
+        throw new Error(json.error ?? "Không thể tạo đơn hàng.");
+      }
+
+      setOrder({ code: json.code, amount: json.amount });
+      setMode("waiting");
+      startPolling(json.code);
+    } catch (err) {
+      setErrorMsg(err instanceof Error ? err.message : "Có lỗi xảy ra, vui lòng thử lại.");
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  if (mode === "form") {
+    return (
+      <div className="max-w-md mx-auto bg-card border border-border rounded-3xl p-8 md:p-10">
+        <p className="text-center text-txt2 text-sm mb-6">
+          Điền thông tin để tạo đơn hàng — hệ thống tự xác nhận thanh toán và gửi link tải ngay
+          khi bạn chuyển khoản.
+        </p>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label htmlFor="buy-name" className="text-txt2 text-xs mb-1.5 block">
+              Họ tên *
+            </label>
+            <input
+              id="buy-name"
+              name="name"
+              required
+              placeholder="Nguyễn Văn A"
+              className="w-full bg-card2 border border-border rounded-xl px-4 py-2.5 text-sm outline-none transition-colors focus:border-accent"
+            />
+          </div>
+          <div>
+            <label htmlFor="buy-phone" className="text-txt2 text-xs mb-1.5 block">
+              Số điện thoại *
+            </label>
+            <input
+              id="buy-phone"
+              name="phone"
+              required
+              type="tel"
+              placeholder="09xx xxx xxx"
+              className="w-full bg-card2 border border-border rounded-xl px-4 py-2.5 text-sm outline-none transition-colors focus:border-accent"
+            />
+          </div>
+          <button
+            type="submit"
+            disabled={submitting}
+            className="grad-btn w-full text-white font-semibold px-7 py-3.5 rounded-full disabled:opacity-60 disabled:cursor-not-allowed"
+          >
+            {submitting ? "Đang tạo đơn..." : "Tạo đơn — Lấy mã QR"}
+          </button>
+          {errorMsg && (
+            <p className="text-sm text-center text-accent2 bg-accent/10 border border-accent/30 rounded-xl px-4 py-2.5">
+              {errorMsg}
+            </p>
+          )}
+        </form>
+      </div>
+    );
+  }
+
+  if (mode === "waiting" && order) {
+    const addInfo = order.code;
+    const qrUrl = `https://img.vietqr.io/image/${bankInfo.bankBin}-${bankInfo.accountNumber}-compact2.png?amount=${order.amount}&addInfo=${encodeURIComponent(
+      addInfo
+    )}&accountName=${encodeURIComponent(bankInfo.accountName)}`;
+
+    return (
+      <QrBlock
+        qrUrl={qrUrl}
+        addInfo={addInfo}
+        amountLabel={
+          <>
+            <span className="font-extrabold text-2xl grad-text">
+              {order.amount.toLocaleString("vi-VN")}
+            </span>
+            <span className="text-txt2 text-sm font-medium">đ</span>
+          </>
+        }
+      >
+        <div className="flex items-center justify-center gap-2 text-sm text-txt2 mb-4">
+          <span className="w-2 h-2 rounded-full bg-accent2 animate-pulse" />
+          Đang chờ xác nhận thanh toán tự động...
+        </div>
+        <p className="text-txt2 text-xs mb-4">
+          Ghi <strong className="text-txt">đúng nội dung &quot;{order.code}&quot;</strong> khi chuyển khoản
+          để hệ thống tự nhận diện. Link tải sẽ hiện ngay tại đây sau khi xác nhận (thường trong
+          vài chục giây).
+        </p>
+        <a
+          href={siteConfig.zaloUrl}
+          target="_blank"
+          rel="noopener"
+          className="btn-ghost block border border-border font-semibold px-7 py-3 rounded-full text-sm"
+        >
+          Đã chuyển khoản nhưng chưa thấy cập nhật? Nhắn Zalo
+        </a>
+      </QrBlock>
+    );
+  }
+
+  if (mode === "paid" && downloadUrl) {
+    return (
+      <div className="max-w-md mx-auto bg-card border border-border rounded-3xl p-8 md:p-10 text-center">
+        <p className="inline-block text-xs font-semibold tracking-wide text-accent2 bg-accent/10 border border-accent/30 rounded-full px-4 py-1.5 mb-6">
+          THANH TOÁN THÀNH CÔNG 🎉
+        </p>
+        <h3 className="font-bold text-lg mb-2">{product.name} đã sẵn sàng</h3>
+        <p className="text-txt2 text-sm leading-relaxed mb-6">
+          Bấm nút bên dưới để tải sản phẩm. Link có hiệu lực trong 72 giờ.
+        </p>
+        <a
+          href={downloadUrl}
+          className="grad-btn block text-white font-semibold px-7 py-3.5 rounded-full mb-3"
+        >
+          Tải sản phẩm ngay
+        </a>
+        <a
+          href={siteConfig.zaloUrl}
+          target="_blank"
+          rel="noopener"
+          className="text-accent2 text-sm font-semibold hover:underline"
+        >
+          Cần hỗ trợ? Nhắn Zalo
+        </a>
+      </div>
+    );
+  }
+
+  // Fallback: giữ nguyên luồng thủ công khi thanh toán tự động chưa được cấu hình.
+  const addInfo = `${product.name} - ${siteConfig.shopName}`;
+  const qrUrl = `https://img.vietqr.io/image/${bankInfo.bankBin}-${bankInfo.accountNumber}-compact2.png?amount=${product.amount}&addInfo=${encodeURIComponent(
+    addInfo
+  )}&accountName=${encodeURIComponent(bankInfo.accountName)}`;
+
+  return (
+    <QrBlock
+      qrUrl={qrUrl}
+      addInfo={addInfo}
+      amountLabel={
+        <>
+          <span className="font-extrabold text-2xl grad-text">{product.price}</span>
+          <span className="text-txt2 text-sm font-medium">{product.priceSuffix}</span>
+        </>
+      }
+    >
       <a
         href={siteConfig.zaloUrl}
         target="_blank"
@@ -95,6 +321,6 @@ export function ProductPurchase({ product }: { product: Product }) {
         Sau khi chuyển khoản, nhắn Zalo kèm ảnh biên lai để được kích hoạt và gửi hướng dẫn sử
         dụng trong vòng 24h.
       </p>
-    </div>
+    </QrBlock>
   );
 }
