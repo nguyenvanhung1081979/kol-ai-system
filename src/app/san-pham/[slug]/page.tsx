@@ -61,9 +61,6 @@ export default async function ProductDetailPage({
             {product.longDescription}
           </p>
           <p className="mb-8">
-            {product.originalPrice && (
-              <span className="text-txt2 text-lg line-through mr-2">{product.originalPrice}đ</span>
-            )}
             <span className="text-3xl font-extrabold grad-text">{product.price}</span>
             <span className="text-txt2 text-base font-medium">{product.priceSuffix}</span>
           </p>
@@ -120,53 +117,28 @@ export default async function ProductDetailPage({
       </section>
 
       <section id="mua-ngay" className="max-w-5xl mx-auto px-5 md:px-8 py-16 md:py-20">
-        {product.externalUrl ? (
-          <>
-            <div className="text-center max-w-2xl mx-auto mb-12">
-              <span className="text-xs font-semibold tracking-widest text-accent2">MUA NGAY</span>
-              <h2 className="text-2xl md:text-3xl font-extrabold mt-3">Hoàn tất đơn hàng</h2>
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <span className="text-xs font-semibold tracking-widest text-accent2">CÁCH MUA HÀNG</span>
+          <h2 className="text-2xl md:text-3xl font-extrabold mt-3">3 bước nhận sản phẩm</h2>
+        </div>
+        <div className="grid sm:grid-cols-3 gap-5 mb-14 max-w-4xl mx-auto">
+          {steps.map((step, index) => (
+            <div
+              key={step.title}
+              className="card-hover flex gap-4 bg-card border border-border rounded-2xl p-6"
+            >
+              <span className="shrink-0 w-9 h-9 rounded-full grad-btn text-white font-bold flex items-center justify-center">
+                {index + 1}
+              </span>
+              <div>
+                <h3 className="font-bold mb-1.5 text-sm">{step.title}</h3>
+                <p className="text-txt2 text-xs leading-relaxed">{step.desc}</p>
+              </div>
             </div>
-            <div className="card-hover max-w-md mx-auto bg-card border border-border rounded-3xl p-8 md:p-10 text-center">
-              <p className="text-txt2 text-sm leading-relaxed mb-6">
-                Sản phẩm này được đặt mua trên trang riêng — thanh toán tự động, sách và tài
-                nguyên đi kèm gửi thẳng về email của bạn ngay sau khi thanh toán thành công.
-              </p>
-              <a
-                href={product.externalUrl}
-                target="_blank"
-                rel="noopener"
-                className="grad-btn block text-white font-semibold px-7 py-3.5 rounded-full"
-              >
-                Đặt mua trên trang chính thức →
-              </a>
-            </div>
-          </>
-        ) : (
-          <>
-            <div className="text-center max-w-2xl mx-auto mb-12">
-              <span className="text-xs font-semibold tracking-widest text-accent2">CÁCH MUA HÀNG</span>
-              <h2 className="text-2xl md:text-3xl font-extrabold mt-3">3 bước nhận sản phẩm</h2>
-            </div>
-            <div className="grid sm:grid-cols-3 gap-5 mb-14 max-w-4xl mx-auto">
-              {steps.map((step, index) => (
-                <div
-                  key={step.title}
-                  className="card-hover flex gap-4 bg-card border border-border rounded-2xl p-6"
-                >
-                  <span className="shrink-0 w-9 h-9 rounded-full grad-btn text-white font-bold flex items-center justify-center">
-                    {index + 1}
-                  </span>
-                  <div>
-                    <h3 className="font-bold mb-1.5 text-sm">{step.title}</h3>
-                    <p className="text-txt2 text-xs leading-relaxed">{step.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+          ))}
+        </div>
 
-            <ProductPurchase product={product} />
-          </>
-        )}
+        <ProductPurchase product={product} />
       </section>
 
       <Footer />
