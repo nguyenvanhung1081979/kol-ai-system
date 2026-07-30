@@ -5,7 +5,7 @@ import { GiftGate } from "@/components/sections/GiftGate";
 import { aiGiftToolsCount } from "@/lib/aiGiftTools";
 
 export const metadata: Metadata = {
-  title: `Quà tặng: ${aiGiftToolsCount}+ Trợ lý AI miễn phí — KOL AI SYSTEM`,
+  title: `Quà tặng: ${aiGiftToolsCount}+ Trợ lý AI miễn phí`,
   description:
     "Nhận miễn phí bộ sưu tập hơn 170 trợ lý AI chuyên biệt theo từng ngành nghề: CSKH, content, kinh doanh, thiết kế, giáo dục và hơn thế nữa.",
 };

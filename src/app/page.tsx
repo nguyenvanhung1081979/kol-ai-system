@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { Header } from "@/components/sections/Header";
 import { Hero } from "@/components/sections/Hero";
 import { Services } from "@/components/sections/Services";
+import { Products } from "@/components/sections/Products";
 import { Pricing } from "@/components/sections/Pricing";
 import { Payment } from "@/components/sections/Payment";
 import { AiToolsRanking } from "@/components/sections/AiToolsRanking";
@@ -20,6 +21,7 @@ export default function Home() {
       <Header />
       <Hero />
       <Services />
+      <Products />
       <Pricing />
       <Payment />
       <AiToolsRanking />

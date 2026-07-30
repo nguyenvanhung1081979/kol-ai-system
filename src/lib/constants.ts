@@ -22,6 +22,7 @@ export type NavItem =
 
 export const navLinks: NavItem[] = [
   { label: "Dịch vụ", href: "/#dich-vu" },
+  { label: "Sản phẩm", href: "/san-pham" },
   { label: "Bảng giá", href: "/#bang-gia" },
   { label: "Thanh toán", href: "/#thanh-toan" },
   { label: "Công cụ AI", href: "/#cong-cu" },
@@ -39,6 +40,7 @@ export const navLinks: NavItem[] = [
 
 export const footerLinks: { label: string; href: string }[] = [
   { label: "Dịch vụ", href: "/#dich-vu" },
+  { label: "Sản phẩm", href: "/san-pham" },
   { label: "Bảng giá", href: "/#bang-gia" },
   { label: "Thanh toán", href: "/#thanh-toan" },
   { label: "Công cụ AI", href: "/#cong-cu" },
@@ -145,6 +147,95 @@ export const services: Service[] = [
       { title: "Xây dựng lộ trình AI", desc: "Đề xuất lộ trình ứng dụng AI theo từng giai đoạn, ưu tiên tác động cao trước." },
       { title: "Triển khai thí điểm", desc: "Áp dụng thử ở quy mô nhỏ để kiểm chứng hiệu quả trước khi mở rộng." },
       { title: "Nhân rộng & đo lường ROI", desc: "Mở rộng áp dụng toàn diện và theo dõi kết quả đầu tư theo số liệu cụ thể." },
+    ],
+  },
+];
+
+export type ProductIcon = "photo" | "video" | "canvas";
+
+export type Product = {
+  slug: string;
+  icon: ProductIcon;
+  name: string;
+  tagline: string;
+  price: string;
+  priceSuffix: string;
+  longDescription: string;
+  features: string[];
+  benefits: string[];
+};
+
+export const products: Product[] = [
+  {
+    slug: "skill-chinh-sua-anh-ai",
+    icon: "photo",
+    name: "Skill Chỉnh Sửa Ảnh AI",
+    tagline:
+      "Tự động chèn tiêu đề + badge thương hiệu lên ảnh chuẩn phong cách mạng xã hội — không cần biết thiết kế.",
+    price: "990.000",
+    priceSuffix: "đ / trọn đời",
+    longDescription:
+      "Skill AI tích hợp vào Claude Code, tự động biến ảnh gốc thành ảnh đăng mạng xã hội chuyên nghiệp: chèn tiêu đề nổi bật, tô sáng từ khoá quan trọng và gắn badge thương hiệu riêng của bạn — chỉ cần gửi ảnh và nội dung, nhận về file ảnh hoàn chỉnh chuẩn kích thước Facebook/Instagram.",
+    features: [
+      "Tự động trích tiêu đề từ bài viết dài, không cần tự viết lại",
+      "Tô sáng (neon) đúng 1 từ khoá quan trọng nhất trong tiêu đề",
+      "Gắn badge thương hiệu/logo riêng ở góc ảnh, tuỳ biến theo yêu cầu",
+      "Xuất đúng chuẩn 1080x1350 (4:5) cho Facebook/Instagram",
+      "Xử lý hàng loạt nhiều ảnh + nhiều tiêu đề cùng lúc",
+    ],
+    benefits: [
+      "Tiết kiệm thời gian thiết kế ảnh đăng bài mỗi ngày",
+      "Không cần biết Photoshop hay kỹ năng thiết kế",
+      "Đồng bộ phong cách hình ảnh trên toàn kênh nội dung",
+      "Tuỳ biến theo đúng bộ nhận diện thương hiệu của bạn",
+    ],
+  },
+  {
+    slug: "skill-edit-video-ai",
+    icon: "video",
+    name: "Skill Edit Video AI",
+    tagline:
+      "Tự động dựng video talking-head chuyên nghiệp: transcribe, chèn slide minh hoạ đúng lúc, ghép hoàn chỉnh.",
+    price: "1.490.000",
+    priceSuffix: "đ / trọn đời",
+    longDescription:
+      "Skill AI tích hợp vào Claude Code, nhận video bạn quay (nói chuyện trước camera) và tự động transcribe, phân tích nội dung để chèn slide minh hoạ (so sánh, số liệu, tóm tắt...) đúng thời điểm, dựng bố cục webcam + slide chuyên nghiệp và xuất ra video hoàn chỉnh — không cần dựng thủ công.",
+    features: [
+      "Tự động transcribe video và nhận diện đoạn cần minh hoạ",
+      "Tự tạo slide động: bảng so sánh, danh sách, số liệu, tóm tắt",
+      "Bố cục webcam trái + slide phải chuẩn video chia sẻ kiến thức",
+      "Giới hạn thông minh: chỉ chèn slide khi thực sự cần thiết",
+      "Xuất video hoàn chỉnh chuẩn Full HD, sẵn sàng đăng tải",
+    ],
+    benefits: [
+      "Rút ngắn thời gian dựng video từ hàng giờ xuống còn vài phút thao tác",
+      "Không cần biết dựng video hay kỹ năng motion design",
+      "Video chuyên nghiệp, dễ theo dõi, tăng khả năng giữ chân người xem",
+      "Phù hợp video chia sẻ kiến thức, đào tạo, review, hướng dẫn",
+    ],
+  },
+  {
+    slug: "omni-flow-canvas",
+    icon: "canvas",
+    name: "Omni Flow Canvas",
+    tagline:
+      "Canvas dựng sẵn trên nền tảng Flow (Google Labs) — tạo video AI nhanh hơn mà không cần dựng từ đầu.",
+    price: "2.990.000",
+    priceSuffix: "đ / trọn đời",
+    longDescription:
+      "Bản canvas đã được cấu hình sẵn trên nền tảng Flow của Google Labs — công cụ tạo video AI bằng giao diện kéo-thả trực quan. Thay vì mất thời gian dựng canvas từ con số 0, bạn nhận bản canvas đã tối ưu sẵn, chỉ cần thay nội dung/ý tưởng của mình vào và tạo video ngay.",
+    features: [
+      "Canvas kéo-thả trực quan trên nền tảng Flow (Google Labs)",
+      "Quy trình các bước tạo video AI đã được sắp xếp sẵn, tối ưu",
+      "Áp dụng ngay cho nội dung của bạn, không cần dựng lại từ đầu",
+      "Tiết kiệm thời gian làm quen với công cụ mới",
+      "Được hướng dẫn cách tuỳ chỉnh canvas theo nhu cầu riêng",
+    ],
+    benefits: [
+      "Rút ngắn thời gian làm quen và dựng quy trình từ đầu",
+      "Tận dụng sức mạnh AI tạo video mới nhất từ Google Labs",
+      "Phù hợp cả người mới bắt đầu lẫn người đã quen làm video AI",
+      "Được hướng dẫn sử dụng và tuỳ chỉnh sau khi nhận canvas",
     ],
   },
 ];

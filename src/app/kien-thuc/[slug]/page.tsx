@@ -19,7 +19,7 @@ export async function generateMetadata({
   const post = blogPosts.find((p) => p.slug === slug);
   if (!post) return {};
   return {
-    title: `${post.title} — KOL AI SYSTEM`,
+    title: post.title,
     description: post.desc,
   };
 }
