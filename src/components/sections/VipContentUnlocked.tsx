@@ -2,12 +2,13 @@
 
 import { useMemo, useState } from "react";
 import {
-  vipFlowApps,
-  vipAiStudioApps,
+  vipFlowGroups,
+  vipAiStudioGroups,
   vipWebApps,
   vipPromptGroups,
   veo31Guide,
   type VipTool,
+  type VipToolGroup,
 } from "@/lib/aiVipBundle";
 import { copyToClipboard } from "@/lib/clipboard";
 
@@ -27,6 +28,35 @@ function ToolGrid({ tools }: { tools: VipTool[] }) {
           <span className="shrink-0 text-accent2">↗</span>
         </a>
       ))}
+    </div>
+  );
+}
+
+function ToolGroupSection({
+  title,
+  groups,
+}: {
+  title: string;
+  groups: VipToolGroup[];
+}) {
+  const total = groups.reduce((sum, g) => sum + g.tools.length, 0);
+  if (total === 0) return null;
+  return (
+    <div>
+      <h2 className="text-lg font-bold mb-5 flex items-center gap-2">
+        {title}
+        <span className="text-txt2 text-xs font-normal">({total})</span>
+      </h2>
+      <div className="space-y-6">
+        {groups.map((g) => (
+          <div key={g.group}>
+            <p className="font-semibold text-sm text-accent2 mb-3">
+              {g.group} <span className="text-txt2 font-normal">({g.tools.length})</span>
+            </p>
+            <ToolGrid tools={g.tools} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -55,19 +85,20 @@ function PromptCard({ title, content }: { title: string; content: string }) {
   );
 }
 
+function filterGroups(groups: VipToolGroup[], q: string): VipToolGroup[] {
+  if (!q) return groups;
+  return groups
+    .map((g) => ({ ...g, tools: g.tools.filter((t) => t.name.toLowerCase().includes(q)) }))
+    .filter((g) => g.tools.length > 0);
+}
+
 export function VipContentUnlocked() {
   const [query, setQuery] = useState("");
   const [showGuide, setShowGuide] = useState(false);
   const q = query.trim().toLowerCase();
 
-  const filteredFlow = useMemo(
-    () => (q ? vipFlowApps.filter((t) => t.name.toLowerCase().includes(q)) : vipFlowApps),
-    [q]
-  );
-  const filteredAiStudio = useMemo(
-    () => (q ? vipAiStudioApps.filter((t) => t.name.toLowerCase().includes(q)) : vipAiStudioApps),
-    [q]
-  );
+  const filteredFlow = useMemo(() => filterGroups(vipFlowGroups, q), [q]);
+  const filteredAiStudio = useMemo(() => filterGroups(vipAiStudioGroups, q), [q]);
   const filteredWebApps = useMemo(
     () => (q ? vipWebApps.filter((t) => t.name.toLowerCase().includes(q)) : vipWebApps),
     [q]
@@ -85,8 +116,8 @@ export function VipContentUnlocked() {
   }, [q]);
 
   const noResults =
-    filteredFlow.length === 0 &&
-    filteredAiStudio.length === 0 &&
+    filteredFlow.reduce((s, g) => s + g.tools.length, 0) === 0 &&
+    filteredAiStudio.reduce((s, g) => s + g.tools.length, 0) === 0 &&
     filteredWebApps.length === 0 &&
     filteredPromptGroups.length === 0;
 
@@ -112,30 +143,13 @@ export function VipContentUnlocked() {
         />
       </div>
 
-      <div className="max-w-5xl mx-auto px-5 md:px-8 pb-20 md:pb-28 space-y-10">
+      <div className="max-w-5xl mx-auto px-5 md:px-8 pb-20 md:pb-28 space-y-12">
         {noResults && (
           <p className="text-center text-txt2 text-sm">Không tìm thấy nội dung phù hợp.</p>
         )}
 
-        {filteredFlow.length > 0 && (
-          <div>
-            <h2 className="text-lg font-bold mb-4 flex items-center gap-2">
-              Flow App (Google Labs)
-              <span className="text-txt2 text-xs font-normal">({filteredFlow.length})</span>
-            </h2>
-            <ToolGrid tools={filteredFlow} />
-          </div>
-        )}
-
-        {filteredAiStudio.length > 0 && (
-          <div>
-            <h2 className="text-lg font-bold mb-4 flex items-center gap-2">
-              AI Studio App
-              <span className="text-txt2 text-xs font-normal">({filteredAiStudio.length})</span>
-            </h2>
-            <ToolGrid tools={filteredAiStudio} />
-          </div>
-        )}
+        <ToolGroupSection title="Flow App (Google Labs)" groups={filteredFlow} />
+        <ToolGroupSection title="AI Studio App" groups={filteredAiStudio} />
 
         {filteredWebApps.length > 0 && (
           <div>
