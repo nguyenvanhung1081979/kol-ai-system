@@ -8,7 +8,7 @@ import { productIcons } from "@/components/ui/Icons";
 export const metadata: Metadata = {
   title: "Sản phẩm",
   description:
-    "Skill và công cụ AI trọn gói từ KOL AI SYSTEM: chỉnh sửa ảnh AI, edit video AI, Omni Flow Canvas — mua một lần, dùng lâu dài.",
+    "Skill và công cụ AI trọn gói từ KOL AI SYSTEM: chỉnh sửa ảnh AI, edit video AI, Omni Flow Canvas, Kho AI Kinh Doanh VIP — mua một lần, dùng lâu dài.",
 };
 
 export default function ProductsPage() {

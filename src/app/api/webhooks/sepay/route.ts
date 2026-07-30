@@ -67,6 +67,18 @@ export async function POST(request: Request) {
     return NextResponse.json({ success: true });
   }
 
+  // Sản phẩm dạng mở khoá nội dung (contentUnlock) không có file — không cần sinh link Blob,
+  // trang sẽ tự hiển thị nội dung khi trạng thái đơn = paid.
+  if (!order.blobPathname) {
+    await markOrderPaid(code, "");
+    await sendTelegramMessage(
+      `✅ Thanh toán thành công!\nĐơn: ${code}\nSản phẩm: ${order.productName}\nKhách: ${order.buyerName} - ${order.buyerPhone}\nSố tiền: ${order.amount.toLocaleString(
+        "vi-VN"
+      )}đ`
+    );
+    return NextResponse.json({ success: true });
+  }
+
   if (!isBlobConfigured()) {
     console.error("BLOB_READ_WRITE_TOKEN chưa được cấu hình, không thể sinh link tải.");
     await sendTelegramMessage(

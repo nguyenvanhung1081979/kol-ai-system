@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { bankInfo, siteConfig, type Product } from "@/lib/constants";
 import { BankIcon, CopyIcon } from "@/components/ui/Icons";
+import { copyToClipboard } from "@/lib/clipboard";
+import { VipContentUnlocked } from "@/components/sections/VipContentUnlocked";
 
 type Mode = "form" | "waiting" | "paid" | "fallback";
 
@@ -14,17 +16,8 @@ type OrderInfo = {
 const POLL_INTERVAL_MS = 4000;
 const POLL_TIMEOUT_MS = 20 * 60 * 1000; // ngừng poll sau 20 phút
 
-async function copyToClipboard(text: string) {
-  try {
-    await navigator.clipboard.writeText(text);
-  } catch {
-    const temp = document.createElement("textarea");
-    temp.value = text;
-    document.body.appendChild(temp);
-    temp.select();
-    document.execCommand("copy");
-    document.body.removeChild(temp);
-  }
+function unlockedOrderKey(productSlug: string) {
+  return `order_${productSlug}`;
 }
 
 function QrBlock({
@@ -115,6 +108,28 @@ export function ProductPurchase({ product }: { product: Product }) {
     };
   }, []);
 
+  // Sản phẩm dạng mở khoá nội dung: nếu trình duyệt này đã thanh toán trước đó,
+  // tự động mở khoá lại mà không cần trả tiền lần 2.
+  useEffect(() => {
+    if (!product.contentUnlock) return;
+    const savedCode = localStorage.getItem(unlockedOrderKey(product.slug));
+    if (!savedCode) return;
+    (async () => {
+      try {
+        const res = await fetch(`/api/orders/${savedCode}`);
+        const json = await res.json();
+        if (json.ok && json.status === "paid") {
+          setMode("paid");
+        } else {
+          localStorage.removeItem(unlockedOrderKey(product.slug));
+        }
+      } catch {
+        // bỏ qua lỗi mạng tạm thời, giữ nguyên form
+      }
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   function startPolling(code: string) {
     const startedAt = Date.now();
     pollRef.current = setInterval(async () => {
@@ -125,9 +140,14 @@ export function ProductPurchase({ product }: { product: Product }) {
       try {
         const res = await fetch(`/api/orders/${code}`);
         const json = await res.json();
-        if (json.ok && json.status === "paid" && json.downloadUrl) {
-          setDownloadUrl(json.downloadUrl);
+        const isPaid =
+          json.ok && json.status === "paid" && (product.contentUnlock || json.downloadUrl);
+        if (isPaid) {
+          setDownloadUrl(json.downloadUrl ?? null);
           setMode("paid");
+          if (product.contentUnlock) {
+            localStorage.setItem(unlockedOrderKey(product.slug), code);
+          }
           if (pollRef.current) clearInterval(pollRef.current);
         }
       } catch {
@@ -249,8 +269,10 @@ export function ProductPurchase({ product }: { product: Product }) {
         </div>
         <p className="text-txt2 text-xs mb-4">
           Ghi <strong className="text-txt">đúng nội dung &quot;{order.code}&quot;</strong> khi chuyển khoản
-          để hệ thống tự nhận diện. Link tải sẽ hiện ngay tại đây sau khi xác nhận (thường trong
-          vài chục giây).
+          để hệ thống tự nhận diện.{" "}
+          {product.contentUnlock
+            ? "Nội dung sẽ mở khoá ngay tại đây sau khi xác nhận (thường trong vài chục giây)."
+            : "Link tải sẽ hiện ngay tại đây sau khi xác nhận (thường trong vài chục giây)."}
         </p>
         <a
           href={siteConfig.zaloUrl}
@@ -262,6 +284,10 @@ export function ProductPurchase({ product }: { product: Product }) {
         </a>
       </QrBlock>
     );
+  }
+
+  if (mode === "paid" && product.contentUnlock) {
+    return <VipContentUnlocked />;
   }
 
   if (mode === "paid" && downloadUrl) {

@@ -165,7 +165,7 @@ export const services: Service[] = [
   },
 ];
 
-export type ProductIcon = "photo" | "video" | "canvas";
+export type ProductIcon = "photo" | "video" | "canvas" | "vip";
 
 export type Product = {
   slug: string;
@@ -176,8 +176,10 @@ export type Product = {
   priceSuffix: string;
   /** Số tiền thuần (VNĐ) dùng cho QR/đối soát thanh toán tự động, phải khớp `price`. */
   amount: number;
-  /** Đường dẫn blob riêng tư chứa file sản phẩm, dùng để sinh link tải sau khi thanh toán. */
+  /** Đường dẫn blob riêng tư chứa file sản phẩm, dùng để sinh link tải sau khi thanh toán. Để trống nếu sản phẩm là dạng mở khoá nội dung (contentUnlock). */
   blobPathname: string;
+  /** true = sau khi thanh toán, mở khoá hiển thị nội dung ngay trên trang thay vì trả link tải file. */
+  contentUnlock?: boolean;
   longDescription: string;
   features: string[];
   benefits: string[];
@@ -260,6 +262,33 @@ export const products: Product[] = [
       "Tận dụng sức mạnh AI tạo video mới nhất từ Google Labs",
       "Phù hợp cả người mới bắt đầu lẫn người đã quen làm video AI",
       "Được hướng dẫn sử dụng và tuỳ chỉnh sau khi nhận canvas",
+    ],
+  },
+  {
+    slug: "kho-ai-kinh-doanh-vip",
+    icon: "vip",
+    name: "Kho AI Kinh Doanh VIP",
+    tagline:
+      "110+ App AI Studio & Flow tạo ảnh/video chuyên sâu + kho prompt bán hàng — mở khoá xem ngay trên trang, không cần chờ.",
+    price: "199.000",
+    priceSuffix: "đ / trọn đời",
+    amount: 199000,
+    blobPathname: "",
+    contentUnlock: true,
+    longDescription:
+      "Bộ sưu tập hơn 110 App AI Studio & Flow app (Google Labs) chuyên sâu để tạo ảnh, video, thiết kế — cùng kho prompt bán hàng, xử lý từ chối, chăm sóc khách hàng và sáng tạo nội dung được tuyển chọn sẵn. Thanh toán xong, toàn bộ danh mục mở khoá ngay trên trang này — không cần chờ, không cần tải file.",
+    features: [
+      "110+ App AI Studio & Flow app tạo ảnh/video chuyên sâu, đa chủ đề",
+      "Kho prompt bán hàng, xử lý từ chối, CSKH, sáng tạo nội dung có sẵn",
+      "Hướng dẫn kỹ thuật viết prompt Veo 3.1 chuyên sâu đi kèm",
+      "Mở khoá xem ngay trên trang sau khi thanh toán, không cần chờ link",
+      "Truy cập lại bất cứ lúc nào trên cùng trình duyệt, không giới hạn số lần dùng",
+    ],
+    benefits: [
+      "Tiết kiệm hàng chục giờ tự mày mò và gom nhặt công cụ AI rời rạc",
+      "Có ngay kho prompt kinh doanh thực chiến, dùng được ngay",
+      "Phù hợp người làm nội dung, sáng tạo, bán hàng cần công cụ AI đa dạng",
+      "Một lần mua, dùng lâu dài, không phát sinh phí ẩn",
     ],
   },
 ];
