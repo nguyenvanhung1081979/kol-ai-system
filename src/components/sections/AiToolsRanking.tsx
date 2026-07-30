@@ -32,14 +32,16 @@ export function AiToolsRanking() {
               <p className="text-txt2 text-sm truncate">{tool.desc}</p>
             </div>
             <Link
-              href="/#lien-he"
+              href={tool.href ?? "/#lien-he"}
+              target={tool.href ? "_blank" : undefined}
+              rel={tool.href ? "noopener" : undefined}
               className={`shrink-0 text-sm font-semibold px-5 py-2 rounded-full ${
                 tool.rank === 1
                   ? "grad-btn text-white"
                   : "btn-ghost border border-border"
               }`}
             >
-              Dùng thử
+              {tool.ctaLabel ?? "Dùng thử"}
             </Link>
           </div>
         ))}

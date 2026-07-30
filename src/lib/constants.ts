@@ -289,16 +289,23 @@ export const pricingPlans = [
 export const aiTools = [
   {
     rank: 1,
+    name: "Sách của tôi",
+    desc: "Mật Mã Khởi Nghiệp AI — xây dựng doanh nghiệp một người từ con số 0, không cần vốn, không cần đội nhóm",
+    href: "https://matmakhoinghiepai.vercel.app/",
+    ctaLabel: "Xem sách",
+  },
+  {
+    rank: 2,
     name: "AI Content Studio",
     desc: "Tạo caption, kịch bản video tự động theo phong cách cá nhân",
   },
   {
-    rank: 2,
+    rank: 3,
     name: "AutoFlow AI",
     desc: "Tự động hoá đăng bài đa nền tảng và chăm sóc khách hàng",
   },
   {
-    rank: 3,
+    rank: 4,
     name: "Visual AI Pro",
     desc: "Tạo hình ảnh, thumbnail chuẩn thương hiệu chỉ trong vài giây",
   },
