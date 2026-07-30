@@ -20,6 +20,8 @@ function unlockedOrderKey(productSlug: string) {
   return `order_${productSlug}`;
 }
 
+const OWNER_UNLOCK_KEY = "owner_unlock";
+
 function QrBlock({
   qrUrl,
   amountLabel,
@@ -95,7 +97,16 @@ function QrBlock({
 }
 
 export function ProductPurchase({ product }: { product: Product }) {
-  const [mode, setMode] = useState<Mode>("form");
+  const [mode, setMode] = useState<Mode>(() => {
+    if (
+      product.contentUnlock &&
+      typeof window !== "undefined" &&
+      localStorage.getItem(OWNER_UNLOCK_KEY) === "1"
+    ) {
+      return "paid";
+    }
+    return "form";
+  });
   const [submitting, setSubmitting] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [order, setOrder] = useState<OrderInfo | null>(null);
@@ -112,6 +123,7 @@ export function ProductPurchase({ product }: { product: Product }) {
   // tự động mở khoá lại mà không cần trả tiền lần 2.
   useEffect(() => {
     if (!product.contentUnlock) return;
+    if (localStorage.getItem(OWNER_UNLOCK_KEY) === "1") return;
     const savedCode = localStorage.getItem(unlockedOrderKey(product.slug));
     if (!savedCode) return;
     (async () => {
@@ -154,6 +166,27 @@ export function ProductPurchase({ product }: { product: Product }) {
         // bỏ qua lỗi mạng tạm thời, vòng lặp sẽ tự thử lại
       }
     }, POLL_INTERVAL_MS);
+  }
+
+  async function handleOwnerUnlock() {
+    const password = window.prompt("Mật khẩu chủ shop:");
+    if (!password) return;
+    try {
+      const res = await fetch("/api/owner-unlock", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password }),
+      });
+      const json = await res.json();
+      if (json.ok) {
+        localStorage.setItem(OWNER_UNLOCK_KEY, "1");
+        setMode("paid");
+      } else {
+        alert(json.error ?? "Sai mật khẩu.");
+      }
+    } catch {
+      alert("Có lỗi xảy ra, vui lòng thử lại.");
+    }
   }
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -240,6 +273,15 @@ export function ProductPurchase({ product }: { product: Product }) {
             </p>
           )}
         </form>
+        {product.contentUnlock && (
+          <button
+            type="button"
+            onClick={handleOwnerUnlock}
+            className="block mx-auto mt-5 text-txt2 text-xs hover:text-accent2 transition-colors"
+          >
+            Chủ shop? Mở khoá xem không cần thanh toán
+          </button>
+        )}
       </div>
     );
   }
