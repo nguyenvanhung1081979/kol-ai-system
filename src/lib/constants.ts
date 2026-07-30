@@ -151,7 +151,7 @@ export const services: Service[] = [
   },
 ];
 
-export type ProductIcon = "photo" | "video" | "canvas";
+export type ProductIcon = "photo" | "video" | "canvas" | "book";
 
 export type Product = {
   slug: string;
@@ -159,11 +159,19 @@ export type Product = {
   name: string;
   tagline: string;
   price: string;
+  /** Giá gốc trước giảm (hiển thị gạch ngang), nếu có. */
+  originalPrice?: string;
   priceSuffix: string;
   /** Số tiền thuần (VNĐ) dùng cho QR/đối soát thanh toán tự động, phải khớp `price`. */
   amount: number;
   /** Đường dẫn blob riêng tư chứa file sản phẩm, dùng để sinh link tải sau khi thanh toán. */
   blobPathname: string;
+  /**
+   * Nếu có: sản phẩm dùng hệ thanh toán/giao hàng riêng ở URL này thay vì luồng
+   * tự động (SePay/Blob) của vungalishop — trang chi tiết sẽ dẫn khách sang đây
+   * để mua thay vì hiện form tạo đơn nội bộ.
+   */
+  externalUrl?: string;
   longDescription: string;
   features: string[];
   benefits: string[];
@@ -246,6 +254,33 @@ export const products: Product[] = [
       "Tận dụng sức mạnh AI tạo video mới nhất từ Google Labs",
       "Phù hợp cả người mới bắt đầu lẫn người đã quen làm video AI",
       "Được hướng dẫn sử dụng và tuỳ chỉnh sau khi nhận canvas",
+    ],
+  },
+  {
+    slug: "mat-ma-khoi-nghiep-ai",
+    icon: "book",
+    name: "Mật Mã Khởi Nghiệp AI",
+    tagline: "Xây dựng doanh nghiệp một người từ con số 0 bằng hệ thống AI Affiliate — không cần vốn, không cần đội nhóm.",
+    price: "99.000",
+    originalPrice: "199.000",
+    priceSuffix: "đ / ebook trọn bộ",
+    amount: 99000,
+    blobPathname: "",
+    externalUrl: "https://matmakhoinghiepai.vercel.app/index.html",
+    longDescription:
+      "Ebook hướng dẫn xây dựng hệ thống AI Affiliate — mô hình kinh doanh một người, vốn nhỏ, không cần thuê đội ngũ, không cần lộ diện thương hiệu cá nhân. Tác giả Nguyễn Văn Hùng (kỹ sư phần mềm, chuyên gia công nghệ) đúc kết thành 5 chương nội dung thực chiến, kèm tài nguyên hỗ trợ triển khai ngay.",
+    features: [
+      "Chương 1: Tư duy tài chính & chọn ngách AI Affiliate phù hợp",
+      "Chương 2: Xây dựng đại sứ thương hiệu ảo bằng AI",
+      "Chương 3: \"Vibe Coding\" — dùng ngôn ngữ tự nhiên dựng trang bán hàng",
+      "Chương 4: Tự động hoá vận hành backend (Google Sheets, Make.com, Telegram bot)",
+      "Chương 5: Tìm sản phẩm quốc tế có hoa hồng định kỳ ≥30%",
+    ],
+    benefits: [
+      "Không cần vốn lớn, không cần thuê đội ngũ vận hành",
+      "Đúc kết từ người đã làm thật, không lý thuyết suông",
+      "Kèm mindmap, prompt mẫu và tài nguyên hỗ trợ triển khai",
+      "Đọc online hoặc tải PDF/EPUB, gửi qua email ngay sau khi mua",
     ],
   },
 ];

@@ -16,7 +16,7 @@ export function Products() {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {products.map((product) => {
             const Icon = productIcons[product.icon];
             return (
@@ -30,6 +30,11 @@ export function Products() {
                 <h3 className="font-bold text-lg mb-2">{product.name}</h3>
                 <p className="text-txt2 text-sm leading-relaxed mb-5 flex-1">{product.tagline}</p>
                 <p className="mb-5">
+                  {product.originalPrice && (
+                    <span className="text-txt2 text-sm line-through mr-1.5">
+                      {product.originalPrice}đ
+                    </span>
+                  )}
                   <span className="text-2xl font-extrabold grad-text">{product.price}</span>
                   <span className="text-txt2 text-sm font-medium">{product.priceSuffix}</span>
                 </p>
