@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Header } from "@/components/sections/Header";
 import { Footer } from "@/components/sections/Footer";
 import { ProductPurchase } from "@/components/sections/ProductPurchase";
+import { VipContentPreview } from "@/components/sections/VipContentPreview";
 import { products } from "@/lib/constants";
 import { productIcons } from "@/components/ui/Icons";
 
@@ -115,6 +116,8 @@ export default async function ProductDetailPage({
           </div>
         </div>
       </section>
+
+      {product.contentUnlock && <VipContentPreview />}
 
       <section id="mua-ngay" className="max-w-5xl mx-auto px-5 md:px-8 py-16 md:py-20">
         <div className="text-center max-w-2xl mx-auto mb-12">
