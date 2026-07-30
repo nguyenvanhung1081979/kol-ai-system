@@ -5,8 +5,8 @@ export const vipFlowGroups: VipToolGroup[] = [
   {
     group: "Video hàng loạt & Automation",
     tools: [
-      { name: "TẠO 20 VIDEO _ AI-PHAM HUNG.81", link: "https://labs.google/fx/tools/flow/shared/tool/98826751-588a-4e85-ab77-0a459af66230" },
-      { name: "TAO 9 VIDEO HANG LOAT _ AI-PHAMHUNG.81", link: "https://labs.google/fx/tools/flow/shared/tool/cdcc2288-c7f1-410b-b220-347f2debd8ea" },
+      { name: "TẠO 20 VIDEO", link: "https://labs.google/fx/tools/flow/shared/tool/98826751-588a-4e85-ab77-0a459af66230" },
+      { name: "TAO 9 VIDEO HANG LOAT", link: "https://labs.google/fx/tools/flow/shared/tool/cdcc2288-c7f1-410b-b220-347f2debd8ea" },
       { name: "SÁNG TẠO VIDEO AI", link: "https://labs.google/fx/tools/flow/shared/tool/a3e6a6db-37c4-4e37-be37-9a3b0673be5a" },
       { name: "TAO VIDEO HANG LOAT", link: "https://labs.google/fx/tools/flow/shared/tool/569f4607-bee8-48d6-a4d5-ba1cfb0acf3a" },
       { name: "Auto ảnh video flow", link: "https://labs.google/fx/tools/flow/shared/tool/88529d82-fb09-46a7-a256-a5a7810c1ec8" },
@@ -125,8 +125,8 @@ export const vipAiStudioGroups: VipToolGroup[] = [
   {
     group: "Content, Prompt & Video Veo3",
     tools: [
-      { name: "TẠO ẢNH TOÀN NĂNG - SIÊU VIP -Phạm Hùng", link: "https://ai.studio/apps/drive/1HQ1X2ffzEmeIWh34imSOzsCUxUvPGNuD?fullscreenApplet=true" },
-      { name: "APP CONTENT SIÊU ĐỈNH - HUNG MASTER", link: "https://ai.studio/apps/drive/1hvmFjXaLkRsu4uzH5ih2fN-NIYqRxOU-?fullscreenApplet=true" },
+      { name: "TẠO ẢNH TOÀN NĂNG - SIÊU VIP", link: "https://ai.studio/apps/drive/1HQ1X2ffzEmeIWh34imSOzsCUxUvPGNuD?fullscreenApplet=true" },
+      { name: "APP CONTENT SIÊU ĐỈNH", link: "https://ai.studio/apps/drive/1hvmFjXaLkRsu4uzH5ih2fN-NIYqRxOU-?fullscreenApplet=true" },
       { name: "Tạo prompt từ ảnh", link: "https://ai.studio/apps/drive/1U2KPEyDyU_owgQ7aLr9xxazSiSXGBXUh" },
       { name: "APP Tạo câu lệnh mới", link: "https://ai.studio/apps/drive/1EDVJDRVRZvKN8PfY5zVC-XfduQ4UKzjl" },
       { name: "App Tạo ảnh hàng loạt (dán prompt)", link: "https://ai.studio/apps/drive/16yllfYHOlcvabCsTP1yzZwHk8BoqVOJm" },
@@ -145,8 +145,8 @@ export const vipAiStudioGroups: VipToolGroup[] = [
   {
     group: "Thiết kế, kiến trúc & xây dựng",
     tools: [
-      { name: "Đồ Họa Sư Đại Tài - 范孟雄", link: "https://ai.studio/apps/drive/1IVlJVMjWLqWoCVTcV9HLRTUkYBgP6l--" },
-      { name: "THƯ PHÁP AI - Phạm Hùng", link: "https://ai.studio/apps/drive/1ILEW1cQqq7wiLPCkKltk5PHgJ7RmZhos?fullscreenApplet=true" },
+      { name: "Đồ Họa Sư Đại Tài", link: "https://ai.studio/apps/drive/1IVlJVMjWLqWoCVTcV9HLRTUkYBgP6l--" },
+      { name: "THƯ PHÁP AI", link: "https://ai.studio/apps/drive/1ILEW1cQqq7wiLPCkKltk5PHgJ7RmZhos?fullscreenApplet=true" },
       { name: "Tạo ảnh kiến trúc AI", link: "https://aistudio.google.com/apps/drive/1_SEk1nK0jtEmo___rgaDwrXMAbEbREOY?showPreview=true&showAssistant=true&resourceKey=" },
       { name: "APP DỰ TOÁN XÂY DỰNG NHÀ", link: "https://ai.studio/apps/e6069070-3eab-4118-9ae5-e58b2cc729de?fullscreenApplet=true" },
     ],
@@ -169,8 +169,8 @@ export const vipAiStudioGroups: VipToolGroup[] = [
   {
     group: "Học ngôn ngữ & giáo dục",
     tools: [
-      { name: "HỌC TIẾNG TRUNG - Tác giả Phạm Hùng", link: "https://ai.studio/apps/drive/182zY6ksUysUhBHpj6swkAGO2kOvUsVDS?fullscreenApplet=true" },
-      { name: "HỌC TIẾNG ANH - Phạm Hùng", link: "https://aistudio.google.com/apps/drive/1zvghvLO3uYOKRW2HnJsZ3F-X4MKhShXL" },
+      { name: "HỌC TIẾNG TRUNG", link: "https://ai.studio/apps/drive/182zY6ksUysUhBHpj6swkAGO2kOvUsVDS?fullscreenApplet=true" },
+      { name: "HỌC TIẾNG ANH", link: "https://aistudio.google.com/apps/drive/1zvghvLO3uYOKRW2HnJsZ3F-X4MKhShXL" },
       { name: "SOẠN GIÁO ÁN NLS THT VER8", link: "https://aistudio.google.com/apps/drive/1Wu838UAj4I63sc_8C3eM0OBOufq4B78J" },
       { name: "Bé Yêu Toán Lớp 5", link: "https://aistudio.google.com/apps/drive/1_s0kGwuf8KdWKJmvpmjOjY2OEWpUDi5D?showPreview=true&showAssistant=true" },
     ],
