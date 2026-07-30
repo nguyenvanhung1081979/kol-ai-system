@@ -17,15 +17,14 @@ export const bankInfo = {
 };
 
 export type NavItem =
-  | { label: string; href: string; children?: undefined }
-  | { label: string; href?: undefined; children: { label: string; href: string }[] };
+  | { label: string; href: string; external?: boolean; children?: undefined }
+  | { label: string; href?: undefined; external?: undefined; children: { label: string; href: string }[] };
 
 export const navLinks: NavItem[] = [
   { label: "Dịch vụ", href: "/#dich-vu" },
   { label: "Sản phẩm", href: "/san-pham" },
   { label: "Bảng giá", href: "/#bang-gia" },
   { label: "Thanh toán", href: "/#thanh-toan" },
-  { label: "Công cụ AI", href: "/#cong-cu" },
   {
     label: "Quà tặng",
     children: [
@@ -36,17 +35,18 @@ export const navLinks: NavItem[] = [
   { label: "Kiến thức", href: "/#blog" },
   { label: "FAQ", href: "/#faq" },
   { label: "Liên hệ", href: "/#lien-he" },
+  { label: "Sách của tôi", href: "https://matmakhoinghiepai.vercel.app/", external: true },
 ];
 
-export const footerLinks: { label: string; href: string }[] = [
+export const footerLinks: { label: string; href: string; external?: boolean }[] = [
   { label: "Dịch vụ", href: "/#dich-vu" },
   { label: "Sản phẩm", href: "/san-pham" },
   { label: "Bảng giá", href: "/#bang-gia" },
   { label: "Thanh toán", href: "/#thanh-toan" },
-  { label: "Công cụ AI", href: "/#cong-cu" },
   { label: "Quà tặng AI Tools", href: "/qua-tang" },
   { label: "Kho Prompt AI", href: "/kho-prompt" },
   { label: "Kiến thức", href: "/#blog" },
+  { label: "Sách của tôi", href: "https://matmakhoinghiepai.vercel.app/", external: true },
 ];
 
 export const heroStats = [
@@ -283,31 +283,6 @@ export const pricingPlans = [
     highlighted: false,
     features: ["Triển khai AI tuỳ chỉnh", "Đội ngũ chuyên trách", "Cam kết SLA"],
     cta: "Liên hệ tư vấn",
-  },
-];
-
-export const aiTools = [
-  {
-    rank: 1,
-    name: "Sách của tôi",
-    desc: "Mật Mã Khởi Nghiệp AI — xây dựng doanh nghiệp một người từ con số 0, không cần vốn, không cần đội nhóm",
-    href: "https://matmakhoinghiepai.vercel.app/",
-    ctaLabel: "Xem sách",
-  },
-  {
-    rank: 2,
-    name: "AI Content Studio",
-    desc: "Tạo caption, kịch bản video tự động theo phong cách cá nhân",
-  },
-  {
-    rank: 3,
-    name: "AutoFlow AI",
-    desc: "Tự động hoá đăng bài đa nền tảng và chăm sóc khách hàng",
-  },
-  {
-    rank: 4,
-    name: "Visual AI Pro",
-    desc: "Tạo hình ảnh, thumbnail chuẩn thương hiệu chỉ trong vài giây",
   },
 ];
 

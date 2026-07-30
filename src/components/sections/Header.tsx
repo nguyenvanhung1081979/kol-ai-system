@@ -85,7 +85,13 @@ export function Header() {
             link.children ? (
               <DesktopNavDropdown key={link.label} label={link.label} items={link.children} />
             ) : (
-              <Link key={link.href} href={link.href} className="nav-link hover:text-txt">
+              <Link
+                key={link.href}
+                href={link.href}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noopener" : undefined}
+                className="nav-link hover:text-txt"
+              >
                 {link.label}
               </Link>
             )
@@ -143,7 +149,14 @@ export function Header() {
                 </div>
               </div>
             ) : (
-              <Link key={link.href} href={link.href} onClick={close} className="hover:text-txt">
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={close}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noopener" : undefined}
+                className="hover:text-txt"
+              >
                 {link.label}
               </Link>
             )

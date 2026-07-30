@@ -5,7 +5,6 @@ import { Services } from "@/components/sections/Services";
 import { Products } from "@/components/sections/Products";
 import { Pricing } from "@/components/sections/Pricing";
 import { Payment } from "@/components/sections/Payment";
-import { AiToolsRanking } from "@/components/sections/AiToolsRanking";
 import { Blog } from "@/components/sections/Blog";
 import { Faq } from "@/components/sections/Faq";
 import { ContactSection } from "@/components/sections/ContactSection";
@@ -24,7 +23,6 @@ export default function Home() {
       <Products />
       <Pricing />
       <Payment />
-      <AiToolsRanking />
       <Blog />
       <Faq />
       <Suspense fallback={null}>
