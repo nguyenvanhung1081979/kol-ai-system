@@ -38,9 +38,14 @@ hoạt** — trang vẫn đang chạy luồng thủ công cũ (QR tĩnh + nhắn
 
 ## 3. SePay (nhận diện chuyển khoản tự động)
 
-1. Đăng ký tài khoản tại [sepay.vn](https://sepay.vn), kết nối tài khoản Vietcombank
-   `0541000305083` (cần đăng nhập Internet Banking / OTP của bạn — bước này chỉ bạn làm được).
-2. Vào mục **Webhooks** → **Thêm webhook**:
+Tài khoản nhận tiền của trang là **TPBank `01604753001`** (đổi từ Vietcombank vì Vietcombank cá
+nhân chưa được SePay hỗ trợ tự liên kết qua web — đang "Sắp ra mắt"). Dùng chung tài khoản SePay
+đã có sẵn (đã kết nối TPBank này từ trước cho dự án khác) — không cần đăng ký SePay mới.
+
+1. Đăng nhập [sepay.vn](https://sepay.vn) bằng tài khoản hiện có.
+2. Vào mục **Tích hợp WebHooks** → **Thêm webhook**:
+   - Ngân hàng: chọn đúng **TPBank `01604753001`** (quan trọng — chọn nhầm sẽ nhận cả giao dịch
+     của dự án khác)
    - Loại sự kiện: tiền vào (incoming)
    - URL: `https://vungalishop.vercel.app/api/webhooks/sepay`
    - Xác thực: chọn **API Key**, tự đặt 1 chuỗi bí mật (vd chuỗi random dài) — đây chính là giá

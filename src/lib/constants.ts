@@ -10,9 +10,9 @@ export const siteConfig = {
 };
 
 export const bankInfo = {
-  bankName: "Vietcombank",
-  bankBin: "970436",
-  accountNumber: "0541000305083",
+  bankName: "TPBank",
+  bankBin: "970423",
+  accountNumber: "01604753001",
   accountName: "NGUYEN VAN HUNG",
 };
 
