@@ -172,7 +172,7 @@ export const products: Product[] = [
     name: "Skill Chỉnh Sửa Ảnh AI",
     tagline:
       "Tự động chèn tiêu đề + badge thương hiệu lên ảnh chuẩn phong cách mạng xã hội — không cần biết thiết kế.",
-    price: "990.000",
+    price: "99.000",
     priceSuffix: "đ / trọn đời",
     longDescription:
       "Skill AI tích hợp vào Claude Code, tự động biến ảnh gốc thành ảnh đăng mạng xã hội chuyên nghiệp: chèn tiêu đề nổi bật, tô sáng từ khoá quan trọng và gắn badge thương hiệu riêng của bạn — chỉ cần gửi ảnh và nội dung, nhận về file ảnh hoàn chỉnh chuẩn kích thước Facebook/Instagram.",
@@ -196,7 +196,7 @@ export const products: Product[] = [
     name: "Skill Edit Video AI",
     tagline:
       "Tự động dựng video talking-head chuyên nghiệp: transcribe, chèn slide minh hoạ đúng lúc, ghép hoàn chỉnh.",
-    price: "1.490.000",
+    price: "99.000",
     priceSuffix: "đ / trọn đời",
     longDescription:
       "Skill AI tích hợp vào Claude Code, nhận video bạn quay (nói chuyện trước camera) và tự động transcribe, phân tích nội dung để chèn slide minh hoạ (so sánh, số liệu, tóm tắt...) đúng thời điểm, dựng bố cục webcam + slide chuyên nghiệp và xuất ra video hoàn chỉnh — không cần dựng thủ công.",
@@ -220,7 +220,7 @@ export const products: Product[] = [
     name: "Omni Flow Canvas",
     tagline:
       "Canvas dựng sẵn trên nền tảng Flow (Google Labs) — tạo video AI nhanh hơn mà không cần dựng từ đầu.",
-    price: "2.990.000",
+    price: "99.000",
     priceSuffix: "đ / trọn đời",
     longDescription:
       "Bản canvas đã được cấu hình sẵn trên nền tảng Flow của Google Labs — công cụ tạo video AI bằng giao diện kéo-thả trực quan. Thay vì mất thời gian dựng canvas từ con số 0, bạn nhận bản canvas đã tối ưu sẵn, chỉ cần thay nội dung/ý tưởng của mình vào và tạo video ngay.",
