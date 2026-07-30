@@ -18,10 +18,24 @@ export const bankInfo = {
 
 export type NavItem =
   | { label: string; href: string; external?: boolean; children?: undefined }
-  | { label: string; href?: undefined; external?: undefined; children: { label: string; href: string }[] };
+  | {
+      label: string;
+      href?: undefined;
+      external?: undefined;
+      children: { label: string; href: string; external?: boolean }[];
+    };
 
 export const navLinks: NavItem[] = [
-  { label: "Sách của tôi", href: "https://matmakhoinghiepai.vercel.app/", external: true },
+  {
+    label: "Sách của tôi",
+    children: [
+      {
+        label: "Mật mã khởi nghiệp AI",
+        href: "https://matmakhoinghiepai.vercel.app/",
+        external: true,
+      },
+    ],
+  },
   { label: "Dịch vụ", href: "/#dich-vu" },
   { label: "Sản phẩm", href: "/san-pham" },
   { label: "Bảng giá", href: "/#bang-gia" },

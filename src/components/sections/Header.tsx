@@ -18,7 +18,7 @@ function DesktopNavDropdown({
   items,
 }: {
   label: string;
-  items: { label: string; href: string }[];
+  items: { label: string; href: string; external?: boolean }[];
 }) {
   const [open, setOpen] = useState(false);
 
@@ -52,6 +52,8 @@ function DesktopNavDropdown({
               key={child.href}
               href={child.href}
               onClick={() => setOpen(false)}
+              target={child.external ? "_blank" : undefined}
+              rel={child.external ? "noopener" : undefined}
               className="block px-4 py-2 text-sm text-txt2 hover:text-txt hover:bg-card2 transition-colors"
             >
               {child.label}
@@ -141,6 +143,8 @@ export function Header() {
                       key={child.href}
                       href={child.href}
                       onClick={close}
+                      target={child.external ? "_blank" : undefined}
+                      rel={child.external ? "noopener" : undefined}
                       className="hover:text-txt"
                     >
                       {child.label}
