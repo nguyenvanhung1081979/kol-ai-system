@@ -179,7 +179,7 @@ export const products: Product[] = [
     price: "99.000",
     priceSuffix: "đ / trọn đời",
     amount: 99000,
-    blobPathname: "products/skill-chinh-sua-anh-ai.zip",
+    blobPathname: "skill-chinh-sua-anh-ai.zip",
     longDescription:
       "Skill AI tích hợp vào Claude Code, tự động biến ảnh gốc thành ảnh đăng mạng xã hội chuyên nghiệp: chèn tiêu đề nổi bật, tô sáng từ khoá quan trọng và gắn badge thương hiệu riêng của bạn — chỉ cần gửi ảnh và nội dung, nhận về file ảnh hoàn chỉnh chuẩn kích thước Facebook/Instagram.",
     features: [
@@ -205,7 +205,7 @@ export const products: Product[] = [
     price: "99.000",
     priceSuffix: "đ / trọn đời",
     amount: 99000,
-    blobPathname: "products/skill-edit-video-ai.zip",
+    blobPathname: "skill-edit-video-ai.zip",
     longDescription:
       "Skill AI tích hợp vào Claude Code, nhận video bạn quay (nói chuyện trước camera) và tự động transcribe, phân tích nội dung để chèn slide minh hoạ (so sánh, số liệu, tóm tắt...) đúng thời điểm, dựng bố cục webcam + slide chuyên nghiệp và xuất ra video hoàn chỉnh — không cần dựng thủ công.",
     features: [
@@ -231,7 +231,7 @@ export const products: Product[] = [
     price: "99.000",
     priceSuffix: "đ / trọn đời",
     amount: 99000,
-    blobPathname: "products/omni-flow-canvas.zip",
+    blobPathname: "omni-flow-canvas.zip",
     longDescription:
       "Bản canvas đã được cấu hình sẵn trên nền tảng Flow của Google Labs — công cụ tạo video AI bằng giao diện kéo-thả trực quan. Thay vì mất thời gian dựng canvas từ con số 0, bạn nhận bản canvas đã tối ưu sẵn, chỉ cần thay nội dung/ý tưởng của mình vào và tạo video ngay.",
     features: [
