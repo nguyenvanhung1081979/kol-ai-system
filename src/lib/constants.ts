@@ -21,6 +21,7 @@ export type NavItem =
   | { label: string; href?: undefined; external?: undefined; children: { label: string; href: string }[] };
 
 export const navLinks: NavItem[] = [
+  { label: "Sách của tôi", href: "https://matmakhoinghiepai.vercel.app/", external: true },
   { label: "Dịch vụ", href: "/#dich-vu" },
   { label: "Sản phẩm", href: "/san-pham" },
   { label: "Bảng giá", href: "/#bang-gia" },
@@ -35,7 +36,6 @@ export const navLinks: NavItem[] = [
   { label: "Kiến thức", href: "/#blog" },
   { label: "FAQ", href: "/#faq" },
   { label: "Liên hệ", href: "/#lien-he" },
-  { label: "Sách của tôi", href: "https://matmakhoinghiepai.vercel.app/", external: true },
 ];
 
 export const footerLinks: { label: string; href: string; external?: boolean }[] = [
