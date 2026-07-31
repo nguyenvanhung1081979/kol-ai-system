@@ -47,8 +47,6 @@ export const navLinks: NavItem[] = [
       { label: "Prompt", href: "/kho-prompt" },
     ],
   },
-  { label: "Kiến thức", href: "/#blog" },
-  { label: "FAQ", href: "/#faq" },
   { label: "Liên hệ", href: "/#lien-he" },
 ];
 
