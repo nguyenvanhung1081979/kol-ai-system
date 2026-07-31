@@ -290,6 +290,27 @@ export const products: Product[] = [
   },
 ];
 
+export type QuickProductLink = {
+  label: string;
+  href: string;
+  icon: "book" | ProductIcon;
+  external?: boolean;
+};
+
+export const quickProductLinks: QuickProductLink[] = [
+  {
+    label: "Sách của tôi",
+    href: "https://matmakhoinghiepai.vercel.app/",
+    icon: "book",
+    external: true,
+  },
+  ...products.map((product) => ({
+    label: product.name,
+    href: `/san-pham/${product.slug}`,
+    icon: product.icon,
+  })),
+];
+
 export const pricingPlans = [
   {
     name: "Cơ bản",
