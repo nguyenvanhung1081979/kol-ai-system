@@ -38,7 +38,6 @@ export const navLinks: NavItem[] = [
   },
   { label: "Dịch vụ", href: "/#dich-vu" },
   { label: "Sản phẩm", href: "/san-pham" },
-  { label: "Bảng giá", href: "/#bang-gia" },
   { label: "Thanh toán", href: "/#thanh-toan" },
   {
     label: "Quà tặng",
