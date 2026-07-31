@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { Header } from "@/components/sections/Header";
 import { Hero } from "@/components/sections/Hero";
+import { BrandMarquee } from "@/components/sections/BrandMarquee";
 import { Services } from "@/components/sections/Services";
 import { Products } from "@/components/sections/Products";
 import { Pricing } from "@/components/sections/Pricing";
@@ -19,6 +20,7 @@ export default function Home() {
       <PromptPopup />
       <Header />
       <Hero />
+      <BrandMarquee />
       <Services />
       <Products />
       <Pricing />

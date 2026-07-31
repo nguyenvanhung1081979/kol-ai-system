@@ -442,3 +442,19 @@ export const faqs = [
     a: "Hoàn toàn được. Bạn có thể nâng cấp, hạ cấp hoặc huỷ gói bất kỳ lúc nào, liên hệ đội ngũ hỗ trợ để được xử lý nhanh chóng.",
   },
 ];
+
+export type AiPartnerBrand = { name: string; mark: string; color: string };
+
+// Các nền tảng AI được dùng/tích hợp trong quy trình làm việc — không phải quan hệ đại sứ/đối tác chính thức.
+export const aiPartnerBrands: AiPartnerBrand[] = [
+  { name: "Gemini Omni", mark: "✦", color: "linear-gradient(135deg,#4285F4,#9B72CB)" },
+  { name: "Affitor", mark: "A", color: "#2563EB" },
+  { name: "Lumeflow AI", mark: "L", color: "linear-gradient(135deg,#EC4899,#F43F5E)" },
+  { name: "Minimax Audio", mark: "♪", color: "#DC2626" },
+  { name: "Seedance 2", mark: "S", color: "linear-gradient(135deg,#14B8A6,#0EA5E9)" },
+  { name: "Higgsfield AI", mark: "H", color: "#84CC16" },
+  { name: "TopView AI", mark: "▲", color: "#7C3AED" },
+  { name: "Focusee AI", mark: "F", color: "linear-gradient(135deg,#06B6D4,#3B82F6)" },
+  { name: "Lovable AI", mark: "♥", color: "#F43F5E" },
+  { name: "Claude AI", mark: "AI", color: "#3B3B44" },
+];
