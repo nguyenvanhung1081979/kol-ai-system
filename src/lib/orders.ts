@@ -128,3 +128,32 @@ export async function findPaidOrderByPhone(
   if (!order || order.status !== "paid") return null;
   return order;
 }
+
+// Chạy 1 lần sau khi triển khai tính năng tra cứu theo SĐT: quét lại toàn bộ
+// đơn "paid" đã tồn tại từ trước (chưa có chỉ mục SĐT vì tính năng này chưa
+// từng ghi chỉ mục cho các đơn đó) và bổ sung chỉ mục cho chúng.
+export async function backfillPhoneIndex(): Promise<{ scanned: number; indexed: number }> {
+  const client = redis();
+  if (!client) throw new Error("Orders store chưa được cấu hình.");
+
+  let cursor = "0";
+  let scanned = 0;
+  let indexed = 0;
+
+  do {
+    const [nextCursor, keys] = await client.scan(cursor, { match: "order:*", count: 100 });
+    cursor = String(nextCursor);
+    for (const key of keys) {
+      const order = await client.get<Order>(key);
+      scanned++;
+      if (order && order.status === "paid") {
+        await client.set(phoneIndexKey(order.productSlug, order.buyerPhone), order.code, {
+          ex: PAID_TTL_SECONDS,
+        });
+        indexed++;
+      }
+    }
+  } while (cursor !== "0");
+
+  return { scanned, indexed };
+}
