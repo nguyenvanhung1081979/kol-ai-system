@@ -112,6 +112,10 @@ export function ProductPurchase({ product }: { product: Product }) {
   const [order, setOrder] = useState<OrderInfo | null>(null);
   const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const [showLookup, setShowLookup] = useState(false);
+  const [lookupPhone, setLookupPhone] = useState("");
+  const [lookingUp, setLookingUp] = useState(false);
+  const [lookupError, setLookupError] = useState("");
 
   useEffect(() => {
     return () => {
@@ -132,9 +136,13 @@ export function ProductPurchase({ product }: { product: Product }) {
         const json = await res.json();
         if (json.ok && json.status === "paid") {
           setMode("paid");
-        } else {
+        } else if (json.ok) {
+          // Server xác nhận rõ ràng đơn này tồn tại nhưng không phải "paid"
+          // (VD: pending đã hết hạn) -> mã cũ không còn dùng được, dọn key.
           localStorage.removeItem(unlockedOrderKey(product.slug));
         }
+        // Không xoá key khi API trả lỗi/không rõ ràng (404 tạm thời, lỗi server...)
+        // để tránh mất oan trạng thái đã mở khoá vì một lần request thất bại.
       } catch {
         // bỏ qua lỗi mạng tạm thời, giữ nguyên form
       }
@@ -186,6 +194,38 @@ export function ProductPurchase({ product }: { product: Product }) {
       }
     } catch {
       alert("Có lỗi xảy ra, vui lòng thử lại.");
+    }
+  }
+
+  async function handleLookup(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (!lookupPhone.trim()) return;
+
+    setLookingUp(true);
+    setLookupError("");
+
+    try {
+      const res = await fetch("/api/orders/lookup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ productSlug: product.slug, phone: lookupPhone.trim() }),
+      });
+      const json = await res.json();
+      if (!res.ok || !json.ok) {
+        throw new Error(json.error ?? "Không tìm thấy đơn hàng đã thanh toán với số điện thoại này.");
+      }
+
+      if (product.contentUnlock) {
+        localStorage.setItem(unlockedOrderKey(product.slug), json.code);
+      }
+      setDownloadUrl(json.downloadUrl ?? null);
+      setMode("paid");
+    } catch (err) {
+      setLookupError(
+        err instanceof Error ? err.message : "Có lỗi xảy ra, vui lòng thử lại."
+      );
+    } finally {
+      setLookingUp(false);
     }
   }
 
@@ -282,6 +322,40 @@ export function ProductPurchase({ product }: { product: Product }) {
             Chủ shop? Mở khoá xem không cần thanh toán
           </button>
         )}
+
+        <div className="mt-3 pt-3 border-t border-border">
+          <button
+            type="button"
+            onClick={() => setShowLookup((v) => !v)}
+            className="block mx-auto text-txt2 text-xs hover:text-accent2 transition-colors"
+          >
+            Đã thanh toán rồi? Tra cứu lại bằng số điện thoại
+          </button>
+          {showLookup && (
+            <form onSubmit={handleLookup} className="mt-3 flex gap-2">
+              <input
+                value={lookupPhone}
+                onChange={(e) => setLookupPhone(e.target.value)}
+                required
+                type="tel"
+                placeholder="Số điện thoại đã dùng khi mua"
+                className="flex-1 min-w-0 bg-card2 border border-border rounded-xl px-3 py-2 text-sm outline-none transition-colors focus:border-accent"
+              />
+              <button
+                type="submit"
+                disabled={lookingUp}
+                className="btn-ghost shrink-0 border border-border text-xs font-semibold px-4 py-2 rounded-xl disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {lookingUp ? "Đang tra..." : "Tra cứu"}
+              </button>
+            </form>
+          )}
+          {lookupError && (
+            <p className="mt-2 text-sm text-center text-accent2 bg-accent/10 border border-accent/30 rounded-xl px-4 py-2.5">
+              {lookupError}
+            </p>
+          )}
+        </div>
       </div>
     );
   }

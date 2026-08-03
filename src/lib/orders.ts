@@ -36,6 +36,23 @@ function orderKey(code: string) {
   return `order:${code}`;
 }
 
+// Chuẩn hoá số điện thoại về dạng 0xxxxxxxxx để tra cứu không phụ thuộc cách
+// khách gõ (có khoảng trắng, +84, 84...).
+export function normalizePhone(phone: string): string {
+  const digits = phone.replace(/\D/g, "");
+  if (digits.startsWith("84") && digits.length > 9) {
+    return `0${digits.slice(2)}`;
+  }
+  if (!digits.startsWith("0") && digits.length === 9) {
+    return `0${digits}`;
+  }
+  return digits;
+}
+
+function phoneIndexKey(productSlug: string, phone: string) {
+  return `order-by-phone:${productSlug}:${normalizePhone(phone)}`;
+}
+
 function generateOrderCode() {
   const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // không dùng ký tự dễ nhầm (0/O, 1/I)
   let code = "VAS";
@@ -83,5 +100,31 @@ export async function markOrderPaid(code: string, downloadUrl: string): Promise<
 
   const updated: Order = { ...order, status: "paid", paidAt: Date.now(), downloadUrl };
   await client.set(orderKey(code), updated, { ex: PAID_TTL_SECONDS });
+
+  // Cho phép khách tra cứu lại đơn đã thanh toán bằng SĐT nếu mất dữ liệu trình
+  // duyệt (đóng tab trước khi kịp lưu localStorage, đổi máy, xoá cache...).
+  // Đây là chỉ mục phụ, không được để lỗi ở bước này làm hỏng việc đơn đã được
+  // đánh dấu "paid" ở trên (bước quan trọng nhất, đã chạy xong).
+  try {
+    await client.set(phoneIndexKey(updated.productSlug, updated.buyerPhone), code, {
+      ex: PAID_TTL_SECONDS,
+    });
+  } catch (error) {
+    console.error("Lỗi khi ghi chỉ mục tra cứu theo SĐT:", error);
+  }
+
   return updated;
+}
+
+export async function findPaidOrderByPhone(
+  productSlug: string,
+  phone: string
+): Promise<Order | null> {
+  const client = redis();
+  if (!client) return null;
+  const code = await client.get<string>(phoneIndexKey(productSlug, phone));
+  if (!code) return null;
+  const order = await client.get<Order>(orderKey(code));
+  if (!order || order.status !== "paid") return null;
+  return order;
 }
