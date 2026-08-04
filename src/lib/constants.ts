@@ -262,6 +262,33 @@ export const products: Product[] = [
     ],
   },
   {
+    slug: "sara-model-studio",
+    icon: "photo",
+    name: "VungAliShop Sara Model Studio",
+    tagline:
+      "Bộ Skill AI 5-trong-1 tạo ảnh, poster và video giới thiệu sản phẩm — chỉ cần gửi ảnh và yêu cầu bằng tiếng Việt, không cần biết thiết kế.",
+    price: "500.000",
+    priceSuffix: "đ / trọn đời",
+    amount: 500000,
+    blobPathname: "sara-model-studio.zip",
+    longDescription:
+      "Bộ Skill AI 5 trong 1 dành cho người bán hàng, xây thương hiệu cá nhân và làm nội dung — cài trực tiếp vào ChatGPT, chỉ cần gửi ảnh và yêu cầu bằng tiếng Việt. Từ hoán đổi người mẫu Sara vào ảnh sản phẩm, tạo nhiều góc ảnh, dựng storyboard/video giới thiệu, đến thiết kế poster và banner bán hàng — tất cả trong một bộ công cụ duy nhất, kèm tài liệu hướng dẫn và bộ câu lệnh mẫu cho người mới.",
+    features: [
+      "Hoán đổi người mẫu Sara vào ảnh sản phẩm/tham chiếu, giữ nguyên logo và bao bì",
+      "Tạo nhiều góc ảnh riêng (multishot) từ một ảnh gốc, không ghép lưới",
+      "Dựng storyboard và kịch bản video giới thiệu sản phẩm",
+      "Thiết kế poster đơn hoặc cả chiến dịch 10 poster cho một sản phẩm",
+      "Tạo thumbnail, banner, ảnh bán hàng và hình landing page theo nhận diện VungAliShop",
+      "Kèm hướng dẫn dành cho người mới + 30 câu lệnh mẫu, dùng ngay trên ChatGPT",
+    ],
+    benefits: [
+      "Không cần biết thiết kế hay tiếng Anh — chỉ cần gửi ảnh và mô tả bằng tiếng Việt",
+      "Thay thế quy trình dựng ảnh/video bán hàng thủ công tốn nhiều giờ mỗi lần",
+      "Đồng bộ nhận diện thương hiệu trên toàn bộ ảnh, poster, video giới thiệu",
+      "Một lần mua, dùng trọn đời, cài đặt đơn giản kể cả với người không rành công nghệ",
+    ],
+  },
+  {
     slug: "kho-ai-kinh-doanh-vip",
     icon: "vip",
     name: "Kho AI Kinh Doanh VIP",
