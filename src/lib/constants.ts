@@ -212,7 +212,7 @@ export const products: Product[] = [
   {
     slug: "skill-edit-video-ai",
     icon: "video",
-    name: "Skill Edit Video AI",
+    name: "Skill Tự động Edit Video",
     tagline:
       "Tự động dựng video talking-head chuyên nghiệp: transcribe, chèn slide minh hoạ đúng lúc, ghép hoàn chỉnh.",
     price: "99.000",
