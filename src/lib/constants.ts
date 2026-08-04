@@ -264,7 +264,7 @@ export const products: Product[] = [
   {
     slug: "sara-model-studio",
     icon: "photo",
-    name: "VungAliShop Sara Model Studio",
+    name: "Skill AI Tạo Hình Ảnh Bán Hàng",
     tagline:
       "Bộ Skill AI 5-trong-1 tạo ảnh, poster và video giới thiệu sản phẩm — chỉ cần gửi ảnh và yêu cầu bằng tiếng Việt, không cần biết thiết kế.",
     price: "500.000",
