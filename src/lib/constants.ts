@@ -293,16 +293,16 @@ export const products: Product[] = [
     icon: "vip",
     name: "Kho AI Kinh Doanh VIP",
     tagline:
-      "110+ App AI Studio & Flow tạo ảnh/video chuyên sâu + kho prompt bán hàng — mở khoá xem ngay trên trang, không cần chờ.",
+      "70+ App AI Studio tạo ảnh/video chuyên sâu + kho prompt bán hàng — mở khoá xem ngay trên trang, không cần chờ.",
     price: "999.000",
     priceSuffix: "đ / trọn đời",
     amount: 999000,
     blobPathname: "",
     contentUnlock: true,
     longDescription:
-      "Bộ sưu tập hơn 110 App AI Studio & Flow app (Google Labs) chuyên sâu để tạo ảnh, video, thiết kế — cùng kho prompt bán hàng, xử lý từ chối, chăm sóc khách hàng và sáng tạo nội dung được tuyển chọn sẵn. Thanh toán xong, toàn bộ danh mục mở khoá ngay trên trang này — không cần chờ, không cần tải file.",
+      "Bộ sưu tập hơn 70 App AI Studio chuyên sâu để tạo ảnh, video, thiết kế — cùng kho prompt bán hàng, xử lý từ chối, chăm sóc khách hàng và sáng tạo nội dung được tuyển chọn sẵn. Thanh toán xong, toàn bộ danh mục mở khoá ngay trên trang này — không cần chờ, không cần tải file.",
     features: [
-      "110+ App AI Studio & Flow app tạo ảnh/video chuyên sâu, đa chủ đề",
+      "70+ App AI Studio tạo ảnh/video chuyên sâu, đa chủ đề",
       "Kho prompt bán hàng, xử lý từ chối, CSKH, sáng tạo nội dung có sẵn",
       "Hướng dẫn kỹ thuật viết prompt Veo 3.1 chuyên sâu đi kèm",
       "Mở khoá xem ngay trên trang sau khi thanh toán, không cần chờ link",

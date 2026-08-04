@@ -1,61 +1,7 @@
 export type VipTool = { name: string; link: string };
 export type VipToolGroup = { group: string; tools: VipTool[] };
 
-export const vipFlowGroups: VipToolGroup[] = [
-  {
-    group: "Video hàng loạt & Automation",
-    tools: [
-      { name: "TẠO 20 VIDEO", link: "https://labs.google/fx/tools/flow/shared/tool/98826751-588a-4e85-ab77-0a459af66230" },
-      { name: "TAO 9 VIDEO HANG LOAT", link: "https://labs.google/fx/tools/flow/shared/tool/cdcc2288-c7f1-410b-b220-347f2debd8ea" },
-      { name: "SÁNG TẠO VIDEO AI", link: "https://labs.google/fx/tools/flow/shared/tool/a3e6a6db-37c4-4e37-be37-9a3b0673be5a" },
-      { name: "TAO VIDEO HANG LOAT", link: "https://labs.google/fx/tools/flow/shared/tool/569f4607-bee8-48d6-a4d5-ba1cfb0acf3a" },
-      { name: "Auto ảnh video flow", link: "https://labs.google/fx/tools/flow/shared/tool/88529d82-fb09-46a7-a256-a5a7810c1ec8" },
-      { name: "VEO 3 AI PRO", link: "https://labs.google/fx/tools/flow/shared/tool/c970f182-5e50-4166-af19-835eba7bd87a" },
-      { name: "Batch Video Automator", link: "https://labs.google/fx/tools/flow/shared/tool/a5867252-5e33-4425-a2e6-8fd25b423f16" },
-    ],
-  },
-  {
-    group: "Kịch bản & Storyboard",
-    tools: [
-      { name: "Storyboard", link: "https://labs.google/fx/tools/flow/shared/tool/1bacc578-6632-4446-9ded-15aa194956e1" },
-      { name: "Full Flows tạo KOL AI", link: "https://labs.google/fx/tools/flow/shared/tool/ea74720e-464a-4f9e-8d07-91e22b2a8eb4" },
-      { name: "AI Video Factory", link: "https://labs.google/fx/vi/tools/flow/project/afa0cc28-2070-4072-b6b9-1a1a0e0eae27/tool-version/721e7d7b-d453-46e1-8dc0-649b1385e10e" },
-      { name: "KOL & STORYBOARD", link: "https://labs.google/fx/tools/flow/shared/tool/e7c4fa20-29a7-457d-adf0-1f7a8065fbc7" },
-      { name: "studio workflow", link: "https://labs.google/fx/tools/flow/shared/tool/3164f6b3-f4f4-40f2-a153-9a9cb0ad98cc" },
-      { name: "Scene Architect", link: "https://labs.google/fx/tools/flow/shared/tool/c1bc5103-f649-467d-a887-10acef450855" },
-      { name: "Muse's Story Studio Pro", link: "https://labs.google/fx/tools/flow/shared/tool/1bac7b75-2ed3-4964-8682-f02409b3fd2d" },
-    ],
-  },
-  {
-    group: "Hiệu ứng & Hậu kỳ nâng cao",
-    tools: [
-      { name: "NEON FLOW VIP", link: "https://labs.google/fx/tools/flow/shared/tool/035e002e-f4f3-42d1-bcb2-aaeb274809cb" },
-      { name: "Ultra Cinematic Engine", link: "https://labs.google/fx/tools/flow/shared/tool/952e3c0d-674f-452a-933a-1fc48bf66b70" },
-      { name: "Relight", link: "https://labs.google/fx/tools/flow/shared/tool/e162f151-62dd-4cf4-865a-50962f18b587" },
-      { name: "Face Mixer", link: "https://labs.google/fx/tools/flow/shared/tool/be23f519-e5f1-49d1-a8de-c0063633da53" },
-      { name: "Turnaround Slicer", link: "https://labs.google/fx/tools/flow/shared/tool/e3e09843-e90a-42cb-a11b-80ca4e8164ec" },
-      { name: "Stylify", link: "https://labs.google/fx/tools/flow/shared/tool/d7f37e79-1868-4c55-ad1b-39c80aca507f" },
-      { name: "Avatar Studio Pro 1.7", link: "https://labs.google/fx/tools/flow/shared/tool/9ca9843b-f2a3-442b-8442-b104ed5a58fd" },
-      { name: "Shot Explorer Pro 3.1", link: "https://labs.google/fx/tools/flow/shared/tool/1b9698e5-3760-4649-a8f9-62c4d144ac72" },
-      { name: "Neural Director Pro", link: "https://labs.google/fx/tools/flow/shared/tool/c71b316a-889b-449b-b244-d29d5f796499" },
-    ],
-  },
-  {
-    group: "Ngành & chủ đề riêng",
-    tools: [
-      { name: "ONE BUSINESS KOL AI", link: "https://labs.google/fx/tools/flow/shared/tool/af029ab4-bbf2-4418-a326-bf40d0653239" },
-      { name: "APP THỜI TRANG", link: "https://labs.google/fx/tools/flow/shared/tool/ffc3498a-f111-48c1-933b-df2a3f562f7c" },
-      { name: "ONG CHU MMO", link: "https://labs.google/fx/tools/flow/shared/tool/b9cbcb4d-c2de-41a0-8e21-8b363e846015" },
-      { name: "DOUYIN STUDIO", link: "https://labs.google/fx/tools/flow/shared/tool/08a35bf5-2ee2-4176-b166-9d12d4d95a9a" },
-      { name: "TVC AI VIDEO MASTER", link: "https://labs.google/fx/tools/flow/shared/tool/e76c9fac-7e7e-4f02-8f99-929694b7ae7b" },
-      { name: "Render ảnh Thiết Kế Kiến Trúc", link: "https://labs.google/fx/tools/flow/shared/tool/143c186a-d108-42fb-b82b-b840013d8f57" },
-      { name: "XƯỞNG PHIM", link: "https://labs.google/fx/tools/flow/shared/tool/4fd22a6d-4fac-4a3f-8658-678c20a996c2" },
-      { name: "AI CANVAS FLOW", link: "https://labs.google/fx/tools/flow/shared/tool/75cc3756-8b11-44cb-aa60-f832d6c4d1ec" },
-      { name: "Prompt Alchemist", link: "https://labs.google/fx/tools/flow/shared/tool/5d2d6c96-603f-45d8-9757-e0720cc25c8a" },
-      { name: "App tạo ảnh Pro", link: "https://labs.google/fx/tools/flow/shared/tool/6bfb38e8-8583-42e3-a233-8e1e506d5e02" },
-    ],
-  },
-];
+export const vipFlowGroups: VipToolGroup[] = [];
 
 export const vipAiStudioGroups: VipToolGroup[] = [
   {
@@ -86,7 +32,6 @@ export const vipAiStudioGroups: VipToolGroup[] = [
   {
     group: "Lễ tết & sự kiện",
     tools: [
-      { name: "TẾT GIÀU SANG PHÚ QUÝ - 2026", link: "https://ai.studio/apps/drive/1ZDf_N5YKyF7Zl6S9DfsRHl_l1rLuWfP8?fullscreenApplet=true" },
       { name: "Ảnh Trung Thu (trẻ em + Người lớn)", link: "https://ai.studio/apps/drive/1I6iD8g7j0ktqIySOWQpJpIFN3W4kIb1M" },
       { name: "Ảnh Trung Thu (chân dung người lớn)", link: "https://ai.studio/apps/drive/11Gxi-FF9sdD0U4s12sb6bfGauPfsbswP" },
       { name: "Ảnh 20/10", link: "https://ai.studio/apps/drive/1PtYKApWwN4gqnA9YZmBqg24fllB-uSNN" },
@@ -125,8 +70,6 @@ export const vipAiStudioGroups: VipToolGroup[] = [
   {
     group: "Content, Prompt & Video Veo3",
     tools: [
-      { name: "TẠO ẢNH TOÀN NĂNG - SIÊU VIP", link: "https://ai.studio/apps/drive/1HQ1X2ffzEmeIWh34imSOzsCUxUvPGNuD?fullscreenApplet=true" },
-      { name: "APP CONTENT SIÊU ĐỈNH", link: "https://ai.studio/apps/drive/1hvmFjXaLkRsu4uzH5ih2fN-NIYqRxOU-?fullscreenApplet=true" },
       { name: "Tạo prompt từ ảnh", link: "https://ai.studio/apps/drive/1U2KPEyDyU_owgQ7aLr9xxazSiSXGBXUh" },
       { name: "APP Tạo câu lệnh mới", link: "https://ai.studio/apps/drive/1EDVJDRVRZvKN8PfY5zVC-XfduQ4UKzjl" },
       { name: "App Tạo ảnh hàng loạt (dán prompt)", link: "https://ai.studio/apps/drive/16yllfYHOlcvabCsTP1yzZwHk8BoqVOJm" },
@@ -169,8 +112,6 @@ export const vipAiStudioGroups: VipToolGroup[] = [
   {
     group: "Học ngôn ngữ & giáo dục",
     tools: [
-      { name: "HỌC TIẾNG TRUNG", link: "https://ai.studio/apps/drive/182zY6ksUysUhBHpj6swkAGO2kOvUsVDS?fullscreenApplet=true" },
-      { name: "HỌC TIẾNG ANH", link: "https://aistudio.google.com/apps/drive/1zvghvLO3uYOKRW2HnJsZ3F-X4MKhShXL" },
       { name: "SOẠN GIÁO ÁN NLS THT VER8", link: "https://aistudio.google.com/apps/drive/1Wu838UAj4I63sc_8C3eM0OBOufq4B78J" },
       { name: "Bé Yêu Toán Lớp 5", link: "https://aistudio.google.com/apps/drive/1_s0kGwuf8KdWKJmvpmjOjY2OEWpUDi5D?showPreview=true&showAssistant=true" },
     ],
