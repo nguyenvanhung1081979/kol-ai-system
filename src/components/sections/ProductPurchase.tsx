@@ -183,11 +183,14 @@ export function ProductPurchase({ product }: { product: Product }) {
       const res = await fetch("/api/owner-unlock", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ password }),
+        body: JSON.stringify({ password, productSlug: product.slug }),
       });
       const json = await res.json();
       if (json.ok) {
         localStorage.setItem(OWNER_UNLOCK_KEY, "1");
+        if (json.downloadUrl) {
+          setDownloadUrl(json.downloadUrl);
+        }
         setMode("paid");
       } else {
         alert(json.error ?? "Sai mật khẩu.");
@@ -313,15 +316,13 @@ export function ProductPurchase({ product }: { product: Product }) {
             </p>
           )}
         </form>
-        {product.contentUnlock && (
-          <button
-            type="button"
-            onClick={handleOwnerUnlock}
-            className="block mx-auto mt-5 text-txt2 text-xs hover:text-accent2 transition-colors"
-          >
-            Chủ shop? Mở khoá xem không cần thanh toán
-          </button>
-        )}
+        <button
+          type="button"
+          onClick={handleOwnerUnlock}
+          className="block mx-auto mt-5 text-txt2 text-xs hover:text-accent2 transition-colors"
+        >
+          Chủ shop? Mở khoá không cần thanh toán
+        </button>
 
         <div className="mt-3 pt-3 border-t border-border">
           <button
