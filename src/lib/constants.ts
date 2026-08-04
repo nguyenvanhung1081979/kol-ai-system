@@ -238,7 +238,7 @@ export const products: Product[] = [
   {
     slug: "omni-flow-canvas",
     icon: "canvas",
-    name: "Omni Flow Canvas",
+    name: "Tạo Video AI đồng nhất nhân vật",
     tagline:
       "Canvas dựng sẵn trên nền tảng Flow (Google Labs) — tạo video AI nhanh hơn mà không cần dựng từ đầu.",
     price: "99.000",
