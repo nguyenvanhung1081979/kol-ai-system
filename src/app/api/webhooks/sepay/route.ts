@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
 import { getOrder, markOrderPaid } from "@/lib/orders";
+import type { Order } from "@/lib/orders";
 import { getProductDownloadUrl, isBlobConfigured } from "@/lib/downloads";
 import { sendTelegramMessage } from "@/lib/telegram";
+import { sendMetaPurchase } from "@/lib/meta-conversions";
 
 type SePayPayload = {
   gateway?: string;
@@ -20,6 +22,20 @@ function extractOrderCode(content: string): string | null {
   const normalized = content.toUpperCase().replace(/\s+/g, "");
   const match = normalized.match(ORDER_CODE_PATTERN);
   return match ? match[0] : null;
+}
+
+async function reportPurchaseToMeta(order: Order) {
+  try {
+    const result = await sendMetaPurchase(order);
+    if (result.sent && result.eventsReceived < 1) {
+      throw new Error("Meta không xác nhận đã nhận sự kiện Purchase.");
+    }
+  } catch (error) {
+    console.error(`Không thể gửi Meta Purchase cho đơn ${order.code}:`, error);
+    await sendTelegramMessage(
+      `⚠️ Đơn ${order.code} đã thanh toán và đã giao hàng, nhưng chưa gửi được Purchase cho Meta. Thanh toán của khách không bị ảnh hưởng; cần kiểm tra cấu hình Meta Conversions API.`
+    );
+  }
 }
 
 export async function POST(request: Request) {
@@ -70,7 +86,8 @@ export async function POST(request: Request) {
   // Sản phẩm dạng mở khoá nội dung (contentUnlock) không có file — không cần sinh link Blob,
   // trang sẽ tự hiển thị nội dung khi trạng thái đơn = paid.
   if (!order.blobPathname) {
-    await markOrderPaid(code, "");
+    const paidOrder = await markOrderPaid(code, "");
+    if (paidOrder) await reportPurchaseToMeta(paidOrder);
     await sendTelegramMessage(
       `✅ Thanh toán thành công!\nĐơn: ${code}\nSản phẩm: ${order.productName}\nKhách: ${order.buyerName} - ${order.buyerPhone}\nSố tiền: ${order.amount.toLocaleString(
         "vi-VN"
@@ -89,7 +106,8 @@ export async function POST(request: Request) {
 
   try {
     const downloadUrl = await getProductDownloadUrl(order.blobPathname);
-    await markOrderPaid(code, downloadUrl);
+    const paidOrder = await markOrderPaid(code, downloadUrl);
+    if (paidOrder) await reportPurchaseToMeta(paidOrder);
     await sendTelegramMessage(
       `✅ Thanh toán thành công!\nĐơn: ${code}\nSản phẩm: ${order.productName}\nKhách: ${order.buyerName} - ${order.buyerPhone}\nSố tiền: ${order.amount.toLocaleString(
         "vi-VN"

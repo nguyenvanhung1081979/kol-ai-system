@@ -238,6 +238,7 @@ export function ProductPurchase({ product }: { product: Product }) {
     const data = new FormData(form);
     const name = String(data.get("name") ?? "").trim();
     const phone = String(data.get("phone") ?? "").trim();
+    const fbclid = new URLSearchParams(window.location.search).get("fbclid") ?? undefined;
 
     setSubmitting(true);
     setErrorMsg("");
@@ -246,7 +247,7 @@ export function ProductPurchase({ product }: { product: Product }) {
       const res = await fetch("/api/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ productSlug: product.slug, name, phone }),
+        body: JSON.stringify({ productSlug: product.slug, name, phone, fbclid }),
       });
 
       if (res.status === 503) {

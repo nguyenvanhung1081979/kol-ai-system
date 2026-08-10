@@ -6,7 +6,33 @@ type CreateOrderPayload = {
   productSlug: string;
   name: string;
   phone: string;
+  fbclid?: string;
 };
+
+function cookieValue(cookieHeader: string, name: string): string | undefined {
+  for (const part of cookieHeader.split(";")) {
+    const [key, ...valueParts] = part.trim().split("=");
+    if (key === name) {
+      try {
+        return decodeURIComponent(valueParts.join("="));
+      } catch {
+        return undefined;
+      }
+    }
+  }
+  return undefined;
+}
+
+function safeMetaCookie(value: string | undefined): string | undefined {
+  if (!value || value.length > 255 || !/^fb\.\d+\.\d+\..+$/.test(value)) return undefined;
+  return value;
+}
+
+function safeFbclid(value: string | undefined): string | undefined {
+  const trimmed = value?.trim();
+  if (!trimmed || trimmed.length > 500 || !/^[A-Za-z0-9_-]+$/.test(trimmed)) return undefined;
+  return trimmed;
+}
 
 export async function POST(request: Request) {
   if (!isOrdersConfigured()) {
@@ -27,6 +53,17 @@ export async function POST(request: Request) {
   }
 
   try {
+    const cookieHeader = request.headers.get("cookie") ?? "";
+    const fbp = safeMetaCookie(cookieValue(cookieHeader, "_fbp"));
+    const cookieFbc = safeMetaCookie(cookieValue(cookieHeader, "_fbc"));
+    const fbclid = safeFbclid(body.fbclid);
+    const fbc = cookieFbc ?? (fbclid ? `fb.1.${Date.now()}.${fbclid}` : undefined);
+    const clientIpAddress =
+      request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      request.headers.get("x-real-ip")?.trim() ||
+      undefined;
+    const clientUserAgent = request.headers.get("user-agent")?.slice(0, 500) || undefined;
+
     const order = await createOrder({
       productSlug: product.slug,
       productName: product.name,
@@ -34,6 +71,13 @@ export async function POST(request: Request) {
       blobPathname: product.blobPathname,
       buyerName: body.name.trim(),
       buyerPhone: body.phone.trim(),
+      metaAttribution: {
+        fbp,
+        fbc,
+        eventSourceUrl: `${new URL(request.url).origin}/san-pham/${product.slug}`,
+        clientIpAddress,
+        clientUserAgent,
+      },
     });
 
     return NextResponse.json({
