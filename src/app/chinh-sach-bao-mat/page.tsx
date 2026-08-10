@@ -13,15 +13,17 @@ const sections: { heading: string; body: string[] }[] = [
   {
     heading: "1. Thông tin chúng tôi thu thập",
     body: [
-      "Khi bạn điền form tư vấn, đăng ký nhận quà tặng, đăng ký kho prompt hoặc đăng ký nhận tin qua email trên website, chúng tôi thu thập: họ tên, số điện thoại và/hoặc email bạn cung cấp.",
+      "Khi bạn điền form tư vấn, đăng ký nhận quà tặng, tạo đơn hàng, đăng ký kho prompt hoặc đăng ký nhận tin qua email trên website, chúng tôi thu thập: họ tên, số điện thoại và/hoặc email bạn cung cấp.",
       "Chúng tôi không thu thập thông tin thanh toán (số thẻ, tài khoản ngân hàng của bạn) qua website — giao dịch chuyển khoản được thực hiện trực tiếp qua ứng dụng ngân hàng của bạn theo thông tin tài khoản công khai tại mục Thanh toán.",
+      "Khi bạn truy cập từ quảng cáo, hệ thống có thể ghi nhận thông tin kỹ thuật như mã lượt nhấp quảng cáo, cookie đo lường, địa chỉ IP và thông tin trình duyệt để đối chiếu hiệu quả quảng cáo và chống ghi nhận trùng giao dịch.",
     ],
   },
   {
     heading: "2. Mục đích sử dụng thông tin",
     body: [
       "Thông tin bạn cung cấp chỉ được dùng để: liên hệ tư vấn dịch vụ, gửi quà tặng/tài nguyên miễn phí bạn đã đăng ký, và gửi tin tức/ưu đãi liên quan đến AI nếu bạn đăng ký nhận tin.",
-      "Chúng tôi không bán, cho thuê hoặc trao đổi thông tin của bạn với bên thứ ba vì mục đích quảng cáo.",
+      "Khi một đơn hàng được xác nhận đã thanh toán, một số dữ liệu nhận diện đã được băm một chiều cùng dữ liệu kỹ thuật có thể được gửi tới Meta để đo lường chuyển đổi quảng cáo. Chúng tôi không gửi nội dung chuyển khoản hoặc thông tin tài khoản ngân hàng của bạn cho Meta.",
+      "Chúng tôi không bán hoặc cho thuê thông tin cá nhân của bạn cho bên thứ ba.",
     ],
   },
   {
@@ -54,7 +56,7 @@ export default function PrivacyPolicyPage() {
         <span className="text-xs font-semibold tracking-widest text-accent2">PHÁP LÝ</span>
         <h1 className="text-3xl md:text-4xl font-extrabold mt-3 mb-4">Chính sách bảo mật</h1>
         <p className="text-txt2 leading-relaxed mb-12">
-          Cập nhật lần cuối: 01/2026. {siteConfig.shopName} (thương hiệu KOL AI SYSTEM) cam kết
+          Cập nhật lần cuối: 08/2026. {siteConfig.shopName} (thương hiệu KOL AI SYSTEM) cam kết
           bảo vệ thông tin cá nhân của khách hàng theo chính sách dưới đây.
         </p>
         <div className="space-y-10">

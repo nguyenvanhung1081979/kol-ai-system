@@ -2,6 +2,14 @@ import { Redis } from "@upstash/redis";
 
 export type OrderStatus = "pending" | "paid" | "expired";
 
+export type MetaAttribution = {
+  fbp?: string;
+  fbc?: string;
+  eventSourceUrl?: string;
+  clientIpAddress?: string;
+  clientUserAgent?: string;
+};
+
 export type Order = {
   code: string;
   productSlug: string;
@@ -10,6 +18,7 @@ export type Order = {
   blobPathname: string;
   buyerName: string;
   buyerPhone: string;
+  metaAttribution?: MetaAttribution;
   status: OrderStatus;
   createdAt: number;
   paidAt?: number;
@@ -69,6 +78,7 @@ export async function createOrder(input: {
   blobPathname: string;
   buyerName: string;
   buyerPhone: string;
+  metaAttribution?: MetaAttribution;
 }): Promise<Order> {
   const client = redis();
   if (!client) throw new Error("Orders store chưa được cấu hình.");
