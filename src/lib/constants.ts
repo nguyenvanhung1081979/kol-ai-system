@@ -192,7 +192,7 @@ export const products: Product[] = [
     price: "99.000",
     priceSuffix: "đ / trọn đời",
     amount: 99000,
-    blobPathname: "skill-chinh-sua-anh-ai.zip",
+    blobPathname: "skill-tu-dong-lam-hinh-anh-va-dang-bai-fb.zip",
     longDescription:
       "Skill AI tích hợp vào Claude Code, tự động biến ảnh gốc thành ảnh đăng mạng xã hội chuyên nghiệp: chèn tiêu đề nổi bật, tô sáng từ khoá quan trọng và gắn badge thương hiệu riêng của bạn — chỉ cần gửi ảnh và nội dung, nhận về file ảnh hoàn chỉnh chuẩn kích thước Facebook/Instagram.",
     features: [
