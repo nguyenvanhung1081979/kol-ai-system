@@ -186,7 +186,7 @@ export const products: Product[] = [
   {
     slug: "skill-chinh-sua-anh-ai",
     icon: "photo",
-    name: "Skill Tạo Ảnh Thương Hiệu Cá Nhân",
+    name: "Skill tạo ảnh đẹp đăng Facebook",
     tagline:
       "Tự động chèn tiêu đề + badge thương hiệu lên ảnh chuẩn phong cách mạng xã hội — không cần biết thiết kế.",
     price: "99.000",
