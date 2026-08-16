@@ -264,7 +264,7 @@ export const products: Product[] = [
   {
     slug: "flow-tao-video-hang-loat",
     icon: "canvas",
-    name: "Flow tạo video hàng loạt",
+    name: "Flow tạo Videos AI hàng loạt",
     tagline:
       "Canvas dựng sẵn trên nền tảng Flow (Google Labs) — tạo hàng loạt video AI cùng lúc, không cần dựng từng video riêng lẻ.",
     price: "200.000",
