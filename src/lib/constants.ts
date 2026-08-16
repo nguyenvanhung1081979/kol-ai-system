@@ -262,6 +262,32 @@ export const products: Product[] = [
     ],
   },
   {
+    slug: "flow-tao-video-hang-loat",
+    icon: "canvas",
+    name: "Flow tạo video hàng loạt",
+    tagline:
+      "Canvas dựng sẵn trên nền tảng Flow (Google Labs) — tạo hàng loạt video AI cùng lúc, không cần dựng từng video riêng lẻ.",
+    price: "200.000",
+    priceSuffix: "đ / trọn đời",
+    amount: 200000,
+    blobPathname: "flow-tao-video-hang-loat.zip",
+    longDescription:
+      "Bản canvas đã được cấu hình sẵn trên nền tảng Flow của Google Labs, tối ưu riêng cho việc tạo nhiều video AI cùng lúc theo hàng loạt thay vì dựng từng video một. Thay vì mất thời gian dựng quy trình từ đầu, bạn nhận bản canvas đã tối ưu sẵn, chỉ cần thay nội dung/ý tưởng của mình vào và tạo video hàng loạt ngay.",
+    features: [
+      "Canvas Flow (Google Labs) tối ưu sẵn cho tạo video hàng loạt",
+      "Quy trình các bước đã được sắp xếp sẵn, tạo nhiều video cùng lúc",
+      "Áp dụng ngay cho nội dung của bạn, không cần dựng lại từ đầu",
+      "Tiết kiệm thời gian dựng từng video riêng lẻ theo cách thủ công",
+      "Được hướng dẫn cách tuỳ chỉnh canvas theo nhu cầu riêng",
+    ],
+    benefits: [
+      "Rút ngắn đáng kể thời gian sản xuất khi cần ra nhiều video cùng lúc",
+      "Tận dụng sức mạnh AI tạo video mới nhất từ Google Labs",
+      "Phù hợp kênh cần ra nội dung video tần suất cao, số lượng lớn",
+      "Được hướng dẫn sử dụng và tuỳ chỉnh sau khi nhận canvas",
+    ],
+  },
+  {
     slug: "sara-model-studio",
     icon: "photo",
     name: "Skill tạo ảnh và poster chuyên nghiệp",
