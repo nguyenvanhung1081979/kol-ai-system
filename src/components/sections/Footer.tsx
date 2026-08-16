@@ -22,10 +22,10 @@ export function Footer() {
         <div className="md:col-span-2">
           <Link href="/#top" className="flex items-center gap-2 mb-4">
             <span className="w-9 h-9 rounded-lg grad-btn flex items-center justify-center font-black text-white text-sm">
-              AI
+              VAS
             </span>
             <span className="font-extrabold text-lg">
-              KOL <span className="grad-text">AI SYSTEM</span>
+              VUNGALISHOP <span className="grad-text">AI</span>
             </span>
           </Link>
           <p className="text-txt2 text-sm leading-relaxed max-w-sm mb-5">

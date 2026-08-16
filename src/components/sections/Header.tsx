@@ -75,10 +75,10 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-5 md:px-8 h-16 md:h-20 flex items-center justify-between">
         <Link href="/#top" className="flex items-center gap-2 shrink-0">
           <span className="w-9 h-9 rounded-lg grad-btn flex items-center justify-center font-black text-white text-sm">
-            AI
+            VAS
           </span>
           <span className="font-extrabold text-base sm:text-lg tracking-tight whitespace-nowrap">
-            KOL <span className="grad-text">AI SYSTEM</span>
+            VUNGALISHOP <span className="grad-text">AI</span>
           </span>
         </Link>
 
