@@ -6,14 +6,14 @@ import { siteConfig, bankInfo } from "@/lib/constants";
 export const metadata: Metadata = {
   title: "Điều khoản sử dụng",
   description:
-    "Điều khoản sử dụng dịch vụ của KOL AI SYSTEM — Vừng Ali Shop: phạm vi dịch vụ, thanh toán, đổi/huỷ gói và trách nhiệm các bên.",
+    "Điều khoản sử dụng dịch vụ của VUNGALISHOP AI — Vừng Ali Shop: phạm vi dịch vụ, thanh toán, đổi/huỷ gói và trách nhiệm các bên.",
 };
 
 const sections: { heading: string; body: string[] }[] = [
   {
     heading: "1. Phạm vi dịch vụ",
     body: [
-      "KOL AI SYSTEM (thương hiệu bởi " +
+      "VUNGALISHOP AI (thương hiệu bởi " +
         siteConfig.shopName +
         ") cung cấp các dịch vụ: sáng tạo nội dung AI, tự động hoá quy trình, bộ công cụ AI Tools và tư vấn triển khai AI cho KOL, nhà sáng tạo nội dung và doanh nghiệp.",
       "Nội dung, tài nguyên miễn phí (quà tặng AI Tools, kho prompt) được cung cấp nhằm mục đích tham khảo và hỗ trợ công việc, không đi kèm cam kết kết quả cụ thể ngoài các thoả thuận dịch vụ có phí.",
@@ -43,7 +43,7 @@ const sections: { heading: string; body: string[] }[] = [
   {
     heading: "5. Trách nhiệm các bên",
     body: [
-      "KOL AI SYSTEM nỗ lực đảm bảo chất lượng tư vấn và triển khai theo đúng cam kết trong từng gói dịch vụ, nhưng không chịu trách nhiệm với kết quả kinh doanh phát sinh từ các yếu tố ngoài phạm vi dịch vụ đã cung cấp.",
+      "VUNGALISHOP AI nỗ lực đảm bảo chất lượng tư vấn và triển khai theo đúng cam kết trong từng gói dịch vụ, nhưng không chịu trách nhiệm với kết quả kinh doanh phát sinh từ các yếu tố ngoài phạm vi dịch vụ đã cung cấp.",
       "Khách hàng có trách nhiệm cung cấp thông tin, tài nguyên cần thiết (nếu có) để đội ngũ triển khai đúng tiến độ.",
       `Bên cạnh các sản phẩm do ${siteConfig.shopName} tự nghiên cứu, biên soạn và phát triển, một số công cụ, tài liệu, prompt trong các gói sản phẩm trên website được tổng hợp, sưu tầm từ nguồn công khai trên Internet hoặc được chia sẻ, tặng lại từ các khoá học, cộng đồng mà chúng tôi tham gia. Đối với nhóm nội dung này, khoản thanh toán của khách hàng được hiểu là chi phí ghi nhận cho công sức tổng hợp, tuyển chọn, sắp xếp và hỗ trợ truy cập, sử dụng — không phải là giao dịch chuyển nhượng bản quyền hay quyền sở hữu trí tuệ đối với nội dung gốc.`,
       `Khách hàng tự chịu trách nhiệm về mục đích và phạm vi sử dụng các nội dung này, tuân thủ quy định pháp luật hiện hành cũng như điều khoản của bên sở hữu gốc (nếu có). ${siteConfig.shopName} không xác nhận và không chịu trách nhiệm pháp lý phát sinh từ việc khách hàng sử dụng lại các nội dung có nguồn gốc từ bên thứ ba nêu trên.`,

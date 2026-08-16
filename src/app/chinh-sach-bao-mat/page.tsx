@@ -6,7 +6,7 @@ import { siteConfig } from "@/lib/constants";
 export const metadata: Metadata = {
   title: "Chính sách bảo mật",
   description:
-    "Chính sách bảo mật thông tin khách hàng của KOL AI SYSTEM — Vừng Ali Shop: dữ liệu thu thập, mục đích sử dụng và quyền của bạn.",
+    "Chính sách bảo mật thông tin khách hàng của VUNGALISHOP AI — Vừng Ali Shop: dữ liệu thu thập, mục đích sử dụng và quyền của bạn.",
 };
 
 const sections: { heading: string; body: string[] }[] = [
@@ -27,7 +27,7 @@ const sections: { heading: string; body: string[] }[] = [
   {
     heading: "3. Lưu trữ & bảo mật",
     body: [
-      "Dữ liệu được lưu trữ trên hệ thống nội bộ (Google Sheets được bảo vệ quyền truy cập) phục vụ công tác chăm sóc khách hàng của đội ngũ KOL AI SYSTEM / Vừng Ali Shop.",
+      "Dữ liệu được lưu trữ trên hệ thống nội bộ (Google Sheets được bảo vệ quyền truy cập) phục vụ công tác chăm sóc khách hàng của đội ngũ VUNGALISHOP AI / Vừng Ali Shop.",
       "Chúng tôi áp dụng các biện pháp hợp lý để bảo vệ thông tin khỏi truy cập trái phép, mất mát hoặc sử dụng sai mục đích.",
     ],
   },
@@ -54,7 +54,7 @@ export default function PrivacyPolicyPage() {
         <span className="text-xs font-semibold tracking-widest text-accent2">PHÁP LÝ</span>
         <h1 className="text-3xl md:text-4xl font-extrabold mt-3 mb-4">Chính sách bảo mật</h1>
         <p className="text-txt2 leading-relaxed mb-12">
-          Cập nhật lần cuối: 01/2026. {siteConfig.shopName} (thương hiệu KOL AI SYSTEM) cam kết
+          Cập nhật lần cuối: 01/2026. {siteConfig.shopName} (thương hiệu VUNGALISHOP AI) cam kết
           bảo vệ thông tin cá nhân của khách hàng theo chính sách dưới đây.
         </p>
         <div className="space-y-10">

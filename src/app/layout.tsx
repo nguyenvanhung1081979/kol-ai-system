@@ -10,15 +10,15 @@ const beVietnamPro = Be_Vietnam_Pro({
 });
 
 const siteUrl = "https://vungalishop.vercel.app";
-const title = "KOL AI SYSTEM — Hệ thống AI dành cho KOL & Nhà sáng tạo nội dung";
+const title = "VUNGALISHOP AI — Hệ thống AI dành cho KOL & Nhà sáng tạo nội dung";
 const description =
-  "KOL AI SYSTEM bởi Vừng Ali Shop — Giải pháp AI toàn diện: sáng tạo nội dung, tự động hoá, công cụ AI cho KOL và doanh nghiệp.";
+  "VUNGALISHOP AI bởi Vừng Ali Shop — Giải pháp AI toàn diện: sáng tạo nội dung, tự động hoá, công cụ AI cho KOL và doanh nghiệp.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default: title,
-    template: "%s — KOL AI SYSTEM",
+    template: "%s — VUNGALISHOP AI",
   },
   description,
   keywords: [
@@ -26,14 +26,14 @@ export const metadata: Metadata = {
     "công cụ AI",
     "tự động hoá nội dung",
     "sáng tạo nội dung AI",
-    "KOL AI SYSTEM",
+    "VUNGALISHOP AI",
     "Vừng Ali Shop",
   ],
   openGraph: {
     type: "website",
     locale: "vi_VN",
     url: siteUrl,
-    siteName: "KOL AI SYSTEM",
+    siteName: "VUNGALISHOP AI",
     title,
     description,
   },
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "KOL AI SYSTEM",
+  name: "VUNGALISHOP AI",
   alternateName: siteConfig.shopName,
   url: siteUrl,
   description,

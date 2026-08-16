@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "KOL AI SYSTEM",
+  name: "VUNGALISHOP AI",
   shopName: "Vừng Ali Shop",
   phone: "0912919686",
   phoneDisplay: "0912 919 686",
@@ -126,7 +126,7 @@ export const services: Service[] = [
     title: "Bộ công cụ AI Tools",
     desc: "Tuyển chọn & tối ưu công cụ AI hàng đầu, sẵn sàng ứng dụng ngay vào công việc.",
     longDescription:
-      "Thay vì tự mày mò giữa hàng trăm công cụ AI trên thị trường, đội ngũ KOL AI SYSTEM tuyển chọn, kiểm chứng và cấu hình sẵn bộ công cụ phù hợp nhất với nhu cầu của bạn — tiết kiệm thời gian thử-sai và chi phí đăng ký thừa thãi.",
+      "Thay vì tự mày mò giữa hàng trăm công cụ AI trên thị trường, đội ngũ VUNGALISHOP AI tuyển chọn, kiểm chứng và cấu hình sẵn bộ công cụ phù hợp nhất với nhu cầu của bạn — tiết kiệm thời gian thử-sai và chi phí đăng ký thừa thãi.",
     benefits: [
       "Tuyển chọn công cụ AI phù hợp đúng nhu cầu, không lãng phí",
       "Tối ưu chi phí bản quyền/subscription giữa nhiều lựa chọn",
@@ -146,7 +146,7 @@ export const services: Service[] = [
     title: "Tư vấn triển khai AI",
     desc: "Đồng hành cùng đội ngũ, tư vấn lộ trình ứng dụng AI phù hợp với mục tiêu kinh doanh.",
     longDescription:
-      "Không phải cứ dùng AI là hiệu quả — cần đúng lộ trình, đúng ưu tiên. Đội ngũ KOL AI SYSTEM tư vấn chiến lược ứng dụng AI bài bản, từ đánh giá hiện trạng đến triển khai thí điểm và nhân rộng, giúp bạn đầu tư đúng chỗ và đo lường được kết quả.",
+      "Không phải cứ dùng AI là hiệu quả — cần đúng lộ trình, đúng ưu tiên. Đội ngũ VUNGALISHOP AI tư vấn chiến lược ứng dụng AI bài bản, từ đánh giá hiện trạng đến triển khai thí điểm và nhân rộng, giúp bạn đầu tư đúng chỗ và đo lường được kết quả.",
     benefits: [
       "Lộ trình ứng dụng AI rõ ràng, đúng ưu tiên kinh doanh",
       "Giảm rủi ro đầu tư sai công cụ hoặc sai thời điểm",
@@ -495,7 +495,7 @@ export const blogPosts: BlogPost[] = [
     slug: "case-study-tang-truong-nho-ai",
     tag: "KOL",
     title: "Case study: Tăng trưởng nhờ AI",
-    desc: "Mô hình triển khai điển hình mà KOL AI SYSTEM áp dụng cho khách hàng, minh hoạ quy trình và kết quả có thể đạt được.",
+    desc: "Mô hình triển khai điển hình mà VUNGALISHOP AI áp dụng cho khách hàng, minh hoạ quy trình và kết quả có thể đạt được.",
     date: "25/01/2026",
     readTime: "4 phút đọc",
     sections: [
@@ -521,7 +521,7 @@ export const blogPosts: BlogPost[] = [
 
 export const faqs = [
   {
-    q: "KOL AI SYSTEM phù hợp với ai?",
+    q: "VUNGALISHOP AI phù hợp với ai?",
     a: "Phù hợp với KOL, nhà sáng tạo nội dung, và doanh nghiệp muốn ứng dụng AI để tăng tốc sản xuất nội dung và tự động hoá vận hành.",
   },
   {

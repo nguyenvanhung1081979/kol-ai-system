@@ -52,7 +52,7 @@ export function ContactSection() {
         <div>
           <h2 className="text-2xl md:text-3xl font-extrabold mb-2">Sẵn sàng bứt phá cùng AI?</h2>
           <p className="text-txt2 mb-8">
-            Để lại thông tin, đội ngũ KOL AI SYSTEM sẽ liên hệ tư vấn miễn phí trong 24h.
+            Để lại thông tin, đội ngũ VUNGALISHOP AI sẽ liên hệ tư vấn miễn phí trong 24h.
           </p>
           <div className="flex flex-wrap gap-4">
             <a

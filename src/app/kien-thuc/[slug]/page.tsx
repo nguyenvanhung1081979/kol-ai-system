@@ -72,7 +72,7 @@ export default async function BlogDetailPage({
           <div className="bg-card border border-border rounded-2xl p-8 text-center">
             <h3 className="text-xl font-bold mb-2">Muốn áp dụng AI cho kênh của bạn?</h3>
             <p className="text-txt2 text-sm mb-6">
-              Đội ngũ KOL AI SYSTEM sẵn sàng tư vấn miễn phí lộ trình phù hợp với bạn.
+              Đội ngũ VUNGALISHOP AI sẵn sàng tư vấn miễn phí lộ trình phù hợp với bạn.
             </p>
             <Link
               href="/#lien-he"

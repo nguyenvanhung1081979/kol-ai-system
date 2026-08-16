@@ -11,7 +11,7 @@ export function Footer() {
           <div className="text-center md:text-left">
             <p className="font-bold">Nhận tin tức AI mới nhất</p>
             <p className="text-txt2 text-sm">
-              Cập nhật xu hướng AI, ưu đãi mới của KOL AI SYSTEM qua email.
+              Cập nhật xu hướng AI, ưu đãi mới của VUNGALISHOP AI qua email.
             </p>
           </div>
           <NewsletterForm />
@@ -100,7 +100,7 @@ export function Footer() {
 
       <div className="border-t border-border">
         <div className="max-w-7xl mx-auto px-5 md:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-txt2">
-          <p>© 2026 KOL AI SYSTEM — {siteConfig.shopName}. All rights reserved.</p>
+          <p>© 2026 VUNGALISHOP AI — {siteConfig.shopName}. All rights reserved.</p>
           <div className="flex items-center gap-4">
             <Link href="/chinh-sach-bao-mat" className="hover:text-txt transition-colors">
               Chính sách bảo mật

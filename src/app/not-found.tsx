@@ -15,7 +15,7 @@ export default function NotFound() {
           </h1>
           <p className="text-txt2 leading-relaxed mb-10">
             Trang này có thể đã bị xoá hoặc đường dẫn không còn tồn tại. Quay lại trang chủ hoặc
-            liên hệ đội ngũ KOL AI SYSTEM để được hỗ trợ.
+            liên hệ đội ngũ VUNGALISHOP AI để được hỗ trợ.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/" className="grad-btn text-white font-semibold px-7 py-3.5 rounded-full">
