@@ -53,6 +53,15 @@ function phoneIndexKey(productSlug: string, phone: string) {
   return `order-by-phone:${productSlug}:${normalizePhone(phone)}`;
 }
 
+// Cờ đánh dấu "SĐT này đã từng mua ít nhất 1 sản phẩm" — lưu VĨNH VIỄN (không
+// đặt ex), tách biệt với chỉ mục order-by-phone theo từng sản phẩm ở trên (chỉ
+// giữ 30 ngày cùng đơn hàng). Nếu dùng chung 1 chỗ lưu có hạn 30 ngày để xét
+// điều kiện "đã mua hàng" cho các trang quà tặng, khách mua lâu hơn 30 ngày sẽ
+// bị khoá lại quà tặng dù đã trả tiền thật — đây là chỗ tách riêng để tránh lỗi đó.
+function customerKey(phone: string) {
+  return `customer:${normalizePhone(phone)}`;
+}
+
 function generateOrderCode() {
   const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // không dùng ký tự dễ nhầm (0/O, 1/I)
   let code = "VAS";
@@ -113,7 +122,23 @@ export async function markOrderPaid(code: string, downloadUrl: string): Promise<
     console.error("Lỗi khi ghi chỉ mục tra cứu theo SĐT:", error);
   }
 
+  try {
+    await client.set(customerKey(updated.buyerPhone), "1");
+  } catch (error) {
+    console.error("Lỗi khi đánh dấu khách hàng theo SĐT:", error);
+  }
+
   return updated;
+}
+
+// Dùng cho các trang quà tặng (/qua-tang, /kho-prompt): xét "khách đã từng
+// mua ít nhất 1 sản phẩm nào đó chưa", không quan tâm sản phẩm cụ thể hay đơn
+// hàng còn tồn tại trong Redis hay không (cờ này không có hạn 30 ngày).
+export async function isPhoneCustomer(phone: string): Promise<boolean> {
+  const client = redis();
+  if (!client) return false;
+  const value = await client.get<string>(customerKey(phone));
+  return value === "1";
 }
 
 export async function findPaidOrderByPhone(
@@ -132,13 +157,18 @@ export async function findPaidOrderByPhone(
 // Chạy 1 lần sau khi triển khai tính năng tra cứu theo SĐT: quét lại toàn bộ
 // đơn "paid" đã tồn tại từ trước (chưa có chỉ mục SĐT vì tính năng này chưa
 // từng ghi chỉ mục cho các đơn đó) và bổ sung chỉ mục cho chúng.
-export async function backfillPhoneIndex(): Promise<{ scanned: number; indexed: number }> {
+export async function backfillPhoneIndex(): Promise<{
+  scanned: number;
+  indexed: number;
+  markedCustomers: number;
+}> {
   const client = redis();
   if (!client) throw new Error("Orders store chưa được cấu hình.");
 
   let cursor = "0";
   let scanned = 0;
   let indexed = 0;
+  let markedCustomers = 0;
 
   do {
     const [nextCursor, keys] = await client.scan(cursor, { match: "order:*", count: 100 });
@@ -151,9 +181,11 @@ export async function backfillPhoneIndex(): Promise<{ scanned: number; indexed: 
           ex: PAID_TTL_SECONDS,
         });
         indexed++;
+        await client.set(customerKey(order.buyerPhone), "1");
+        markedCustomers++;
       }
     }
   } while (cursor !== "0");
 
-  return { scanned, indexed };
+  return { scanned, indexed, markedCustomers };
 }

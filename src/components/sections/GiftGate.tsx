@@ -1,9 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState, useSyncExternalStore, type FormEvent } from "react";
 import { aiGiftCategories, aiGiftToolsCount } from "@/lib/aiGiftTools";
 
-const STORAGE_KEY = "gift_unlocked";
+// v2: đổi từ "điền thông tin nhận miễn phí" sang "xác thực đã mua hàng" — đổi
+// tên key để những lượt unlock kiểu cũ (miễn phí) không còn hiệu lực nữa.
+const STORAGE_KEY = "gift_unlocked_v2";
 
 type Status = "idle" | "loading" | "error";
 
@@ -25,29 +28,33 @@ export function GiftGate() {
   const unlocked = unlockedFromStorage || justUnlocked;
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [notCustomer, setNotCustomer] = useState(false);
   const [query, setQuery] = useState("");
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
+    const phone = String(data.get("phone") ?? "").trim();
 
     setStatus("loading");
     setErrorMsg("");
+    setNotCustomer(false);
 
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("/api/customer-status", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: data.get("name"),
-          phone: data.get("phone"),
-          service: "Quà tặng AI Tools",
-          message: `Đăng ký nhận quà tặng ${aiGiftToolsCount}+ trợ lý AI miễn phí`,
-        }),
+        body: JSON.stringify({ phone }),
       });
       const json = await res.json();
-      if (!res.ok || !json.ok) throw new Error(json.error ?? "Gửi thất bại");
+      if (!res.ok || !json.ok) throw new Error(json.error ?? "Kiểm tra thất bại");
+
+      if (!json.isCustomer) {
+        setNotCustomer(true);
+        setStatus("idle");
+        return;
+      }
 
       localStorage.setItem(STORAGE_KEY, "true");
       setJustUnlocked(true);
@@ -73,14 +80,15 @@ export function GiftGate() {
       <section className="relative glow overflow-hidden">
         <div className="max-w-3xl mx-auto px-5 md:px-8 pt-16 pb-10 md:pt-24 text-center">
           <span className="inline-block text-xs font-semibold tracking-wide text-accent2 bg-accent/10 border border-accent/30 rounded-full px-4 py-1.5 mb-6">
-            QUÀ TẶNG MIỄN PHÍ
+            QUÀ TẶNG DÀNH CHO KHÁCH HÀNG
           </span>
           <h1 className="text-3xl md:text-5xl font-extrabold leading-tight tracking-tight mb-6">
             Trọn bộ <span className="grad-text">{aiGiftToolsCount}+ Trợ lý AI</span> chuyên biệt
           </h1>
           <p className="text-txt2 text-base md:text-lg leading-relaxed max-w-xl mx-auto">
             Tuyển chọn sẵn theo từng ngành nghề — CSKH, content, kinh doanh, thiết kế, giáo dục và
-            hơn thế nữa. Điền thông tin bên dưới để mở khoá toàn bộ danh sách miễn phí.
+            hơn thế nữa. Dành riêng cho khách hàng đã mua sản phẩm tại Vừng Ali Shop — nhập số điện
+            thoại đã dùng khi mua hàng để mở khoá.
           </p>
         </div>
 
@@ -104,20 +112,8 @@ export function GiftGate() {
             className="bg-card border border-border rounded-2xl p-6 md:p-8 space-y-4"
           >
             <div>
-              <label htmlFor="gift-name" className="text-txt2 text-xs mb-1.5 block">
-                Họ tên *
-              </label>
-              <input
-                id="gift-name"
-                name="name"
-                required
-                placeholder="Nguyễn Văn A"
-                className="w-full bg-card2 border border-border rounded-xl px-4 py-2.5 text-sm outline-none transition-colors focus:border-accent"
-              />
-            </div>
-            <div>
               <label htmlFor="gift-phone" className="text-txt2 text-xs mb-1.5 block">
-                Số điện thoại *
+                Số điện thoại đã dùng khi mua hàng *
               </label>
               <input
                 id="gift-phone"
@@ -133,15 +129,23 @@ export function GiftGate() {
               disabled={status === "loading"}
               className="grad-btn w-full text-white font-semibold px-7 py-3.5 rounded-full disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              {status === "loading" ? "Đang mở khoá..." : "Mở khoá miễn phí →"}
+              {status === "loading" ? "Đang kiểm tra..." : "Kiểm tra đơn hàng →"}
             </button>
             {status === "error" && (
               <p className="text-sm text-center text-accent2 bg-accent/10 border border-accent/30 rounded-xl px-4 py-2.5">
                 {errorMsg}
               </p>
             )}
+            {notCustomer && (
+              <p className="text-sm text-center text-accent2 bg-accent/10 border border-accent/30 rounded-xl px-4 py-2.5">
+                Bạn chưa có đơn hàng nào tại Vừng Ali Shop.{" "}
+                <Link href="/san-pham" className="underline font-semibold">
+                  Xem sản phẩm →
+                </Link>
+              </p>
+            )}
             <p className="text-txt2 text-xs text-center">
-              Chúng tôi sẽ không spam. Thông tin chỉ dùng để gửi quà tặng và tư vấn khi cần.
+              Quà tặng dành riêng cho khách hàng đã mua sản phẩm — không phát sinh phí thêm.
             </p>
           </form>
         </div>

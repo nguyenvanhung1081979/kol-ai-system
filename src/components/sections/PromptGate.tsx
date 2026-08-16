@@ -1,9 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState, useSyncExternalStore, type FormEvent } from "react";
 import { videoPromptGroups, videoPromptsCount } from "@/lib/videoPrompts";
 
-const STORAGE_KEY = "prompt_unlocked";
+// v2: đổi từ "điền thông tin nhận miễn phí" sang "xác thực đã mua hàng" — đổi
+// tên key để những lượt unlock kiểu cũ (miễn phí) không còn hiệu lực nữa.
+const STORAGE_KEY = "prompt_unlocked_v2";
 
 type Status = "idle" | "loading" | "error";
 
@@ -58,29 +61,33 @@ export function PromptGate() {
   const unlocked = unlockedFromStorage || justUnlocked;
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [notCustomer, setNotCustomer] = useState(false);
   const [query, setQuery] = useState("");
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
+    const phone = String(data.get("phone") ?? "").trim();
 
     setStatus("loading");
     setErrorMsg("");
+    setNotCustomer(false);
 
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("/api/customer-status", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: data.get("name"),
-          phone: data.get("phone"),
-          service: "Kho Prompt AI Video",
-          message: `Đăng ký nhận kho ${videoPromptsCount}+ prompt tạo video AI miễn phí`,
-        }),
+        body: JSON.stringify({ phone }),
       });
       const json = await res.json();
-      if (!res.ok || !json.ok) throw new Error(json.error ?? "Gửi thất bại");
+      if (!res.ok || !json.ok) throw new Error(json.error ?? "Kiểm tra thất bại");
+
+      if (!json.isCustomer) {
+        setNotCustomer(true);
+        setStatus("idle");
+        return;
+      }
 
       localStorage.setItem(STORAGE_KEY, "true");
       setJustUnlocked(true);
@@ -113,15 +120,16 @@ export function PromptGate() {
       <section className="relative glow overflow-hidden">
         <div className="max-w-3xl mx-auto px-5 md:px-8 pt-16 pb-10 md:pt-24 text-center">
           <span className="inline-block text-xs font-semibold tracking-wide text-accent2 bg-accent/10 border border-accent/30 rounded-full px-4 py-1.5 mb-6">
-            QUÀ TẶNG MIỄN PHÍ
+            QUÀ TẶNG DÀNH CHO KHÁCH HÀNG
           </span>
           <h1 className="text-3xl md:text-5xl font-extrabold leading-tight tracking-tight mb-6">
             Kho <span className="grad-text">{videoPromptsCount}+ Prompt</span> tạo video AI
           </h1>
           <p className="text-txt2 text-base md:text-lg leading-relaxed max-w-xl mx-auto">
             Prompt dựng sẵn cho video thời trang người mẫu (nam & nữ) và video gia đình phong
-            cách Pixar — chỉ cần copy và dán vào công cụ AI video yêu thích. Điền thông tin bên
-            dưới để mở khoá.
+            cách Pixar — chỉ cần copy và dán vào công cụ AI video yêu thích. Dành riêng cho khách
+            hàng đã mua sản phẩm tại Vừng Ali Shop — nhập số điện thoại đã dùng khi mua hàng để mở
+            khoá.
           </p>
         </div>
 
@@ -148,20 +156,8 @@ export function PromptGate() {
             className="bg-card border border-border rounded-2xl p-6 md:p-8 space-y-4"
           >
             <div>
-              <label htmlFor="prompt-name" className="text-txt2 text-xs mb-1.5 block">
-                Họ tên *
-              </label>
-              <input
-                id="prompt-name"
-                name="name"
-                required
-                placeholder="Nguyễn Văn A"
-                className="w-full bg-card2 border border-border rounded-xl px-4 py-2.5 text-sm outline-none transition-colors focus:border-accent"
-              />
-            </div>
-            <div>
               <label htmlFor="prompt-phone" className="text-txt2 text-xs mb-1.5 block">
-                Số điện thoại *
+                Số điện thoại đã dùng khi mua hàng *
               </label>
               <input
                 id="prompt-phone"
@@ -177,15 +173,23 @@ export function PromptGate() {
               disabled={status === "loading"}
               className="grad-btn w-full text-white font-semibold px-7 py-3.5 rounded-full disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              {status === "loading" ? "Đang mở khoá..." : "Mở khoá miễn phí →"}
+              {status === "loading" ? "Đang kiểm tra..." : "Kiểm tra đơn hàng →"}
             </button>
             {status === "error" && (
               <p className="text-sm text-center text-accent2 bg-accent/10 border border-accent/30 rounded-xl px-4 py-2.5">
                 {errorMsg}
               </p>
             )}
+            {notCustomer && (
+              <p className="text-sm text-center text-accent2 bg-accent/10 border border-accent/30 rounded-xl px-4 py-2.5">
+                Bạn chưa có đơn hàng nào tại Vừng Ali Shop.{" "}
+                <Link href="/san-pham" className="underline font-semibold">
+                  Xem sản phẩm →
+                </Link>
+              </p>
+            )}
             <p className="text-txt2 text-xs text-center">
-              Chúng tôi sẽ không spam. Thông tin chỉ dùng để gửi quà tặng và tư vấn khi cần.
+              Quà tặng dành riêng cho khách hàng đã mua sản phẩm — không phát sinh phí thêm.
             </p>
           </form>
         </div>
