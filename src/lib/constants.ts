@@ -40,7 +40,7 @@ export const navLinks: NavItem[] = [
   { label: "Sản phẩm", href: "/san-pham" },
   { label: "Thanh toán", href: "/#thanh-toan" },
   {
-    label: "Quà tặng",
+    label: "Quà tặng khách hàng đã mua",
     children: [
       { label: "Công cụ", href: "/qua-tang" },
       { label: "Prompt", href: "/kho-prompt" },
