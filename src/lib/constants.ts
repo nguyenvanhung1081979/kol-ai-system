@@ -162,7 +162,7 @@ export const services: Service[] = [
   },
 ];
 
-export type ProductIcon = "photo" | "video" | "canvas" | "vip";
+export type ProductIcon = "photo" | "video" | "canvas" | "vip" | "audio";
 
 export type Product = {
   slug: string;
@@ -312,6 +312,30 @@ export const products: Product[] = [
       "Thay thế quy trình dựng ảnh/video bán hàng thủ công tốn nhiều giờ mỗi lần",
       "Đồng bộ nhận diện thương hiệu trên toàn bộ ảnh, poster, video giới thiệu",
       "Một lần mua, dùng trọn đời, cài đặt đơn giản kể cả với người không rành công nghệ",
+    ],
+  },
+  {
+    slug: "skill-113-hieu-ung-am-thanh",
+    icon: "audio",
+    name: "Skill 113 hiệu ứng âm thanh",
+    tagline:
+      "Kho 113 file hiệu ứng âm thanh tuyển chọn sẵn — dùng ngay cho video, content mạng xã hội, không cần tự đi tìm.",
+    price: "99.000",
+    priceSuffix: "đ / trọn đời",
+    amount: 99000,
+    blobPathname: "Kho-Am-Thanh-113-file.zip",
+    longDescription:
+      "Bộ sưu tập 113 file hiệu ứng âm thanh (sound effect) được tuyển chọn sẵn, sẵn sàng dùng ngay cho video ngắn, nội dung mạng xã hội và các sản phẩm truyền thông khác — thay vì mất thời gian tự tìm kiếm, tải lẻ tẻ từ nhiều nguồn khác nhau.",
+    features: [
+      "113 file hiệu ứng âm thanh đa dạng chủ đề, chất lượng sẵn sàng dùng ngay",
+      "Phù hợp video ngắn, content mạng xã hội, video giới thiệu sản phẩm",
+      "Tải trọn bộ 1 lần, dùng nhiều dự án khác nhau",
+      "Không cần tự tìm kiếm, so sánh chất lượng từng file rời rạc",
+    ],
+    benefits: [
+      "Tiết kiệm thời gian tìm và tải hiệu ứng âm thanh cho từng video",
+      "Đồng bộ chất lượng âm thanh trên các sản phẩm nội dung",
+      "Một lần mua, dùng trọn đời, không phát sinh phí ẩn",
     ],
   },
   {

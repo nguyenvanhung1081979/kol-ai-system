@@ -99,12 +99,25 @@ export function BookOpenIcon({ className }: IconProps) {
   );
 }
 
+export function AudioIcon({ className }: IconProps) {
+  return (
+    <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M9 9v9.75a2.25 2.25 0 1 1-1.5-2.121V6.75l10.5-2.25v10.628M9 9l10.5-2.25M9 9v3.75m9-6v9.75a2.25 2.25 0 1 1-1.5-2.121"
+      />
+    </svg>
+  );
+}
+
 export const productIcons = {
   photo: PhotoIcon,
   video: VideoIcon,
   canvas: CanvasIcon,
   vip: LibraryIcon,
   book: BookOpenIcon,
+  audio: AudioIcon,
 };
 
 export function SparklesIcon({ className }: IconProps) {
