@@ -344,9 +344,9 @@ export const products: Product[] = [
     name: "Kho AI Kinh Doanh VIP",
     tagline:
       "70+ App AI Studio tạo ảnh/video chuyên sâu + kho prompt bán hàng — mở khoá xem ngay trên trang, không cần chờ.",
-    price: "199.000",
+    price: "499.000",
     priceSuffix: "đ / trọn đời",
-    amount: 199000,
+    amount: 499000,
     blobPathname: "",
     contentUnlock: true,
     longDescription:
