@@ -215,10 +215,10 @@ export const products: Product[] = [
     name: "Skill Edit Video Tự Động",
     tagline:
       "Tự động dựng video talking-head chuyên nghiệp: transcribe, chèn slide minh hoạ đúng lúc, ghép hoàn chỉnh.",
-    price: "99.000",
+    price: "499.000",
     priceSuffix: "đ / trọn đời",
-    amount: 99000,
-    blobPathname: "skill-edit-video-ai.zip",
+    amount: 499000,
+    blobPathname: "Sara-Edit-Video-Skill-v4-CHATGPT.zip",
     longDescription:
       "Skill AI tích hợp vào Claude Code, nhận video bạn quay (nói chuyện trước camera) và tự động transcribe, phân tích nội dung để chèn slide minh hoạ (so sánh, số liệu, tóm tắt...) đúng thời điểm, dựng bố cục webcam + slide chuyên nghiệp và xuất ra video hoàn chỉnh — không cần dựng thủ công.",
     features: [
