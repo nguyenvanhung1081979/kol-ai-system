@@ -36,7 +36,7 @@ export const navLinks: NavItem[] = [
       },
     ],
   },
-  { label: "Dịch vụ", href: "/#dich-vu" },
+  { label: "Tra cứu AI", href: "https://aihub-vungalishop.vercel.app/", external: true },
   { label: "Sản phẩm", href: "/san-pham" },
   { label: "Thanh toán", href: "/#thanh-toan" },
   {
