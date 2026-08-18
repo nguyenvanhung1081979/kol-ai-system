@@ -293,9 +293,9 @@ export const products: Product[] = [
     name: "Skill tạo ảnh và poster bán hàng",
     tagline:
       "Bộ Skill AI 5-trong-1 tạo ảnh, poster và video giới thiệu sản phẩm — chỉ cần gửi ảnh và yêu cầu bằng tiếng Việt, không cần biết thiết kế.",
-    price: "500.000",
+    price: "200.000",
     priceSuffix: "đ / trọn đời",
-    amount: 500000,
+    amount: 200000,
     blobPathname: "sara-model-studio.zip",
     longDescription:
       "Bộ Skill AI 5 trong 1 dành cho người bán hàng, xây thương hiệu cá nhân và làm nội dung — cài trực tiếp vào ChatGPT, chỉ cần gửi ảnh và yêu cầu bằng tiếng Việt. Từ hoán đổi người mẫu Sara vào ảnh sản phẩm, tạo nhiều góc ảnh, dựng storyboard/video giới thiệu, đến thiết kế poster và banner bán hàng — tất cả trong một bộ công cụ duy nhất, kèm tài liệu hướng dẫn và bộ câu lệnh mẫu cho người mới.",
