@@ -137,8 +137,11 @@ export async function markOrderPaid(code: string, downloadUrl: string): Promise<
 export async function isPhoneCustomer(phone: string): Promise<boolean> {
   const client = redis();
   if (!client) return false;
-  const value = await client.get<string>(customerKey(phone));
-  return value === "1";
+  // Dùng exists() thay vì get()+so sánh chuỗi: Upstash REST client tự parse
+  // JSON khi đọc, nên giá trị "1" lưu vào sẽ đọc ra là number 1 chứ không
+  // phải string "1" — so sánh === "1" luôn sai dù cờ đã được ghi đúng.
+  const count = await client.exists(customerKey(phone));
+  return count > 0;
 }
 
 export async function findPaidOrderByPhone(
