@@ -365,6 +365,32 @@ export const products: Product[] = [
     ],
   },
   {
+    slug: "tao-landing-page-ban-hang",
+    icon: "canvas",
+    name: "Tạo Landing Page Bán Hàng Từ A-Z",
+    tagline:
+      "Bộ Skill AI dựng landing page bán hàng hoàn chỉnh cùng Claude Code — có thanh toán chuyển khoản tự động xác nhận, giao sản phẩm số tự động, deploy lên Vercel — đúc kết từ hệ thống đã vận hành và test bằng giao dịch thật.",
+    price: "3.000.000",
+    priceSuffix: "đ / trọn đời",
+    amount: 3000000,
+    blobPathname: "skill-tao-landing-page-ban-hang.zip",
+    longDescription:
+      "Bộ skill Claude Code hướng dẫn từng bước, kèm template code sẵn, để dựng một landing page bán hàng nhiều gói cho sản phẩm/dịch vụ của riêng bạn: từ thu thập yêu cầu, thiết kế giao diện, đến hệ thống thanh toán chuyển khoản tự động xác nhận qua webhook ngân hàng (SePay/Casso/PayOS), giao sản phẩm số tự động theo từng gói, báo đơn hàng qua Telegram, và deploy lên Vercel — đúc kết từ chính hệ thống website này, đã triển khai và kiểm thử bằng giao dịch thật. Kèm tài liệu hướng dẫn sử dụng riêng cho người không biết code — chỉ cần ra lệnh và trả lời câu hỏi khi được hỏi.",
+    features: [
+      "Template code sẵn (giao diện + backend thanh toán) làm điểm khởi đầu, không cần viết từ đầu",
+      "Thanh toán chuyển khoản tự động xác nhận qua webhook ngân hàng, tính tiền ở server chống gian lận",
+      "Giao đúng file/bundle riêng cho từng gói, mở khoá tải theo đúng trạng thái đơn hàng",
+      "Tự động báo đơn hàng mới qua Telegram, deploy lên Vercel + GitHub qua dòng lệnh",
+      "Kèm hướng dẫn sử dụng riêng cho người không biết code — chỉ cần trả lời câu hỏi khi được hỏi",
+    ],
+    benefits: [
+      "Rút ngắn thời gian dựng trang bán hàng có thanh toán tự động từ nhiều tuần xuống còn vài giờ",
+      "Không cần biết lập trình — chỉ cần trả lời các câu hỏi khi Claude Code hỏi",
+      "Đúc kết từ hệ thống thực tế đã vận hành, tránh các lỗi bảo mật/thanh toán thường gặp",
+      "Dùng lại được nhiều lần cho nhiều sản phẩm/dịch vụ khác nhau, một lần mua dùng mãi mãi",
+    ],
+  },
+  {
     slug: "kho-ai-kinh-doanh-vip",
     icon: "vip",
     name: "Kho AI Kinh Doanh VIP",
