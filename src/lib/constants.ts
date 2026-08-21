@@ -218,7 +218,7 @@ export const products: Product[] = [
     price: "499.000",
     priceSuffix: "đ / trọn đời",
     amount: 499000,
-    blobPathname: "Sara-Edit-Video-Skill-v4-CHATGPT.zip",
+    blobPathname: "Sara-Edit-Video-Skill-v4 - CHATGPT.zip",
     longDescription:
       "Skill AI tích hợp vào Claude Code, nhận video bạn quay (nói chuyện trước camera) và tự động transcribe, phân tích nội dung để chèn slide minh hoạ (so sánh, số liệu, tóm tắt...) đúng thời điểm, dựng bố cục webcam + slide chuyên nghiệp và xuất ra video hoàn chỉnh — không cần dựng thủ công.",
     features: [
