@@ -236,6 +236,32 @@ export const products: Product[] = [
     ],
   },
   {
+    slug: "ai-edit-video-hang-loat",
+    icon: "video",
+    name: "AI Edit Video Hàng Loạt",
+    tagline:
+      "Bộ Skill AI 3-trong-1 tự động dựng video từ nguồn thô trên Google Drive — phụ đề, hiệu ứng âm thanh, nhận diện thương hiệu, xuất thành phẩm hàng loạt, không cần dựng thủ công.",
+    price: "999.000",
+    priceSuffix: "đ / trọn đời",
+    amount: 999000,
+    blobPathname: "Sara-Video-Workflow-Handover.zip",
+    longDescription:
+      "Đóng gói toàn bộ quy trình dựng video thành một quy trình tự động, chỉ cần một câu lệnh: lấy video nguồn từ Google Drive, tạo transcript có timestamp thực, làm phụ đề tiếng Việt theo lời nói, xác định đoạn nội dung quan trọng để chèn chữ động và hình minh hoạ đúng thời điểm, chọn hiệu ứng âm thanh phù hợp từ kho 113 SFX theo ngữ nghĩa, cân bằng giọng nói — nhạc nền — hiệu ứng, gắn nhận diện thương hiệu, dựng thumbnail dọc, render MP4 và tự động đưa thành phẩm vào thư mục trên Google Drive.",
+    features: [
+      "Tự động lấy video nguồn từ Google Drive, chuẩn bị môi trường dựng",
+      "Tạo transcript có timestamp thực và phụ đề tiếng Việt theo lời nói",
+      "Xác định đoạn nội dung quan trọng, chèn chữ động và hình minh hoạ đúng thời điểm",
+      "Chọn hiệu ứng âm thanh phù hợp từ kho 113 SFX theo ngữ nghĩa, cân bằng âm thanh tổng thể",
+      "Gắn nhận diện thương hiệu, tạo thumbnail dọc, render MP4 và đưa thành phẩm lên Drive",
+    ],
+    benefits: [
+      "Xử lý được nhiều video theo một quy trình thống nhất, không cần dựng thủ công từng video",
+      "Phù hợp chủ shop, người bán hàng, KOC/KOL và đội nhóm sản xuất TikTok/Reels/Shorts",
+      "Tiết kiệm thời gian nghe lại video, cắt ghép, tìm hiệu ứng, cân chỉnh âm thanh thủ công",
+      "Một lần mua, dùng trọn đời — video dài hoặc số lượng lớn xử lý tuần tự tuỳ cấu hình máy",
+    ],
+  },
+  {
     slug: "omni-flow-canvas",
     icon: "canvas",
     name: "Tạo Video AI đồng nhất nhân vật",
