@@ -391,6 +391,32 @@ export const products: Product[] = [
     ],
   },
   {
+    slug: "skill-chatgpt-content-tu-dong",
+    icon: "canvas",
+    name: "Skill ChatGPT Content Tự Động 5-Trong-1",
+    tagline:
+      "Bộ Skill ChatGPT dạy AI làm việc theo đúng quy trình kênh của bạn một lần — từ nghiên cứu ý tưởng, viết bài, tạo ảnh, dựng video ngắn đến tự động lên lịch đăng Facebook.",
+    price: "999.000",
+    priceSuffix: "đ / trọn đời",
+    amount: 999000,
+    blobPathname: "facebook-content-autopilot.zip",
+    longDescription:
+      "5 Skill ChatGPT được thiết lập sẵn theo đúng quy trình sản xuất nội dung của bạn: nghiên cứu ý tưởng content bám sát tệp khách hàng, viết bài giữ đúng văn phong kênh, tạo ảnh nhận diện thương hiệu đúng chuẩn màu sắc/bố cục, chuyển bài viết thành kịch bản video ngắn kèm phụ đề, và tự động rà lỗi, chuẩn hoá CTA rồi lên lịch đăng thẳng lên Facebook. Thiết lập một lần, từ đó chỉ cần đưa đúng chủ đề vào là AI tự chạy theo đúng quy trình đã định sẵn, không cần giải thích lại từ đầu.",
+    features: [
+      "Skill 1 — Nghiên cứu ý tưởng content: tự động tìm chủ đề phù hợp tệp khách hàng",
+      "Skill 2 — Viết bài chuẩn văn phong kênh, giữ chất giọng nhất quán trên mọi bài đăng",
+      "Skill 3 — Tạo ảnh nhận diện thương hiệu: chuẩn màu sắc, bố cục và tiêu đề theo brand",
+      "Skill 4 — Chuyển bài viết thành video ngắn: tự bóc tách hook, kịch bản cảnh quay và phụ đề",
+      "Skill 5 — Kiểm tra lỗi, chuẩn hoá CTA và tự động lên lịch đăng thẳng lên Facebook",
+    ],
+    benefits: [
+      "Thiết lập một lần, dùng lại nhiều lần — không cần giải thích lại quy trình mỗi lần làm",
+      "Đồng bộ văn phong và nhận diện thương hiệu trên toàn bộ nội dung đăng tải",
+      "Rút ngắn cả chuỗi từ lên ý tưởng đến đăng bài xuống chỉ còn vài thao tác",
+      "Phù hợp người làm nội dung, chủ shop và đội nhóm cần sản xuất bài đăng đều đặn",
+    ],
+  },
+  {
     slug: "kho-ai-kinh-doanh-vip",
     icon: "vip",
     name: "Kho AI Kinh Doanh VIP",
