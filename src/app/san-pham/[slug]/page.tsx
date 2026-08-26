@@ -77,6 +77,7 @@ export default async function ProductDetailPage({
               Xem sản phẩm khác
             </Link>
           </div>
+          <AffiliateShare />
         </div>
       </section>
 
@@ -143,7 +144,6 @@ export default async function ProductDetailPage({
         </div>
 
         <ProductPurchase product={product} />
-        <AffiliateShare />
       </section>
 
       <Footer />
