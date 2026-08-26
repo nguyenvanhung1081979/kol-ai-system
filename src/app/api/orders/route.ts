@@ -6,6 +6,7 @@ type CreateOrderPayload = {
   productSlug: string;
   name: string;
   phone: string;
+  refPhone?: string;
 };
 
 export async function POST(request: Request) {
@@ -34,6 +35,7 @@ export async function POST(request: Request) {
       blobPathname: product.blobPathname,
       buyerName: body.name.trim(),
       buyerPhone: body.phone.trim(),
+      refPhone: body.refPhone?.trim() || undefined,
     });
 
     return NextResponse.json({

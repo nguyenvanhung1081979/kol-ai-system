@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Header } from "@/components/sections/Header";
 import { Footer } from "@/components/sections/Footer";
 import { ProductPurchase } from "@/components/sections/ProductPurchase";
+import { AffiliateShare } from "@/components/sections/AffiliateShare";
 import { VipContentPreview } from "@/components/sections/VipContentPreview";
 import { products } from "@/lib/constants";
 import { productIcons } from "@/components/ui/Icons";
@@ -142,6 +143,7 @@ export default async function ProductDetailPage({
         </div>
 
         <ProductPurchase product={product} />
+        <AffiliateShare />
       </section>
 
       <Footer />

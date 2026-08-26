@@ -14,10 +14,26 @@ export type Order = {
   createdAt: number;
   paidAt?: number;
   downloadUrl?: string;
+  /** SĐT của CTV giới thiệu (nếu khách vào qua link ?ref=), đọc từ localStorage phía client. */
+  refPhone?: string;
+};
+
+export type AffiliateSale = {
+  refPhone: string;
+  orderCode: string;
+  productSlug: string;
+  productName: string;
+  amount: number;
+  commission: number;
+  paidAt: number;
 };
 
 const PENDING_TTL_SECONDS = 60 * 60; // 1h to complete payment
 const PAID_TTL_SECONDS = 60 * 60 * 24 * 30; // keep paid orders 30 days
+// Hoa hồng CTV: 30% cố định, chỉ tính cho đơn ĐẦU TIÊN của khách được giới
+// thiệu (xét qua isPhoneCustomer — nếu khách đã là customer từ trước thì đơn
+// này không phải lần mua đầu, không tính hoa hồng dù có refPhone).
+const AFFILIATE_COMMISSION_RATE = 0.3;
 
 function redis(): Redis | null {
   // Vercel's Upstash-for-Redis marketplace integration provisions these under the
@@ -62,6 +78,12 @@ function customerKey(phone: string) {
   return `customer:${normalizePhone(phone)}`;
 }
 
+// Sổ hoa hồng CTV — lưu VĨNH VIỄN theo mã đơn (không đặt ex), tách biệt khỏi
+// dữ liệu đơn hàng 30 ngày, để báo cáo hoa hồng không bị mất theo thời gian.
+function affiliateSaleKey(orderCode: string) {
+  return `affiliate-sale:${orderCode}`;
+}
+
 function generateOrderCode() {
   const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // không dùng ký tự dễ nhầm (0/O, 1/I)
   let code = "VAS";
@@ -78,6 +100,7 @@ export async function createOrder(input: {
   blobPathname: string;
   buyerName: string;
   buyerPhone: string;
+  refPhone?: string;
 }): Promise<Order> {
   const client = redis();
   if (!client) throw new Error("Orders store chưa được cấu hình.");
@@ -107,6 +130,11 @@ export async function markOrderPaid(code: string, downloadUrl: string): Promise<
   const order = await client.get<Order>(orderKey(code));
   if (!order) return null;
 
+  // Xét TRƯỚC khi đánh dấu customer bên dưới: nếu khách đã là customer từ
+  // trước (đã có đơn "paid" khác trước đây) thì đơn lần này không phải lần
+  // mua đầu tiên -> không tính hoa hồng CTV dù có refPhone.
+  const wasAlreadyCustomer = await isPhoneCustomer(order.buyerPhone);
+
   const updated: Order = { ...order, status: "paid", paidAt: Date.now(), downloadUrl };
   await client.set(orderKey(code), updated, { ex: PAID_TTL_SECONDS });
 
@@ -126,6 +154,23 @@ export async function markOrderPaid(code: string, downloadUrl: string): Promise<
     await client.set(customerKey(updated.buyerPhone), "1");
   } catch (error) {
     console.error("Lỗi khi đánh dấu khách hàng theo SĐT:", error);
+  }
+
+  if (updated.refPhone && !wasAlreadyCustomer) {
+    try {
+      const sale: AffiliateSale = {
+        refPhone: normalizePhone(updated.refPhone),
+        orderCode: updated.code,
+        productSlug: updated.productSlug,
+        productName: updated.productName,
+        amount: updated.amount,
+        commission: Math.round(updated.amount * AFFILIATE_COMMISSION_RATE),
+        paidAt: updated.paidAt ?? Date.now(),
+      };
+      await client.set(affiliateSaleKey(updated.code), sale);
+    } catch (error) {
+      console.error("Lỗi khi ghi nhận hoa hồng CTV:", error);
+    }
   }
 
   return updated;
@@ -155,6 +200,42 @@ export async function findPaidOrderByPhone(
   const order = await client.get<Order>(orderKey(code));
   if (!order || order.status !== "paid") return null;
   return order;
+}
+
+// Báo cáo hoa hồng CTV cho chủ shop: quét toàn bộ affiliate-sale:*, gộp theo
+// refPhone. Dùng cho API nội bộ bảo vệ bằng mật khẩu chủ shop.
+export async function getAffiliateStats(): Promise<
+  { refPhone: string; totalCommission: number; totalSales: number; sales: AffiliateSale[] }[]
+> {
+  const client = redis();
+  if (!client) throw new Error("Orders store chưa được cấu hình.");
+
+  const byPhone = new Map<string, AffiliateSale[]>();
+  let cursor = "0";
+
+  do {
+    const [nextCursor, keys] = await client.scan(cursor, {
+      match: "affiliate-sale:*",
+      count: 100,
+    });
+    cursor = String(nextCursor);
+    for (const key of keys) {
+      const sale = await client.get<AffiliateSale>(key);
+      if (!sale) continue;
+      const list = byPhone.get(sale.refPhone) ?? [];
+      list.push(sale);
+      byPhone.set(sale.refPhone, list);
+    }
+  } while (cursor !== "0");
+
+  return Array.from(byPhone.entries())
+    .map(([refPhone, sales]) => ({
+      refPhone,
+      totalSales: sales.length,
+      totalCommission: sales.reduce((sum, s) => sum + s.commission, 0),
+      sales: sales.sort((a, b) => b.paidAt - a.paidAt),
+    }))
+    .sort((a, b) => b.totalCommission - a.totalCommission);
 }
 
 // Chạy 1 lần sau khi triển khai tính năng tra cứu theo SĐT: quét lại toàn bộ

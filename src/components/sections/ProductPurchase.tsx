@@ -22,6 +22,25 @@ function unlockedOrderKey(productSlug: string) {
 
 const OWNER_UNLOCK_KEY = "owner_unlock";
 
+const AFF_REF_KEY = "aff_ref";
+const AFF_REF_TTL_MS = 30 * 24 * 60 * 60 * 1000; // 30 ngày
+
+// Đọc SĐT CTV đã lưu (nếu còn hạn 30 ngày kể từ lần click link giới thiệu gần nhất).
+function getStoredRefPhone(): string | null {
+  try {
+    const raw = localStorage.getItem(AFF_REF_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as { phone?: string; expiresAt?: number };
+    if (!parsed.phone || !parsed.expiresAt || parsed.expiresAt < Date.now()) {
+      localStorage.removeItem(AFF_REF_KEY);
+      return null;
+    }
+    return parsed.phone;
+  } catch {
+    return null;
+  }
+}
+
 function QrBlock({
   qrUrl,
   amountLabel,
@@ -116,6 +135,18 @@ export function ProductPurchase({ product }: { product: Product }) {
   const [lookupPhone, setLookupPhone] = useState("");
   const [lookingUp, setLookingUp] = useState(false);
   const [lookupError, setLookupError] = useState("");
+
+  // Khách vào trang qua link CTV (?ref=SĐT) -> lưu lại 30 ngày để tính hoa hồng
+  // nếu sau này họ mua hàng. Lần click sau (ref khác) sẽ ghi đè lần trước.
+  useEffect(() => {
+    const ref = new URLSearchParams(window.location.search).get("ref");
+    if (ref?.trim()) {
+      localStorage.setItem(
+        AFF_REF_KEY,
+        JSON.stringify({ phone: ref.trim(), expiresAt: Date.now() + AFF_REF_TTL_MS })
+      );
+    }
+  }, []);
 
   useEffect(() => {
     return () => {
@@ -246,7 +277,12 @@ export function ProductPurchase({ product }: { product: Product }) {
       const res = await fetch("/api/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ productSlug: product.slug, name, phone }),
+        body: JSON.stringify({
+          productSlug: product.slug,
+          name,
+          phone,
+          refPhone: getStoredRefPhone() ?? undefined,
+        }),
       });
 
       if (res.status === 503) {
