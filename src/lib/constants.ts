@@ -163,10 +163,12 @@ export const services: Service[] = [
 ];
 
 export type ProductIcon = "photo" | "video" | "canvas" | "vip" | "audio";
+export type ProductCategory = "photo" | "video" | "content" | "vip";
 
 export type Product = {
   slug: string;
   icon: ProductIcon;
+  category: ProductCategory;
   name: string;
   tagline: string;
   price: string;
@@ -186,6 +188,7 @@ export const products: Product[] = [
   {
     slug: "skill-chinh-sua-anh-ai",
     icon: "photo",
+    category: "photo",
     name: "Skill tạo ảnh đẹp đăng Facebook",
     tagline:
       "Tự động chèn tiêu đề + badge thương hiệu lên ảnh chuẩn phong cách mạng xã hội — không cần biết thiết kế.",
@@ -212,6 +215,7 @@ export const products: Product[] = [
   {
     slug: "skill-edit-video-ai",
     icon: "video",
+    category: "video",
     name: "Skill Edit Video Tự Động",
     tagline:
       "Tự động dựng video talking-head chuyên nghiệp: transcribe, chèn slide minh hoạ đúng lúc, ghép hoàn chỉnh.",
@@ -238,6 +242,7 @@ export const products: Product[] = [
   {
     slug: "ai-edit-video-hang-loat",
     icon: "video",
+    category: "video",
     name: "AI Edit Video Hàng Loạt",
     tagline:
       "Bộ Skill AI 3-trong-1 tự động dựng video từ nguồn thô trên Google Drive — phụ đề, hiệu ứng âm thanh, nhận diện thương hiệu, xuất thành phẩm hàng loạt, không cần dựng thủ công.",
@@ -264,6 +269,7 @@ export const products: Product[] = [
   {
     slug: "omni-flow-canvas",
     icon: "canvas",
+    category: "video",
     name: "Tạo Video AI đồng nhất nhân vật",
     tagline:
       "Canvas dựng sẵn trên nền tảng Flow (Google Labs) — tạo video AI nhanh hơn mà không cần dựng từ đầu.",
@@ -290,6 +296,7 @@ export const products: Product[] = [
   {
     slug: "flow-tao-video-hang-loat",
     icon: "canvas",
+    category: "video",
     name: "Flow tạo Videos AI hàng loạt",
     tagline:
       "Canvas dựng sẵn trên nền tảng Flow (Google Labs) — tạo hàng loạt video AI cùng lúc, không cần dựng từng video riêng lẻ.",
@@ -316,6 +323,7 @@ export const products: Product[] = [
   {
     slug: "sara-model-studio",
     icon: "photo",
+    category: "photo",
     name: "Skill tạo ảnh và poster bán hàng",
     tagline:
       "Bộ Skill AI 5-trong-1 tạo ảnh, poster và video giới thiệu sản phẩm — chỉ cần gửi ảnh và yêu cầu bằng tiếng Việt, không cần biết thiết kế.",
@@ -343,6 +351,7 @@ export const products: Product[] = [
   {
     slug: "skill-113-hieu-ung-am-thanh",
     icon: "audio",
+    category: "vip",
     name: "Skill 113 hiệu ứng âm thanh",
     tagline:
       "Kho 113 file hiệu ứng âm thanh tuyển chọn sẵn — dùng ngay cho video, content mạng xã hội, không cần tự đi tìm.",
@@ -367,6 +376,7 @@ export const products: Product[] = [
   {
     slug: "tao-landing-page-ban-hang",
     icon: "canvas",
+    category: "content",
     name: "Tạo Landing Page Bán Hàng Từ A-Z",
     tagline:
       "Bộ Skill AI dựng landing page bán hàng hoàn chỉnh cùng Claude Code — có thanh toán chuyển khoản tự động xác nhận, giao sản phẩm số tự động, deploy lên Vercel — đúc kết từ hệ thống đã vận hành và test bằng giao dịch thật.",
@@ -393,6 +403,7 @@ export const products: Product[] = [
   {
     slug: "skill-chatgpt-content-tu-dong",
     icon: "canvas",
+    category: "content",
     name: "Skill ChatGPT Content Tự Động 5-Trong-1",
     tagline:
       "Bộ Skill ChatGPT dạy AI làm việc theo đúng quy trình kênh của bạn một lần — từ nghiên cứu ý tưởng, viết bài, tạo ảnh, dựng video ngắn đến tự động lên lịch đăng Facebook.",
@@ -419,6 +430,7 @@ export const products: Product[] = [
   {
     slug: "kho-ai-kinh-doanh-vip",
     icon: "vip",
+    category: "vip",
     name: "Kho AI Kinh Doanh VIP",
     tagline:
       "70+ App AI Studio tạo ảnh/video chuyên sâu + kho prompt bán hàng — mở khoá xem ngay trên trang, không cần chờ.",
@@ -613,6 +625,14 @@ export const faqs = [
   {
     q: "Tôi có thể huỷ hoặc đổi gói dịch vụ không?",
     a: "Hoàn toàn được. Bạn có thể nâng cấp, hạ cấp hoặc huỷ gói bất kỳ lúc nào, liên hệ đội ngũ hỗ trợ để được xử lý nhanh chóng.",
+  },
+  {
+    q: "Sau khi chuyển khoản mua sản phẩm, bao lâu tôi nhận được link tải?",
+    a: "Khi thanh toán tự động đang hoạt động, hệ thống xác nhận và mở link tải/nội dung ngay trên trang trong vòng vài chục giây sau khi bạn chuyển khoản đúng nội dung. Nếu gặp sự cố, nhắn Zalo kèm ảnh biên lai để được hỗ trợ thủ công.",
+  },
+  {
+    q: "Tôi chưa biết dùng AI thì có dùng được các Skill này không?",
+    a: "Được. Mỗi sản phẩm đều có hướng dẫn sử dụng đi kèm, và bạn có thể nhắn Zalo để được hỗ trợ trực tiếp nếu gặp khó khăn khi cài đặt hoặc sử dụng.",
   },
 ];
 

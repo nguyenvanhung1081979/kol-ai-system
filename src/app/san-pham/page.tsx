@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Header } from "@/components/sections/Header";
 import { Footer } from "@/components/sections/Footer";
-import { products } from "@/lib/constants";
-import { productIcons } from "@/components/ui/Icons";
+import { Faq } from "@/components/sections/Faq";
+import { ProductsCatalog } from "@/components/sections/ProductsCatalog";
+import { heroStats } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Sản phẩm",
@@ -27,37 +27,21 @@ export default function ProductsPage() {
             Mua một lần, sử dụng lâu dài — không cần chờ triển khai, không ràng buộc gói thuê bao.
           </p>
         </div>
-      </section>
 
-      <section className="max-w-7xl mx-auto px-5 md:px-8 pb-20 md:pb-28">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {products.map((product) => {
-            const Icon = productIcons[product.icon];
-            return (
-              <div
-                key={product.slug}
-                className="card-hover flex flex-col bg-card border border-border rounded-2xl p-6"
-              >
-                <div className="w-11 h-11 rounded-xl grad-btn flex items-center justify-center mb-5">
-                  <Icon className="w-5 h-5 text-white" />
-                </div>
-                <h2 className="font-bold text-lg mb-2">{product.name}</h2>
-                <p className="text-txt2 text-sm leading-relaxed mb-5 flex-1">{product.tagline}</p>
-                <p className="mb-5">
-                  <span className="text-2xl font-extrabold grad-text">{product.price}</span>
-                  <span className="text-txt2 text-sm font-medium">{product.priceSuffix}</span>
-                </p>
-                <Link
-                  href={`/san-pham/${product.slug}`}
-                  className="grad-btn text-white text-center font-semibold py-3 rounded-full"
-                >
-                  Xem chi tiết →
-                </Link>
+        <div className="max-w-4xl mx-auto px-5 md:px-8 pb-16">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 border-t border-border pt-10">
+            {heroStats.map((stat) => (
+              <div key={stat.label} className="text-center">
+                <p className="text-2xl md:text-3xl font-extrabold grad-text">{stat.value}</p>
+                <p className="text-txt2 text-xs md:text-sm mt-1">{stat.label}</p>
               </div>
-            );
-          })}
+            ))}
+          </div>
         </div>
       </section>
+
+      <ProductsCatalog />
+      <Faq />
       <Footer />
     </>
   );
