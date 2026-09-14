@@ -186,6 +186,8 @@ export type Product = {
   comboOriginalPrice?: string;
   /** Chỉ dùng cho category "combo": nổi bật card này (viền + badge) trong khối Gói Combo. */
   comboBadge?: string;
+  /** Chỉ dùng cho category "combo": nhãn ngắn "dành cho ai" hiển thị phía trên tên combo. */
+  comboAudience?: string;
 };
 
 export const products: Product[] = [
@@ -201,6 +203,7 @@ export const products: Product[] = [
     amount: 499000,
     comboOriginalPrice: "697.000",
     comboBadge: "PHỔ BIẾN NHẤT",
+    comboAudience: "Dành cho TikToker / Reels Creator",
     blobPathname: "combo-video-creator.zip",
     longDescription:
       "Đóng gói sẵn 3 công cụ cần thiết nhất để sản xuất video AI hàng loạt: Skill Edit Video Tự Động (dựng video talking-head, chèn slide minh hoạ tự động), Tạo Video AI đồng nhất nhân vật (giữ nguyên khuôn mặt/trang phục xuyên suốt video) và Skill 113 hiệu ứng âm thanh (kho SFX sẵn dùng). Mua lẻ 3 sản phẩm này tốn 697.000đ, mua combo chỉ 499.000đ — tiết kiệm 198.000đ.",
@@ -228,6 +231,7 @@ export const products: Product[] = [
     priceSuffix: "đ / trọn đời",
     amount: 349000,
     comboOriginalPrice: "499.000",
+    comboAudience: "Dành cho chủ shop & bán hàng",
     blobPathname: "combo-toan-nang-ban-hang.zip",
     longDescription:
       "Đóng gói sẵn 3 công cụ tối ưu cho chủ shop và người bán hàng: Skill tạo ảnh và poster bán hàng (tạo ảnh/poster bằng câu lệnh tiếng Việt), Flow tạo Videos AI hàng loạt (render nhiều video ngắn cùng lúc) và Skill tạo ảnh đẹp đăng Facebook (chèn tiêu đề + badge thương hiệu). Mua lẻ 3 sản phẩm này tốn 499.000đ, mua combo chỉ 349.000đ — tiết kiệm 150.000đ.",
@@ -255,6 +259,7 @@ export const products: Product[] = [
     priceSuffix: "đ / trọn đời",
     amount: 1499000,
     comboOriginalPrice: "3.693.000",
+    comboAudience: "Mở khoá toàn bộ hệ thống",
     blobPathname: "combo-vip-all-access.zip",
     longDescription:
       "Mở khoá toàn bộ 9 sản phẩm AI đang bán trên trang (trừ Tạo Landing Page Bán Hàng Từ A-Z — sản phẩm dạng dịch vụ riêng, không thuộc combo này): 8 Skill dạng file (ảnh, video, âm thanh, content) và Kho AI Kinh Doanh VIP (70+ App AI Studio, mở khoá xem trên trang qua link riêng). Mua lẻ toàn bộ tốn 3.693.000đ, mua combo chỉ 1.499.000đ — tiết kiệm 2.194.000đ.",
