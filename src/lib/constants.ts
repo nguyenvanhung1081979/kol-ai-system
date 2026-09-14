@@ -218,6 +218,60 @@ export const products: Product[] = [
     ],
   },
   {
+    slug: "combo-toan-nang-ban-hang",
+    icon: "photo",
+    category: "combo",
+    name: "Combo Toàn Năng Bán Hàng",
+    tagline:
+      "3 Skill dựng ảnh & video bán hàng cho Facebook Ads, Shopee, TikTok Shop — mua combo tiết kiệm 30% so với mua lẻ.",
+    price: "349.000",
+    priceSuffix: "đ / trọn đời",
+    amount: 349000,
+    comboOriginalPrice: "499.000",
+    blobPathname: "combo-toan-nang-ban-hang.zip",
+    longDescription:
+      "Đóng gói sẵn 3 công cụ tối ưu cho chủ shop và người bán hàng: Skill tạo ảnh và poster bán hàng (tạo ảnh/poster bằng câu lệnh tiếng Việt), Flow tạo Videos AI hàng loạt (render nhiều video ngắn cùng lúc) và Skill tạo ảnh đẹp đăng Facebook (chèn tiêu đề + badge thương hiệu). Mua lẻ 3 sản phẩm này tốn 499.000đ, mua combo chỉ 349.000đ — tiết kiệm 150.000đ.",
+    features: [
+      "Skill tạo ảnh và poster bán hàng — trị giá 200.000đ khi mua lẻ",
+      "Flow tạo Videos AI hàng loạt — trị giá 200.000đ khi mua lẻ",
+      "Skill tạo ảnh đẹp đăng Facebook — trị giá 99.000đ khi mua lẻ",
+      "Tổng giá trị mua lẻ 499.000đ, mua combo chỉ 349.000đ",
+    ],
+    benefits: [
+      "Tiết kiệm 150.000đ so với mua từng sản phẩm riêng lẻ",
+      "Đủ bộ công cụ sản xuất ảnh/video quảng cáo cho Facebook Ads, Shopee, TikTok Shop",
+      "Nhận cả 3 sản phẩm ngay trong 1 file duy nhất sau khi thanh toán",
+      "Một lần mua, dùng trọn đời cho cả 3 công cụ",
+    ],
+  },
+  {
+    slug: "combo-vip-all-access",
+    icon: "vip",
+    category: "combo",
+    name: "Combo VIP All-Access",
+    tagline:
+      "Trọn bộ 8 Skill AI đang bán + Kho AI Kinh Doanh VIP — mua combo tiết kiệm hơn 59% so với mua lẻ từng sản phẩm.",
+    price: "1.499.000",
+    priceSuffix: "đ / trọn đời",
+    amount: 1499000,
+    comboOriginalPrice: "3.693.000",
+    blobPathname: "combo-vip-all-access.zip",
+    longDescription:
+      "Mở khoá toàn bộ 9 sản phẩm AI đang bán trên trang (trừ Tạo Landing Page Bán Hàng Từ A-Z — sản phẩm dạng dịch vụ riêng, không thuộc combo này): 8 Skill dạng file (ảnh, video, âm thanh, content) và Kho AI Kinh Doanh VIP (70+ App AI Studio, mở khoá xem trên trang qua link riêng). Mua lẻ toàn bộ tốn 3.693.000đ, mua combo chỉ 1.499.000đ — tiết kiệm 2.194.000đ.",
+    features: [
+      "8 Skill AI dạng file: ảnh, video, âm thanh, content — tổng trị giá 3.194.000đ khi mua lẻ",
+      "Kho AI Kinh Doanh VIP (70+ App AI Studio) — trị giá 499.000đ khi mua lẻ",
+      "Tổng giá trị mua lẻ 3.693.000đ, mua combo chỉ 1.499.000đ",
+      "Nhận file tổng hợp + link riêng truy cập Kho AI Kinh Doanh VIP",
+    ],
+    benefits: [
+      "Tiết kiệm 2.194.000đ so với mua từng sản phẩm riêng lẻ",
+      "Sở hữu toàn bộ công cụ AI ảnh/video/âm thanh/content đang bán trên trang",
+      "Phù hợp người muốn dùng đủ bộ công cụ thay vì mua lẻ dần từng cái",
+      "Một lần mua, dùng trọn đời cho toàn bộ 9 sản phẩm",
+    ],
+  },
+  {
     slug: "skill-chinh-sua-anh-ai",
     icon: "photo",
     category: "photo",
