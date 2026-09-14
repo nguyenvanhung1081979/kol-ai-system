@@ -59,19 +59,14 @@ export function ComboShowcase() {
               key={combo.slug}
               className={`card-hover relative flex flex-col rounded-2xl p-7 bg-card2 border-2 ${theme.border}`}
             >
-              {combo.comboBadge && (
+              {combo.comboAudience && (
                 <span
                   className={`absolute -top-3 left-1/2 -translate-x-1/2 text-xs font-bold px-4 py-1 rounded-full whitespace-nowrap ${theme.badge}`}
                 >
-                  {combo.comboBadge}
+                  {combo.comboAudience}
                 </span>
               )}
-              {combo.comboAudience && (
-                <p className={`text-xs font-bold uppercase tracking-wide mb-1 ${theme.audience}`}>
-                  {combo.comboAudience}
-                </p>
-              )}
-              <h3 className="font-bold text-lg mb-2">{combo.name}</h3>
+              <h3 className="font-bold text-lg mb-2 mt-2">{combo.name}</h3>
               <p className="text-txt2 text-sm leading-relaxed mb-5">{combo.tagline}</p>
 
               <ul className="space-y-2.5 text-sm text-txt2 mb-6 flex-1">

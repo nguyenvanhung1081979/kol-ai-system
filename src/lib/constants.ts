@@ -184,9 +184,7 @@ export type Product = {
   benefits: string[];
   /** Chỉ dùng cho category "combo": giá gốc nếu mua lẻ từng sản phẩm (hiển thị gạch ngang). */
   comboOriginalPrice?: string;
-  /** Chỉ dùng cho category "combo": nổi bật card này (viền + badge) trong khối Gói Combo. */
-  comboBadge?: string;
-  /** Chỉ dùng cho category "combo": nhãn ngắn "dành cho ai" hiển thị phía trên tên combo. */
+  /** Chỉ dùng cho category "combo": nhãn ngắn "dành cho ai", hiển thị dạng badge phía trên card. */
   comboAudience?: string;
 };
 
@@ -202,7 +200,6 @@ export const products: Product[] = [
     priceSuffix: "đ / trọn đời",
     amount: 499000,
     comboOriginalPrice: "697.000",
-    comboBadge: "PHỔ BIẾN NHẤT",
     comboAudience: "Dành cho TikToker / Reels Creator",
     blobPathname: "combo-video-creator.zip",
     longDescription:
