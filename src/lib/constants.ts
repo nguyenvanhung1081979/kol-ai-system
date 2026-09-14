@@ -182,6 +182,10 @@ export type Product = {
   longDescription: string;
   features: string[];
   benefits: string[];
+  /** Chỉ dùng cho category "combo": giá gốc nếu mua lẻ từng sản phẩm (hiển thị gạch ngang). */
+  comboOriginalPrice?: string;
+  /** Chỉ dùng cho category "combo": nổi bật card này (viền + badge) trong khối Gói Combo. */
+  comboBadge?: string;
 };
 
 export const products: Product[] = [
@@ -195,6 +199,8 @@ export const products: Product[] = [
     price: "499.000",
     priceSuffix: "đ / trọn đời",
     amount: 499000,
+    comboOriginalPrice: "697.000",
+    comboBadge: "PHỔ BIẾN NHẤT",
     blobPathname: "combo-video-creator.zip",
     longDescription:
       "Đóng gói sẵn 3 công cụ cần thiết nhất để sản xuất video AI hàng loạt: Skill Edit Video Tự Động (dựng video talking-head, chèn slide minh hoạ tự động), Tạo Video AI đồng nhất nhân vật (giữ nguyên khuôn mặt/trang phục xuyên suốt video) và Skill 113 hiệu ứng âm thanh (kho SFX sẵn dùng). Mua lẻ 3 sản phẩm này tốn 697.000đ, mua combo chỉ 499.000đ — tiết kiệm 198.000đ.",

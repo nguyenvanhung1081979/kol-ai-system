@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Header } from "@/components/sections/Header";
 import { Footer } from "@/components/sections/Footer";
 import { Faq } from "@/components/sections/Faq";
+import { ComboShowcase } from "@/components/sections/ComboShowcase";
 import { ProductsCatalog } from "@/components/sections/ProductsCatalog";
 import { heroStats } from "@/lib/constants";
 
@@ -40,6 +41,7 @@ export default function ProductsPage() {
         </div>
       </section>
 
+      <ComboShowcase />
       <ProductsCatalog />
       <Faq />
       <Footer />
