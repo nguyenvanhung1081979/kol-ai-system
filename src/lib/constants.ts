@@ -163,7 +163,7 @@ export const services: Service[] = [
 ];
 
 export type ProductIcon = "photo" | "video" | "canvas" | "vip" | "audio";
-export type ProductCategory = "photo" | "video" | "content" | "vip";
+export type ProductCategory = "photo" | "video" | "content" | "vip" | "combo";
 
 export type Product = {
   slug: string;
@@ -185,6 +185,32 @@ export type Product = {
 };
 
 export const products: Product[] = [
+  {
+    slug: "combo-video-creator",
+    icon: "video",
+    category: "combo",
+    name: "Combo Video Creator",
+    tagline:
+      "Trọn bộ 3 Skill dựng video AI: edit video tự động, giữ đồng nhất nhân vật và hiệu ứng âm thanh — mua combo tiết kiệm hơn 28% so với mua lẻ.",
+    price: "499.000",
+    priceSuffix: "đ / trọn đời",
+    amount: 499000,
+    blobPathname: "combo-video-creator.zip",
+    longDescription:
+      "Đóng gói sẵn 3 công cụ cần thiết nhất để sản xuất video AI hàng loạt: Skill Edit Video Tự Động (dựng video talking-head, chèn slide minh hoạ tự động), Tạo Video AI đồng nhất nhân vật (giữ nguyên khuôn mặt/trang phục xuyên suốt video) và Skill 113 hiệu ứng âm thanh (kho SFX sẵn dùng). Mua lẻ 3 sản phẩm này tốn 697.000đ, mua combo chỉ 499.000đ — tiết kiệm 198.000đ.",
+    features: [
+      "Skill Edit Video Tự Động — trị giá 499.000đ khi mua lẻ",
+      "Tạo Video AI đồng nhất nhân vật — trị giá 99.000đ khi mua lẻ",
+      "Skill 113 hiệu ứng âm thanh — trị giá 99.000đ khi mua lẻ",
+      "Tổng giá trị mua lẻ 697.000đ, mua combo chỉ 499.000đ",
+    ],
+    benefits: [
+      "Tiết kiệm 198.000đ so với mua từng sản phẩm riêng lẻ",
+      "Đủ bộ công cụ để đi từ video thô đến video hoàn chỉnh có âm thanh",
+      "Nhận cả 3 sản phẩm ngay trong 1 file duy nhất sau khi thanh toán",
+      "Một lần mua, dùng trọn đời cho cả 3 công cụ",
+    ],
+  },
   {
     slug: "skill-chinh-sua-anh-ai",
     icon: "photo",

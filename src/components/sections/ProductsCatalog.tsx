@@ -7,6 +7,7 @@ import { productIcons } from "@/components/ui/Icons";
 
 const CATEGORY_TABS: { id: ProductCategory | "all"; label: string }[] = [
   { id: "all", label: "Tất cả sản phẩm" },
+  { id: "combo", label: "Gói Combo tiết kiệm" },
   { id: "photo", label: "Ảnh & Poster" },
   { id: "video", label: "Video AI" },
   { id: "content", label: "Nội dung & Kinh doanh" },
@@ -42,11 +43,19 @@ export function ProductsCatalog() {
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {filtered.map((product) => {
           const Icon = productIcons[product.icon];
+          const isCombo = product.category === "combo";
           return (
             <div
               key={product.slug}
-              className="card-hover flex flex-col bg-card border border-border rounded-2xl p-6"
+              className={`relative card-hover flex flex-col bg-card rounded-2xl p-6 ${
+                isCombo ? "border-2 border-accent" : "border border-border"
+              }`}
             >
+              {isCombo && (
+                <span className="absolute -top-3 right-5 text-[11px] font-bold uppercase tracking-wide grad-btn text-white px-3 py-1 rounded-full">
+                  Tiết kiệm hơn mua lẻ
+                </span>
+              )}
               <div className="w-11 h-11 rounded-xl grad-btn flex items-center justify-center mb-5">
                 <Icon className="w-5 h-5 text-white" />
               </div>
