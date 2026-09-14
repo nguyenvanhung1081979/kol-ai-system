@@ -21,10 +21,10 @@ export function ComboShowcase() {
         {combos.map((combo) => (
           <div
             key={combo.slug}
-            className={`card-hover relative flex flex-col rounded-2xl p-7 ${
+            className={`card-hover relative flex flex-col rounded-2xl p-7 border-2 ${
               combo.comboBadge
-                ? "bg-card2 border-2 border-accent md:-translate-y-3"
-                : "bg-card border border-border"
+                ? "bg-card2 border-accent md:-translate-y-3"
+                : "bg-card border-accent/30"
             }`}
           >
             {combo.comboBadge && (
@@ -57,7 +57,7 @@ export function ComboShowcase() {
             <Link
               href={`/san-pham/${combo.slug}`}
               className={`block text-center font-semibold py-3 rounded-full transition-transform active:scale-95 ${
-                combo.comboBadge ? "grad-btn text-white" : "btn-ghost border border-border"
+                combo.comboBadge ? "grad-btn text-white" : "btn-ghost border border-accent/40"
               }`}
             >
               Sở hữu ngay
